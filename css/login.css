@@ -1,0 +1,48 @@
+.login-container {
+    height: 100vh;
+    background-image: url("../img/game-icon-background.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container #login-form {
+    width: 450px;
+    height: 600px;
+    background: #fff;
+}
+.login-container .login-header {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.login-container.name-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.login-container #login-form .input-wrapper {
+    margin: 0 20px;
+    margin-bottom: 20px;
+}
+.login-container #login-form .input-wrapper :focus {
+    outline: #0062cc;
+}
+  
+.btn-login {
+    width: 100%;
+}
+  
+.login-container .redirect {
+    margin-top: 275px;
+    text-align: center;
+    font-size: 13px;
+    color: #999999;
+}
+.login-container #redirect-to-register:hover {
+    transition: 0.8s;
+    color: #0062cc;
+}
+  
