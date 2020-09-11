@@ -26,7 +26,7 @@ window.onload = () => {
         view.setActiveScreen("loginPage");
       }
     } else {
-      view.setActiveScreen("loginPage");
+      view.setActiveScreen("homePage");
     }
   })
 };

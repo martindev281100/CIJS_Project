@@ -55,7 +55,7 @@
 }
 
 .header .container .sign-in-btn{
-    line-height: 58px;
+    margin-top: 10px;
 }
 
 .home-page .main{
@@ -75,3 +75,4 @@
     margin-bottom: 2rem;
     color: #fff;
 }
+

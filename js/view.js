@@ -41,6 +41,10 @@ view.setActiveScreen = (screenName) => {
           break;
       case "homePage":
           document.getElementById("app").innerHTML = component.homePage;
+          const logInButton = document.querySelector('.sign-in-btn .button-1');
+          logInButton.addEventListener('click', () => {
+              view.setActiveScreen('loginPage');
+          })
           break;
   }
 };
