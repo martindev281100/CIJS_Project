@@ -16,12 +16,34 @@ view.setActiveScreen = (screenName) => {
         };
         controller.register(data);
       });
+      document
+        .getElementById("redirect-to-login")
+        .addEventListener("click", function () {
+          view.setActiveScreen("loginPage");
+        });
       break;
-      case "loginPage":
-          document.getElementById('app').innerHTML = component.loginPage
-
+    case "loginPage":
+      document.getElementById("app").innerHTML = component.loginPage;
+      const loginForm = document.getElementById("login-form");
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const data = {
+          email: loginForm.email.value,
+          password: loginForm.password.value,
+        };
+        controller.login(data);
+      });
+      document
+        .getElementById("redirect-to-register")
+        .addEventListener("click", function () {
+          view.setActiveScreen("registerPage");
+        });
+          break;
+      case "homePage":
+          document.getElementById("app").innerHTML = component.homePage;
+          break;
   }
 };
 view.setErrorMessage = (elementId, content) => {
-    document.getElementById(elementId).innerText = content;
+  document.getElementById(elementId).innerText = content;
 };

@@ -1,5 +1,5 @@
 const model = {};
-model.currentUser = undefined
+model.currentUser = undefined;
 model.register = async (data) => {
   try {
     const response = await firebase
@@ -13,5 +13,12 @@ model.register = async (data) => {
   } catch (err) {
     alert(err.message);
     console.log(err);
+  }
+};
+model.login = async ({ email, password }) => {
+  try {
+    firebase.auth().signInWithEmailAndPassword(email, password);
+  } catch (err) {
+    alert(err);
   }
 };

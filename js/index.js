@@ -10,23 +10,23 @@ window.onload = () => {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-    console.log(firebase.app());
-    view.setActiveScreen('registerPage')
-  //   firebase.auth().onAuthStateChanged((user) => {
-  //     if (user) {
-  //       model.currentUser = {
-  //         displayName: user.displayName,
-  //         email: user.email,
-  //       };
-  //       if (user.emailVerified) {
-  //         view.setActiveScreen("chatPage");
-  //       } else {
-  //         alert("Please verify your email");
-  //         firebase.auth().signOut();
-  //         view.setActiveScreen("login");
-  //       }
-  //     } else {
-  //       view.setActiveScreen("login");
-  //     }
-  //   });
+  console.log(firebase.app());
+  firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user)
+      model.currentUser = {
+        displayName: user.displayName,
+        email: user.email,
+      };
+      if (user.emailVerified) {
+        view.setActiveScreen("homePage");
+      } else {
+        alert("Please verify your email");
+        firebase.auth().signOut();
+        view.setActiveScreen("loginPage");
+      }
+    } else {
+      view.setActiveScreen("loginPage");
+    }
+  })
 };
