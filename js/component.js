@@ -1,9 +1,9 @@
 const component = {};
 
-component.register = `
+component.registerPage = `
  <div class="register-container">
         <form id="register-form">
-          <div class="register-header">LOGIN</div>
+          <div class="register-header">REGISTER</div>
           <div class="name-wrapper">
             <div class="input-wrapper form-group">
               <input
