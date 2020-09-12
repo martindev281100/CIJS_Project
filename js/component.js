@@ -64,7 +64,7 @@ component.registerPage = `
             </div>
           </div>
         </form>
-      </div>`
+      </div>`;
 
 component.loginPage = `
   <div class="login-container">
@@ -102,7 +102,7 @@ component.loginPage = `
       </div>
     </div>
   </form>   
-  </div>`
+  </div>`;
 
 component.homePage = `
   <div class="home-page">
@@ -130,4 +130,4 @@ component.homePage = `
         <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat! Voluptates dolores impedit adipisci mollitia ea tempora?</div>
         <button class="button-1">Read More</button>
     </div>
-  </div>`
+  </div>`;
