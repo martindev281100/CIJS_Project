@@ -131,4 +131,4 @@ component.homePage = `
       </div>
       <button class="btn btn-dark">Read More</button>
     </div>
-  </div>`;
+  </div>`
