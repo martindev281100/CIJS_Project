@@ -4,7 +4,7 @@ controller.register = (data) => {
     "user-name-error",
     data.userName === "" ? "Please input your username" : ""
   );
- 
+
   view.setErrorMessage(
     "email-error",
     data.email === "" ? "Please input your email" : ""
@@ -32,7 +32,10 @@ controller.register = (data) => {
     model.register(data);
   }
 };
-controller.login = ({ email, password }) => {
+controller.login = ({
+  email,
+  password
+}) => {
   view.setErrorMessage(
     "email-error",
     email === "" ? "Please enter your email" : ""
