@@ -97,28 +97,38 @@ component.loginPage = `
 component.homePage = `
   <div class="home-page">
     <div class="header">
-        <div class="container">
-            <div class="logo">
-                <i class="fas fa-gamepad"></i> Tic Tac Toe
-            </div>
-            <div class="nav-bar">
-                <ul>
-                    <li><button>Home</button></li>
-                    <li><button>Games</button></li>
-                    <li><button>Blogs</button></li>
-                    <li><button>Contact</button></li>
-                </ul>
-            </div>
-            <div class="button-header">
-              <button class="btn btn-dark" id="log-in">Log in</button>
-              <button class="btn btn-dark" id="sign-out">Sign out</button>
-            </div>
+      <div class="container">
+        <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+        <div class="nav-bar">
+          <ul>
+            <li><button>Home</button></li>
+            <li><div class="dropdown">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Link 1</a>
+                <a class="dropdown-item" href="#">Link 2</a>
+                <a class="dropdown-item" href="#">Link 3</a>
+              </div>
+            </div></li>
+            <li><button>Blogs</button></li>
+            <li><button>Contact</button></li>
+          </ul>
         </div>
+        <div class="button-header">
+          <button class="btn btn-dark" id="log-in">Log in</button>
+          <button class="btn btn-dark" id="sign-out">Sign out</button>
+        </div>
+      </div>
     </div>
 
     <div class="main">
-        <h1>the best <text style="color:#990000;">games</text> out these</h1>
-        <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat! Voluptates dolores impedit adipisci mollitia ea tempora?</div>
-        <button class="btn btn-dark">Read More</button>
+      <h1>the best <text style="color: #990000">games</text> out these</h1>
+      <div class="content">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat!
+        Voluptates dolores impedit adipisci mollitia ea tempora?
+      </div>
+      <button class="btn btn-dark">Read More</button>
     </div>
   </div>`;
