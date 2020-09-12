@@ -1,13 +1,10 @@
 const controller = {};
 controller.register = (data) => {
   view.setErrorMessage(
-    "first-name-error",
-    data.firstName === "" ? "Please input your first name" : ""
+    "user-name-error",
+    data.userName === "" ? "Please input your username" : ""
   );
-  view.setErrorMessage(
-    "last-name-error",
-    data.lastName === "" ? "Please input your last name" : ""
-  );
+ 
   view.setErrorMessage(
     "email-error",
     data.email === "" ? "Please input your email" : ""
@@ -27,8 +24,7 @@ controller.register = (data) => {
     view.setErrorMessage("confirm-password-error", "");
   }
   if (
-    data.firstName !== "" &&
-    data.lastName !== "" &&
+    data.userName !== "" &&
     data.email !== "" &&
     data.password !== "" &&
     data.password === data.confirmPassword

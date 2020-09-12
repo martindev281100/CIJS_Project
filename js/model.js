@@ -6,13 +6,12 @@ model.register = async (data) => {
       .auth()
       .createUserWithEmailAndPassword(data.email, data.password);
     firebase.auth().currentUser.updateProfile({
-      displayName: data.firstName + " " + data.lastName,
+      displayName: data.userName,
     });
     firebase.auth().currentUser.sendEmailVerification();
     console.log(response);
   } catch (err) {
     alert(err.message);
-    console.log(err);
   }
 };
 model.login = async ({ email, password }) => {

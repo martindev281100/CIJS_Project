@@ -10,7 +10,6 @@ window.onload = () => {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  console.log(firebase.app());
   firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         console.log(user)

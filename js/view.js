@@ -8,8 +8,7 @@ view.setActiveScreen = (screenName) => {
       registerForm.addEventListener("submit", function (e) {
         e.preventDefault();
         const data = {
-          firstName: registerForm.firstName.value,
-          lastName: registerForm.lastName.value,
+          userName: registerForm.userName.value,
           email: registerForm.email.value,
           password: registerForm.password.value,
           confirmPassword: registerForm.confirmPassword.value,
@@ -38,18 +37,18 @@ view.setActiveScreen = (screenName) => {
         .addEventListener("click", function () {
           view.setActiveScreen("registerPage");
         });
-          break;
-      case "homePage":
-          document.getElementById("app").innerHTML = component.homePage;
-          const logInButton = document.getElementById('log-in');
-          logInButton.addEventListener('click', () => {
-              view.setActiveScreen('loginPage');
-          })
-          const signOutButton = document.getElementById('sign-out');
-          signOutButton.addEventListener('click', () => {
-            firebase.auth().signOut();
-          })
-          break;
+      break;
+    case "homePage":
+      document.getElementById("app").innerHTML = component.homePage;
+      const logInButton = document.getElementById("log-in");
+      logInButton.addEventListener("click", () => {
+        view.setActiveScreen("loginPage");
+      });
+      const signOutButton = document.getElementById("sign-out");
+      signOutButton.addEventListener("click", () => {
+        firebase.auth().signOut();
+      });
+      break;
   }
 };
 view.setErrorMessage = (elementId, content) => {
