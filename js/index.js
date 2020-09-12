@@ -20,14 +20,16 @@ window.onload = () => {
       };
       if (user.emailVerified) {
         view.setActiveScreen("homePage");
+        document.getElementById('log-in').style = 'display: none'
+
       } else {
         alert("Please verify your email");
         firebase.auth().signOut();
         view.setActiveScreen("loginPage");
       }
     } else {
-        view.setActiveScreen("homePage");
-        
+      view.setActiveScreen("homePage");
+      document.getElementById('sign-out').style = 'display: none'
     }
   })
 };

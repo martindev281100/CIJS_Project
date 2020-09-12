@@ -119,8 +119,9 @@ component.homePage = `
                     <li><button>Contact</button></li>
                 </ul>
             </div>
-            <div class="sign-in-btn">
-                <button class="button-1">Login</button>
+            <div class="button-header">
+              <button class="btn btn-dark" id="log-in">Log in</button>
+              <button class="btn btn-dark" id="sign-out">Sign out</button>
             </div>
         </div>
     </div>
@@ -128,6 +129,6 @@ component.homePage = `
     <div class="main">
         <h1>the best <text style="color:#990000;">games</text> out these</h1>
         <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat! Voluptates dolores impedit adipisci mollitia ea tempora?</div>
-        <button class="button-1">Read More</button>
+        <button class="btn btn-dark">Read More</button>
     </div>
   </div>`;
