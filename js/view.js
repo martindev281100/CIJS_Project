@@ -41,9 +41,13 @@ view.setActiveScreen = (screenName) => {
           break;
       case "homePage":
           document.getElementById("app").innerHTML = component.homePage;
-          const logInButton = document.querySelector('.sign-in-btn .button-1');
+          const logInButton = document.getElementById('log-in');
           logInButton.addEventListener('click', () => {
               view.setActiveScreen('loginPage');
+          })
+          const signOutButton = document.getElementById('sign-out');
+          signOutButton.addEventListener('click', () => {
+            firebase.auth().signOut();
           })
           break;
   }

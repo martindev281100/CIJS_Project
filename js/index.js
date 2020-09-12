@@ -20,6 +20,8 @@ window.onload = () => {
       };
       if (user.emailVerified) {
         view.setActiveScreen("homePage");
+        document.getElementById('log-in').style = 'display: none'
+
       } else {
         alert("Please verify your email");
         firebase.auth().signOut();
@@ -27,6 +29,7 @@ window.onload = () => {
       }
     } else {
       view.setActiveScreen("homePage");
+      document.getElementById('sign-out').style = 'display: none'
     }
   })
 };

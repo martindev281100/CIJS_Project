@@ -8,13 +8,3 @@
 .cursor-pointer{
     cursor: pointer;
 }
-
-.button-1{
-    padding: 6px 45px;
-    background-color:  #4b4b4d;
-    border-radius: 20px;
-    color: #fff;
-    font-weight: 600;
-    font-size: 15px;
-    outline: none;
-}
