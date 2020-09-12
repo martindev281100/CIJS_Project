@@ -46,6 +46,7 @@ view.setActiveScreen = (screenName) => {
       });
       const signOutButton = document.getElementById("sign-out");
       signOutButton.addEventListener("click", () => {
+        model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
       break;

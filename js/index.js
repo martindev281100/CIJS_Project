@@ -11,8 +11,11 @@ window.onload = () => {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log(user)
+    console.log(firebase.auth())
+    
+    if (user) {
+      var uid = user.uid
+      model.presence();
       model.currentUser = {
         displayName: user.displayName,
         email: user.email,
@@ -27,8 +30,11 @@ window.onload = () => {
         view.setActiveScreen("loginPage");
       }
     } else {
+      model.currentStatus = "offline";
       view.setActiveScreen("homePage");
       document.getElementById('sign-out').style = 'display: none'
     }
   })
+  // var userStatusDatabaseRef = firebase.auth().ref('/status/' + uid);
+
 };
