@@ -151,7 +151,6 @@ model.logInWithFacebook = () => {
       // Get sign-in methods for this email.
       auth.fetchSignInMethodsForEmail(email).then(function (methods) {
         console.log(methods)
-
         // Step 3.
         // If the user has several sign-in methods,
         // the first method in the list will be the "recommended" method to use.
@@ -171,7 +170,7 @@ model.logInWithFacebook = () => {
         // All the other cases are external providers.
         // Construct provider object for that provider.
         // TODO: implement getProviderForProviderId.
-        console.log(firebase.auth().currentUser.providerData)
+        console.log(firebase.auth().currentUser)
         var provider = getProviderForProviderId(methods[0]);
         // At this point, you should let the user know that they already has an account
         // but with a different provider, and let them validate the fact they want to
