@@ -30,13 +30,44 @@
 .login-container #login-form .input-wrapper :focus {
     outline: #0062cc;
 }
+
+.login-container #login-form .input-wrapper .login-by-social-account .text{
+    margin-top: 30px;
+    text-align: center;
+    color: #999999;
+}
+.login-container #login-form .input-wrapper .login-by-social-account button{
+    padding: 10px 60px;
+    margin: 30px 0px;
+    border: 1px solid #dbdbdb;
+    background-color: transparent;
+    font-weight: 500;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_google{
+    color: #EA4335; 
+    transition: 0.9s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_google:hover{
+    color: #fff;
+    background-color: #EA4335 ;
+    transition: 0.5s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_facebook{
+    color: #046FE5;
+    transition: 0.9s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_facebook:hover{
+    color: #fff;
+    background-color: #046FE5 ;
+    transition: 0.5s;
+}
   
 .btn-login {
     width: 100%;
 }
   
 .login-container .redirect {
-    margin-top: 275px;
+    margin-top: 100px;
     text-align: center;
     font-size: 13px;
     color: #999999;
