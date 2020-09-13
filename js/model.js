@@ -124,6 +124,7 @@ model.logInWithFacebook = () => {
     // The signed-in user info.
     var user = result.user;
     if (result.emailVerified == false) {
+      console.log(firebase.auth().currentUser)
       firebase.auth().currentUser.sendEmailVerification();
     }
     console.log(result)
