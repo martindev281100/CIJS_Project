@@ -123,6 +123,7 @@ model.logInWithFacebook = () => {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
+    console.log(result)
     // ...
   }).catch(function (error) {
     // Handle Errors here.
