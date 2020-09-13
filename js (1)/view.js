@@ -57,6 +57,15 @@ view.setActiveScreen = (screenName) => {
       });
       model.listenPresence()
       break;
+    case "gamePage":
+      document.getElementById("app").innerHTML = component.gamePage;
+      const btnSignOut = document.getElementById("sign-out");
+      btnSignOut.addEventListener("click", () => {
+        model.setOffline(firebase.auth().currentUser.uid)
+        firebase.auth().signOut();
+      });
+      model.listenPresence()
+      break;
   }
 };
 view.setErrorMessage = (elementId, content) => {

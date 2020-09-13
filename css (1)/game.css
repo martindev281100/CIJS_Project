@@ -1,0 +1,73 @@
+.game-container{
+    height: 100vh;
+}
+.game-container .main{
+    height: calc(100vh - 64px);
+    background-image: url(../img/11.jpg);
+    display: flex;
+}
+.game-container .main .aside-left{
+    width: 75%;
+}
+.game-container .main .aside-left .content{
+    width: 50%;
+    margin: 7rem auto;
+}
+.game-container .main .aside-left .content h1{
+    color: rgb(21 31 42);
+    text-transform: capitalize;
+    font-weight: 900;
+    font-size: 60px;
+    text-align: center;
+}
+
+.game-container .main .aside-left .content .btn-find-match button{
+    background-color: rgb(21 31 42);
+    color: #fff;
+    width: 55%;
+    padding: 20px 0;
+    margin: 10px;
+    margin-left: 130px;
+    font-size: 20px;
+    font-weight: 700;
+    border: 0px;
+    border-radius: 8px;
+    outline: none;
+    transition: 1s;
+}
+.game-container .main .aside-left .content .btn-find-match button:hover{
+    width: 60%;
+    transition: 1s;
+    background-color: #26a69a;
+}
+
+.game-container .main .aside-right{
+    width: 25%;
+    background-color: rgb(21 31 42);
+    color: #fff;
+}
+.game-container .main .aside-right .title{
+    width: 100%;
+    display: flex;
+    border-bottom: 2px solid #fff;
+}
+.game-container .main .aside-right .title button{   
+    padding: 10px 55px;
+    font-size: 20px;
+    outline: none;
+    border: 0px;
+    background-color: rgb(21 31 42);
+    color: #26a69a;
+}
+.game-container .main .aside-right .title button:hover{   
+    color: #fff;
+    transition: 0.9s;
+    background-color: #1f2c3a;
+}
+.game-container .main .aside-right .info{
+    display: flex;
+    margin: 10px 25px;
+    font-size: 18px;
+    font-weight: 500;
+    justify-content: space-between;
+}
