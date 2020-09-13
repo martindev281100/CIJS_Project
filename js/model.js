@@ -171,6 +171,7 @@ model.logInWithFacebook = () => {
         // All the other cases are external providers.
         // Construct provider object for that provider.
         // TODO: implement getProviderForProviderId.
+        console.log(firebase.auth().currentUser.providerData)
         var provider = getProviderForProviderId(methods[0]);
         // At this point, you should let the user know that they already has an account
         // but with a different provider, and let them validate the fact they want to
