@@ -150,6 +150,8 @@ model.logInWithFacebook = () => {
       var email = error.email;
       // Get sign-in methods for this email.
       auth.fetchSignInMethodsForEmail(email).then(function (methods) {
+        console.log(methods)
+
         // Step 3.
         // If the user has several sign-in methods,
         // the first method in the list will be the "recommended" method to use.
