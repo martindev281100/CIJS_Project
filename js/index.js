@@ -20,13 +20,13 @@ window.onload = () => {
         email: user.email,
       };
       if (user.emailVerified) {
-        view.setActiveScreen("homePage");
+        view.setActiveScreen("gamePage");
         document.getElementById('log-in').style = 'display: none'
 
       } else {
         alert("Please verify your email");
         firebase.auth().signOut();
-        view.setActiveScreen("loginPage");
+        view.setActiveScreen("homePage");
       }
     } else {
       view.setActiveScreen("homePage");

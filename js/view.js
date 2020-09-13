@@ -57,6 +57,9 @@ view.setActiveScreen = (screenName) => {
       });
       model.listenPresence()
       break;
+    case "gamePage":
+      document.getElementById("app").innerHTML = component.gamePage;
+      break;
   }
 };
 view.setErrorMessage = (elementId, content) => {

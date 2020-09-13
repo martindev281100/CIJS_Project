@@ -100,32 +100,32 @@ component.loginPage = `
 component.homePage = `
   <div class="home-page">
     <div class="header">
-      <div class="container">
-        <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-        <div class="nav-bar">
-          <ul>
-            <li><button>Home</button></li>
-            <li><div class="dropdown">
+    <div class="container">
+      <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+      <div class="nav-bar">
+        <ul>
+          <li><a href="index.html"><button>Home</button></a></li>
+          <li>
+            <div class="dropdown">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                 Dropdown button
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Link 1</a>
-                <a class="dropdown-item" href="#">Link 2</a>
-                <a class="dropdown-item" href="#">Link 3</a>
+                <a class="dropdown-item" href="#">3x3</a>
+                <a class="dropdown-item" href="#">5x5</a>
+                <a class="dropdown-item" href="#">10x10</a>
               </div>
-            </div></li>
-            <li><button>Blogs</button></li>
-            <li><button>Contact</button></li>
-          </ul>
-        </div>
-        <div class="button-header">
-          <button class="btn btn-dark" id="log-in">Log in</button>
-          <button class="btn btn-dark" id="sign-out">Sign out</button>
-        </div>
+            </div>
+          </li>
+          <li><a href="#"><button>Blogs</button></a></li>
+          <li><a href="#"><button>Contact</button></a></li>
+        </ul>
+      </div>
+      <div class="button-header">
+        <button class="btn btn-dark" id="log-in">Log in</button>
+        <button class="btn btn-dark" id="sign-out">Sign out</button>
       </div>
     </div>
-
     <div class="main">
       <h1>the best <text style="color: #990000">games</text> out these</h1>
       <div class="content">
@@ -133,5 +133,65 @@ component.homePage = `
         Voluptates dolores impedit adipisci mollitia ea tempora?
       </div>
       <button class="btn btn-dark">Read More</button>
+    </div>
+  </div>`
+
+component.gamePage = `<div class="game-container">
+  <div class="header">
+    <div class="container">
+      <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+      <div class="nav-bar">
+        <ul>
+          <li><a href="index.html"><button>Home</button></a></li>
+          <li>
+            <div class="dropdown">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                Dropdown button
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">3x3</a>
+                <a class="dropdown-item" href="#">5x5</a>
+                <a class="dropdown-item" href="#">10x10</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#"><button>Blogs</button></a></li>
+          <li><a href="#"><button>Contact</button></a></li>
+        </ul>
+      </div>
+      <div class="button-header">
+        <button class="btn btn-dark" id="log-in">Log in</button>
+        <button class="btn btn-dark" id="sign-out">Sign out</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="aside-left">
+      <div class="content">
+        <h1>tic tac toe</h1>
+        <div class="btn-find-match">
+          <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
+          <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+          <button><i class="fas fa-users"></i><br>Create private tournament</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="aside-right">
+      <div class="title">
+        <button><i class="fas fa-trophy"></i><br>Ranking</button>
+        <button><i class="fas fa-users"></i><br>Player</button>
+      </div>
+      <div class="info">
+        <div class="rank">1.</div>
+        <div class="user-name">Shin Ryujin</div>
+        <div class="score">1300</div>
+      </div>
+      <div class="info">
+        <div class="rank">2.</div>
+        <div class="user-name">Shin Yuna</div>
+        <div class="score">1000</div>
+      </div>
     </div>
   </div>`

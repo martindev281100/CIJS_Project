@@ -4,64 +4,32 @@
 <link rel="stylesheet" href="./css/home.css" />
 <link rel="stylesheet" href="./css/login.css" />
 <link rel="stylesheet" href="./css/register.css" />
+<link rel="stylesheet" href="./css/game.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://kit.fontawesome.com/d22d9dd2e6.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-  <div class="home-page">
-    <div class="header">
-      <div class="container">
-        <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-        <div class="nav-bar">
-          <ul>
-            <li><button>Home</button></li>
-            <li>
-              <div class="dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                  Dropdown button
-                </button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Link 1</a>
-                  <a class="dropdown-item" href="#">Link 2</a>
-                  <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-              </div>
-            </li>
-            <li><button>Blogs</button></li>
-            <li><button>Contact</button></li>
-          </ul>
-        </div>
-        <div class="button-header">
-          <button class="btn btn-dark" id="log-in">Log in</button>
-          <button class="btn btn-dark" id="sign-out">Sign out</button>
-        </div>
-      </div>
-    </div>
+  
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/controller.js"></script>
+  <script src="./js/component.js"></script>
+  <script src="./js/model.js"></script>
+  <script src="./js/view.js"></script>
 
-    <div class="main">
-      <h1>the best <text style="color: #990000">games</text> out these</h1>
-      <div class="content">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat!
-        Voluptates dolores impedit adipisci mollitia ea tempora?
-      </div>
-      <button class="btn btn-dark">Read More</button>
-    </div>
-  </div>`
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-    </script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/d22d9dd2e6.js" crossorigin="anonymous"></script>
 
 </body>
 
