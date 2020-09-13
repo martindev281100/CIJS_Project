@@ -11,9 +11,8 @@ window.onload = () => {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.auth().onAuthStateChanged((user) => {
-    console.log(firebase.auth())
-    
     if (user) {
+      console.log(user)
       var uid = user.uid
       model.presence();
       model.currentUser = {
@@ -30,7 +29,6 @@ window.onload = () => {
         view.setActiveScreen("loginPage");
       }
     } else {
-      model.currentStatus = "offline";
       view.setActiveScreen("homePage");
       document.getElementById('sign-out').style = 'display: none'
     }

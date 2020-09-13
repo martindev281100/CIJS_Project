@@ -1,6 +1,6 @@
 const model = {};
 model.currentUser = undefined;
-model.currentStatus = 'offline';
+model.currentStatus = undefined;
 model.register = async (data) => {
   try {
     const response = await firebase
@@ -19,15 +19,20 @@ model.login = async ({
   email,
   password
 }) => {
-  try {
-    firebase.auth().signInWithEmailAndPassword(email, password);
-  } catch (err) {
-    alert(err);
-  }
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode)
+    alert(errorMessage)
+    // ...
+  });
+
 };
 
 model.listenPresence = () => {
   if (firebase.auth().currentUser == null) {
+    model.currentStatus = "offline"
     return;
   } else {
     let uid = firebase.auth().currentUser.uid;
@@ -87,4 +92,27 @@ model.setOffline = (uid) => {
     state: 'offline',
     last_changed: firebase.database.ServerValue.TIMESTAMP,
   })
+}
+model.logInWithGoogle = () => {
+  var provider = new firebase.auth.GoogleAuthProvider();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  console.log(provider)
+  firebase.auth().signInWithPopup(provider).then(function (result) {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    var token = result.credential.accessToken;
+    // The signed-in user info.
+    var user = result.user;
+    // ...
+  }).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert(errorMessage)
+    // The email of the user's account used.
+    var email = error.email;
+    // The firebase.auth.AuthCredential type that was used.
+    var credential = error.credential;
+    // ...
+  });
+
 }

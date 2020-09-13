@@ -32,6 +32,9 @@ view.setActiveScreen = (screenName) => {
         };
         controller.login(data);
       });
+      document.getElementById('btn_google').addEventListener('click', function () {
+        model.logInWithGoogle();
+      })
       document
         .getElementById("redirect-to-register")
         .addEventListener("click", function () {
@@ -49,6 +52,7 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
+      model.listenPresence()
       break;
   }
 };

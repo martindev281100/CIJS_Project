@@ -86,6 +86,8 @@ component.loginPage = `
       >
         Login
       </button>
+            <button id="btn_google"> Google </button>
+
       <div class="redirect">
           Don't have an account?
         <span id="redirect-to-register" class="cursor-pointer">Register</span>
