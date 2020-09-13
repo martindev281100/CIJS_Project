@@ -87,6 +87,7 @@ component.loginPage = `
         Login
       </button>
             <button id="btn_google"> Google </button>
+            <button id="btn_facebook"> Facebook </button>
 
       <div class="redirect">
           Don't have an account?

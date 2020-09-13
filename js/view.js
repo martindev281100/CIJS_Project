@@ -35,6 +35,9 @@ view.setActiveScreen = (screenName) => {
       document.getElementById('btn_google').addEventListener('click', function () {
         model.logInWithGoogle();
       })
+      document.getElementById('btn_facebook').addEventListener('click', function () {
+        model.logInWithFacebook();
+      })
       document
         .getElementById("redirect-to-register")
         .addEventListener("click", function () {
