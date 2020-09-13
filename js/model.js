@@ -141,6 +141,7 @@ model.logInWithFacebook = () => {
     // ...
     // An error happened.
     if (error.code === 'auth/account-exists-with-different-credential') {
+      let auth = firebase.auth()
       // Step 2.
       // User's email already exists.
       // The pending Facebook credential.
