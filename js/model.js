@@ -123,7 +123,7 @@ model.logInWithFacebook = () => {
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
-    if (result.emailVerified == false) {
+    if (firebase.auth().currentUser.emailVerified == false) {
       console.log(firebase.auth().currentUser)
       firebase.auth().currentUser.sendEmailVerification();
     }
