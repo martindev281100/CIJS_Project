@@ -33,6 +33,5 @@ window.onload = () => {
       document.getElementById('sign-out').style = 'display: none'
     }
   })
-  // var userStatusDatabaseRef = firebase.auth().ref('/status/' + uid);
 
 };
