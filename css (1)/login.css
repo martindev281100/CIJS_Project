@@ -1,0 +1,79 @@
+.login-container {
+    height: 100vh;
+    background-image: url("../img/game-icon-background.jpg");
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-container #login-form {
+    width: 450px;
+    height: 600px;
+    background: #fff;
+}
+.login-container .login-header {
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.login-container.name-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.login-container #login-form .input-wrapper {
+    margin: 0 20px;
+    margin-bottom: 20px;
+}
+.login-container #login-form .input-wrapper :focus {
+    outline: #0062cc;
+}
+
+.login-container #login-form .input-wrapper .login-by-social-account .text{
+    margin-top: 30px;
+    text-align: center;
+    color: #999999;
+}
+.login-container #login-form .input-wrapper .login-by-social-account button{
+    padding: 10px 60px;
+    margin: 30px 0px;
+    border: 1px solid #dbdbdb;
+    background-color: transparent;
+    font-weight: 500;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_google{
+    color: #EA4335; 
+    transition: 0.9s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_google:hover{
+    color: #fff;
+    background-color: #EA4335 ;
+    transition: 0.5s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_facebook{
+    color: #046FE5;
+    transition: 0.9s;
+}
+.login-container #login-form .input-wrapper .login-by-social-account #btn_facebook:hover{
+    color: #fff;
+    background-color: #046FE5 ;
+    transition: 0.5s;
+}
+  
+.btn-login {
+    width: 100%;
+}
+  
+.login-container .redirect {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 13px;
+    color: #999999;
+}
+.login-container #redirect-to-register:hover {
+    transition: 0.8s;
+    color: #0062cc;
+}
+  
