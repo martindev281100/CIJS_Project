@@ -80,8 +80,10 @@ component.loginPage = `
               Or login with
             </span>
           </div>
-          <button id="btn_google"><i class="fab fa-google"></i> Google </button>
-          <button id="btn_facebook"><i class="fab fa-facebook-square"></i> Facebook </button>
+          <div class="btn-social-acc">
+            <button id="btn_google"><i class="fab fa-google"></i> Google </button>
+            <button id="btn_facebook"><i class="fab fa-facebook-square"></i> Facebook </button>
+          </div>
         </div>
         <div class="redirect">
           Don't have an account?
@@ -102,7 +104,7 @@ component.homePage = `
           <li>
             <div class="dropdown">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                Dropdown button
+                Games
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">3x3</a>
@@ -123,8 +125,7 @@ component.homePage = `
     <div class="main">
       <h1>the best <text style="color: #990000">games</text> out these</h1>
       <div class="content">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. quaerat!
-        Voluptates dolores impedit adipisci mollitia ea tempora?
+        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=- info
       </div>
       <button class="btn btn-dark">Read More</button>
     </div>
@@ -140,7 +141,7 @@ component.gamePage = `<div class="game-container">
           <li>
             <div class="dropdown">
               <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                Dropdown button
+                Games
               </button>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">3x3</a>
