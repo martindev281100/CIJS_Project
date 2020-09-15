@@ -5,12 +5,30 @@
 <link rel="stylesheet" href="./css/login.css" />
 <link rel="stylesheet" href="./css/register.css" />
 <link rel="stylesheet" href="./css/game.css">
+<link rel="stylesheet" href="./css/boardGames.css">
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-  <h1></h1>
+
+  <div class="board-games" id="board-games">
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+
+  <div class="winning-message" id="winningMessage">
+    <div class="status-messages"></div>
+    <button id="restartButton">Restart</button>
+  </div>
+
   <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
@@ -20,7 +38,7 @@
   <script src="./js/component.js"></script>
   <script src="./js/model.js"></script>
   <script src="./js/view.js"></script>
-
+  <script src="./js/game.js"></script>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
