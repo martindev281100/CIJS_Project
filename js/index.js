@@ -22,7 +22,6 @@ window.onload = () => {
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
         document.getElementById('log-in').style = 'display: none'
-
       } else {
         alert("Please verify your email");
         firebase.auth().signOut();

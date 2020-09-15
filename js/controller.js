@@ -23,14 +23,29 @@ controller.register = (data) => {
   } else {
     view.setErrorMessage("confirm-password-error", "");
   }
-  if (
-    data.userName !== "" &&
-    data.email !== "" &&
-    data.password !== "" &&
-    data.password === data.confirmPassword
-  ) {
-    model.register(data);
-  }
+  fetch(`https://api.zerobounce.net/v1/validatewithip?apikey=ae86bb6100d340c589b6ddc204b282f0&email=${data.email}&ipAddress=156.124.12.145`)
+    .then(response => response.json())
+    // .then(data => console.log(data.status))
+    .then(function (response) {
+      console.log(response)
+      if (response.status !== "Valid") {
+        view.setErrorMessage(
+          "email-error", "Please input your email correctly"
+        );
+      } else {
+        if (
+          data.userName !== "" &&
+          data.email !== "" &&
+          data.password !== "" &&
+          data.password === data.confirmPassword
+        ) {
+          model.register(data);
+        }
+      }
+    })
+
+
+
 };
 controller.login = ({
   email,
