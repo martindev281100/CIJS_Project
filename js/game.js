@@ -34,7 +34,12 @@ function startGame() {
 
 function handleClick(e) {
   const cell = e.target
-  const currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS
+  let currentClass 
+  if (circleTurn == true) {
+    currentClass = CIRCLE_CLASS
+  }else{
+    currentClass = X_CLASS
+  }
   placeMark(cell, currentClass)
   if (checkWin(currentClass)) {
     endGame(false)
