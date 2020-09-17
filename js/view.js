@@ -59,6 +59,9 @@ view.setActiveScreen = (screenName) => {
       break;
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
+      document.getElementById("opt3x3").addEventListener('click', function () {
+        view.setActiveScreen("playPage");
+      })
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)
@@ -66,6 +69,9 @@ view.setActiveScreen = (screenName) => {
       });
       model.listenPresence()
       break;
+    case "playPage":
+      document.getElementById("app").innerHTML = component.playPage;
+      controller.playGame()
   }
 };
 view.setErrorMessage = (elementId, content) => {

@@ -130,7 +130,50 @@ component.homePage = `
       <button class="btn btn-dark">Read More</button>
     </div>
   </div>`
+component.playPage = ` <div class="header">
+    <div class="container">
+      <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+      <div class="nav-bar">
+        <ul>
+          <li><a href="index.html"><button>Home</button></a></li>
+          <li>
+            <div class="dropdown">
+              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                Games
+              </button>
+              <div class="dropdown-menu">
+                <button class="dropdown-item" href="#">3x3</button>
+                <button class="dropdown-item" href="#">5x5</button>
+              </div>
+            </div>
+          </li>
+          <li><a href="#"><button>Blogs</button></a></li>
+          <li><a href="#"><button>Contact</button></a></li>
+        </ul>
+      </div>
+      <div class="button-header">
+        <button class="btn btn-dark" id="log-in">Log in</button>
+        <button class="btn btn-dark" id="sign-out">Sign out</button>
+      </div>
+    </div>
+  </div>
 
+  <div class="board-games" id="board-games">
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+  </div>
+
+  <div class="winning-message" id="winningMessage">
+    <div status-messages></div>
+    <button id="restartButton">Restart</button>
+  </div>`
 component.gamePage = `<div class="game-container">
   <div class="header">
     <div class="container">
@@ -144,9 +187,8 @@ component.gamePage = `<div class="game-container">
                 Games
               </button>
               <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">3x3</a>
-                <a class="dropdown-item" href="#">5x5</a>
-                <a class="dropdown-item" href="#">10x10</a>
+                <button class="dropdown-item" id="opt3x3">3x3</button>
+                <button class="dropdown-item" id="opt5x5">5x5</button>
               </div>
             </div>
           </li>

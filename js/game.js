@@ -26,7 +26,9 @@ function startGame() {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(CIRCLE_CLASS)
     cell.removeEventListener('click', handleClick)
-    cell.addEventListener('click', handleClick, { once: true })
+    cell.addEventListener('click', handleClick, {
+      once: true
+    })
   })
   setBoardHoverClass()
   winningMessageElement.classList.remove('show')
@@ -34,10 +36,10 @@ function startGame() {
 
 function handleClick(e) {
   const cell = e.target
-  let currentClass 
+  let currentClass
   if (circleTurn == true) {
     currentClass = CIRCLE_CLASS
-  }else{
+  } else {
     currentClass = X_CLASS
   }
   placeMark(cell, currentClass)
@@ -86,6 +88,8 @@ function setBoardHoverClass() {
 
 function checkWin(currentClass) {
   return WINNING_COMBINATIONS.some(combination => {
-    return combination.every(index => {return cellElements[index].classList.contains(currentClass)})  
+    return combination.every(index => {
+      return cellElements[index].classList.contains(currentClass)
+    })
   })
 }
