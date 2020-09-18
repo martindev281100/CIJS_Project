@@ -92,10 +92,10 @@ controller.playGame = () => {
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)
       cell.classList.remove(CIRCLE_CLASS)
-      //cell.removeEventListener('click', handleClick)
-      // cell.addEventListener('click', handleClick, {
-      //   once: true
-      // })
+      cell.removeEventListener('click', handleClick)
+      cell.addEventListener('click', handleClick, {
+        once: true
+      })
       cell.addEventListener('click', handleClick)
     })
     setBoardHoverClass()
@@ -238,18 +238,24 @@ controller.playGame5 = () => {
   }
 
   function checkWin(currentClass) {
-    let r = row, c = col, count = 0;
+    let r = row,
+      c = col,
+      count = 0;
     while (r > 0 && c > 0) {
       if (arr[r][c] != currentClass) {
-        r++; c++; break;
+        r++;
+        c++;
+        break;
       }
-      r--; c--;
+      r--;
+      c--;
     }
     while (r < 5 && c < 5) {
       if (arr[r][c] == currentClass) {
         count++;
         if (count >= 3) return true;
-        r++; c++;
+        r++;
+        c++;
       } else {
         break;
       }
@@ -258,7 +264,8 @@ controller.playGame5 = () => {
     r = row, c = col, count = 0;
     while (r > 0) {
       if (arr[r][c] != currentClass) {
-        r++; break;
+        r++;
+        break;
       }
       r--;
     }
@@ -275,7 +282,8 @@ controller.playGame5 = () => {
     r = row, c = col, count = 0;
     while (c > 0) {
       if (arr[r][c] != currentClass) {
-        c++; break;
+        c++;
+        break;
       }
       c--;
     }
@@ -292,15 +300,19 @@ controller.playGame5 = () => {
     r = row, c = col, count = 0;
     while (r > 0 && c < 5) {
       if (arr[r][c] != currentClass) {
-        r++; c--; break;
+        r++;
+        c--;
+        break;
       }
-      r--; c++;
+      r--;
+      c++;
     }
     while (r < 5 && c >= 0) {
       if (arr[r][c] == currentClass) {
         count++;
         if (count >= 3) return true;
-        r++; c--;
+        r++;
+        c--;
       } else {
         break;
       }
