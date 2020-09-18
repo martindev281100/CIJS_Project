@@ -27,7 +27,7 @@ controller.register = (data) => {
     .then(response => response.json())
     // .then(data => console.log(data.status))
     .then(function (response) {
-      console.log(response)
+      // console.log(response)
       if (response.status !== "Valid") {
         view.setErrorMessage(
           "email-error", "Please input your email correctly"
@@ -173,12 +173,13 @@ controller.playGame5 = () => {
   let circleTurn = false;
   let arr = [];
   let row, col;
-  for (let i = 0; i < 5; i++) {
-    let a = [0, 0, 0, 0, 0];
-    arr.push(a);
-  }
 
   function startGame() {
+    arr = [];
+    for (let i = 0; i < 5; i++) {
+      let a = [0, 0, 0, 0, 0];
+      arr.push(a);
+    }
     circleTurn = false
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)
@@ -238,71 +239,84 @@ controller.playGame5 = () => {
 
   function checkWin(currentClass) {
     let r = row, c = col, count = 0;
-    while (r > 0 && c > 0) {
+    while (r >= 0 && c >= 0) {
       if (arr[r][c] != currentClass) {
-        r++; c++; break;
+        r++;
+        c++;
+        break;
       }
+      if (r == 0 || c == 0) break;
       r--; c--;
     }
     while (r < 5 && c < 5) {
       if (arr[r][c] == currentClass) {
         count++;
-        r++; c++;
-      } else {
-        break;
-      }
-    }
-    if (count >= 3) return true;
-
-    r = row, c = col, count = 0;
-    while (r > 0) {
-      if (arr[r][c] != currentClass) {
-        r++; break;
-      }
-      r--;
-    }
-    while (r < 5) {
-      if (arr[r][c] == currentClass) {
-        count++;
+        if (count >= 3) return true;
         r++;
-      } else {
-        break;
-      }
-    }
-    if (count >= 3) return true;
-
-    r = row, c = col, count = 0;
-    while (c > 0) {
-      if (arr[r][c] != currentClass) {
-        c++; break;
-      }
-      c--;
-    }
-    while (r < 5 && c < 5) {
-      if (arr[r][c] == currentClass) {
-        count++;
         c++;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
 
     r = row, c = col, count = 0;
-    while (r > 0 && c < 5) {
+    while (r >= 0) {
       if (arr[r][c] != currentClass) {
-        r++; c--; break;
+        r++;
+        break;
       }
+      if (r == 0) break;
+      r--;
+    }
+    while (r < 5) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        if (count >= 3) return true;
+        r++;
+      } else {
+        break;
+      }
+    }
+    console.log(count);
+
+    r = row, c = col, count = 0;
+    while (c >= 0) {
+      if (arr[r][c] != currentClass) {
+        c++;
+        break;
+      }
+      if (c == 0) break;
+      c--;
+    }
+    while (r < 5 && c < 5) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        if (count >= 3) return true;
+        c++;
+      } else {
+        break;
+      }
+    }
+
+    r = row, c = col, count = 0;
+    while (r >= 0 && c < 5) {
+      if (arr[r][c] != currentClass) {
+        r++;
+        c--;
+        break;
+      }
+      if (r == 0 || c == 4) break;
       r--; c++;
     }
     while (r < 5 && c >= 0) {
       if (arr[r][c] == currentClass) {
         count++;
-        r++; c--;
+        if (count >= 3) return true;
+        r++;
+        c--;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
   }
 }

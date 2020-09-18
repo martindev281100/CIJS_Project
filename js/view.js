@@ -55,6 +55,8 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
+      console.log(firebase.firestore().collection('users').doc('n5poEetic23lwhuKuumw'))
+
       model.listenPresence()
       break;
     case "gamePage":
