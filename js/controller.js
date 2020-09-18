@@ -173,12 +173,13 @@ controller.playGame5 = () => {
   let circleTurn = false;
   let arr = [];
   let row, col;
-  for (let i = 0; i < 5; i++) {
-    let a = [0, 0, 0, 0, 0];
-    arr.push(a);
-  }
 
   function startGame() {
+    arr = [];
+    for (let i = 0; i < 5; i++) {
+      let a = [0, 0, 0, 0, 0];
+      arr.push(a);
+    }
     circleTurn = false
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)
@@ -247,12 +248,12 @@ controller.playGame5 = () => {
     while (r < 5 && c < 5) {
       if (arr[r][c] == currentClass) {
         count++;
+        if (count >= 3) return true;
         r++; c++;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
 
     r = row, c = col, count = 0;
     while (r > 0) {
@@ -264,12 +265,12 @@ controller.playGame5 = () => {
     while (r < 5) {
       if (arr[r][c] == currentClass) {
         count++;
+        if (count >= 3) return true;
         r++;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
 
     r = row, c = col, count = 0;
     while (c > 0) {
@@ -281,12 +282,12 @@ controller.playGame5 = () => {
     while (r < 5 && c < 5) {
       if (arr[r][c] == currentClass) {
         count++;
+        if (count >= 3) return true;
         c++;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
 
     r = row, c = col, count = 0;
     while (r > 0 && c < 5) {
@@ -298,11 +299,11 @@ controller.playGame5 = () => {
     while (r < 5 && c >= 0) {
       if (arr[r][c] == currentClass) {
         count++;
+        if (count >= 3) return true;
         r++; c--;
       } else {
         break;
       }
     }
-    if (count >= 3) return true;
   }
 }
