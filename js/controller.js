@@ -43,9 +43,6 @@ controller.register = (data) => {
         }
       }
     })
-
-
-
 };
 controller.login = ({
   email,
@@ -81,7 +78,7 @@ controller.playGame = () => {
     [2, 4, 6]
   ]
   const cellElements = document.querySelectorAll('[data-cell]')
-  const board = document.getElementById('board-games')
+  const board = document.getElementById('board-game-3')
   const winningMessageElement = document.getElementById('winningMessage')
   const restartButton = document.getElementById('restartButton')
   const winningMessageTextElement = document.querySelector('[status-messages]')
@@ -163,4 +160,7 @@ controller.playGame = () => {
       })
     })
   }
+}
+
+controller.playGame5 = () => {
 }

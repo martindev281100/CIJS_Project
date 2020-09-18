@@ -10,7 +10,6 @@
     align-content: center;
     justify-items: center;
     align-items: center;
-    grid-template-columns: repeat(3, auto);
 }
 
 .board-games .cell{
@@ -23,26 +22,6 @@
     align-items: center;
     position: relative;
     cursor: pointer;
-}
-
-.board-games .cell:first-child,
-.board-games .cell:nth-child(2),
-.board-games .cell:nth-child(3){
-    border-top: none;
-}
-
-.board-games .cell:nth-child(3n + 1){
-    border-left: none;
-}
-
-.board-games .cell:last-child,
-.board-games .cell:nth-child(7),
-.board-games .cell:nth-child(8){
-    border-bottom: none;
-}
-
-.board-games .cell:nth-child(3n){
-    border-right: none;
 }
 
 .board-games .cell.x,
@@ -137,4 +116,36 @@
 
 .winning-message.show{
     display: flex;
+}
+
+#board-game-3 {
+    grid-template-columns: repeat(3, auto);
+}
+#board-game-3 .cell:nth-child(3n + 1){
+    border-left: none;
+}
+#board-game-3 .cell:nth-child(3n){
+    border-right: none;
+}
+#board-game-3 .cell:nth-child(-n + 3){
+    border-top: none;
+}
+#board-game-3 .cell:nth-child(-n + 9){
+    border-bottom: none;
+}
+
+#board-game-5 {
+    grid-template-columns: repeat(5, auto);
+}
+#board-game-5 .cell:nth-child(5n + 1){
+    border-left: none;
+}
+#board-game-5 .cell:nth-child(5n){
+    border-right: none;
+}
+#board-game-5 .cell:nth-child(-n + 5){
+    border-top: none;
+}
+#board-game-5 .cell:nth-child(-n + 25){
+    border-bottom: none;
 }
