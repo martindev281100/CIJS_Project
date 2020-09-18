@@ -11,6 +11,14 @@ model.register = async (data) => {
     });
     firebase.auth().currentUser.sendEmailVerification();
     console.log(response);
+    const dataToAdd = {
+      createdAt: new Date().toISOString(),
+      points: 1000,
+      owner: data.userName,
+    }
+    console.log(response.user.uid)
+    const db = firebase.firestore()
+    db.collection('users').doc(response.user.uid).set(dataToAdd)
   } catch (err) {
     alert(err.message);
   }

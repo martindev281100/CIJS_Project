@@ -27,7 +27,7 @@ controller.register = (data) => {
     .then(response => response.json())
     // .then(data => console.log(data.status))
     .then(function (response) {
-      console.log(response)
+      // console.log(response)
       if (response.status !== "Valid") {
         view.setErrorMessage(
           "email-error", "Please input your email correctly"

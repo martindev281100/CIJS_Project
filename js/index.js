@@ -12,7 +12,7 @@ window.onload = () => {
   firebase.initializeApp(firebaseConfig);
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      console.log(user)
+      // console.log(user)
       var uid = user.uid
       model.presence();
       model.currentUser = {
