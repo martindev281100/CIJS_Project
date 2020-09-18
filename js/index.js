@@ -24,7 +24,8 @@ window.onload = () => {
         document.getElementById('log-in').style = 'display: none'
       } else {
         alert("Please verify your email");
-        firebase.auth().signOut();
+        model.setOffline(user.uid)
+        // firebase.auth().signOut();
         view.setActiveScreen("homePage");
       }
     } else {

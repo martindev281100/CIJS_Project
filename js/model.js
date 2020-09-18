@@ -17,8 +17,8 @@ model.register = async (data) => {
       owner: data.userName,
     }
     console.log(response.user.uid)
-    const db = firebase.firestore()
-    db.collection('users').doc(response.user.uid).set(dataToAdd)
+    await firebase.firestore().collection('users').doc(response.user.uid).set(dataToAdd)
+    firebase.auth().signOut()
   } catch (err) {
     alert(err.message);
   }
@@ -88,6 +88,7 @@ model.presence = () => {
 
       return;
     };
+
     userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase).then(function () {
       userStatusDatabaseRef.set(isOnlineForDatabase);
       // We'll also add Firestore set here for when we come online.
