@@ -92,10 +92,11 @@ controller.playGame = () => {
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)
       cell.classList.remove(CIRCLE_CLASS)
-      cell.removeEventListener('click', handleClick)
-      cell.addEventListener('click', handleClick, {
-        once: true
-      })
+      //cell.removeEventListener('click', handleClick)
+      // cell.addEventListener('click', handleClick, {
+      //   once: true
+      // })
+      cell.addEventListener('click', handleClick)
     })
     setBoardHoverClass()
     winningMessageElement.classList.remove('show')
@@ -163,5 +164,145 @@ controller.playGame = () => {
 }
 
 controller.playGame5 = () => {
-  
+  const X_CLASS = 'x'
+  const CIRCLE_CLASS = 'circle'
+  const cellElements = document.querySelectorAll('[data-cell]')
+  const board = document.getElementById('board-game-5')
+  const winningMessageElement = document.getElementById('winningMessage')
+  const winningMessageTextElement = document.querySelector('[status-messages]')
+  let circleTurn = false;
+  let arr = [];
+  let row, col;
+  for (let i = 0; i < 5; i++) {
+    let a = [0, 0, 0, 0, 0];
+    arr.push(a);
+  }
+
+  function startGame() {
+    circleTurn = false
+    cellElements.forEach(cell => {
+      cell.classList.remove(X_CLASS)
+      cell.classList.remove(CIRCLE_CLASS)
+      cell.addEventListener('click', handleClick)
+    })
+    setBoardHoverClass()
+    winningMessageElement.classList.remove('show')
+  }
+  document.getElementById('restartButton').addEventListener('click', startGame)
+  startGame()
+
+  function handleClick(e) {
+    const cell = e.target
+    let currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
+    cell.classList.add(currentClass);
+    for (let i = 0; i < 25; i++) {
+      if (cellElements[i] == cell) {
+        row = Math.floor(i / 5);
+        col = i % 5;
+        console.log(row);
+        console.log(col);
+        arr[row][col] = currentClass;
+      }
+    }
+    console.log(arr);
+    if (checkWin(currentClass)) {
+      endGame(false)
+    } else if (isDraw()) {
+      endGame(true)
+    } else {
+      circleTurn = !circleTurn;
+      setBoardHoverClass()
+    }
+  }
+
+  function endGame(draw) {
+    if (draw) {
+      winningMessageTextElement.innerText = 'Draw!'
+    } else {
+      winningMessageTextElement.innerText = `${circleTurn ? "O's" : "X's"} Wins!`
+    }
+    winningMessageElement.classList.add('show')
+  }
+
+  function isDraw() {
+    return [...cellElements].every(cell => {
+      return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
+    })
+  }
+
+  function setBoardHoverClass() {
+    board.classList.remove(X_CLASS)
+    board.classList.remove(CIRCLE_CLASS)
+    board.classList.add(circleTurn ? CIRCLE_CLASS : X_CLASS)
+  }
+
+  function checkWin(currentClass) {
+    let r = row, c = col, count = 0;
+    while (r > 0 && c > 0) {
+      if (arr[r][c] != currentClass) {
+        r++; c++; break;
+      }
+      r--; c--;
+    }
+    while (r < 5 && c < 5) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        r++; c++;
+      } else {
+        break;
+      }
+    }
+    if (count >= 3) return true;
+
+    r = row, c = col, count = 0;
+    while (r > 0) {
+      if (arr[r][c] != currentClass) {
+        r++; break;
+      }
+      r--;
+    }
+    while (r < 5) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        r++;
+      } else {
+        break;
+      }
+    }
+    if (count >= 3) return true;
+
+    r = row, c = col, count = 0;
+    while (c > 0) {
+      if (arr[r][c] != currentClass) {
+        c++; break;
+      }
+      c--;
+    }
+    while (r < 5 && c < 5) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        c++;
+      } else {
+        break;
+      }
+    }
+    if (count >= 3) return true;
+
+    r = row, c = col, count = 0;
+    while (r > 0 && c < 5) {
+      if (arr[r][c] != currentClass) {
+        r++; c--; break;
+      }
+      r--; c++;
+    }
+    while (r < 5 && c >= 0) {
+      if (arr[r][c] == currentClass) {
+        count++;
+        r++; c--;
+      } else {
+        break;
+      }
+    }
+    if (count >= 3) return true;
+  }
 }

@@ -78,7 +78,7 @@ view.setActiveScreen = (screenName) => {
       break;
     case "playPage5":
       document.getElementById("app").innerHTML = component.playPage5;
-      controller.playGame5()
+      controller.playGame5();
       break;
   }
 };
