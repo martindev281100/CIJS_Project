@@ -239,10 +239,11 @@ controller.playGame5 = () => {
 
   function checkWin(currentClass) {
     let r = row, c = col, count = 0;
-    while (r > 0 && c > 0) {
+    while (r >= 0 && c >= 0) {
       if (arr[r][c] != currentClass) {
         r++; c++; break;
       }
+      if (r == 0 || c == 0) break;
       r--; c--;
     }
     while (r < 5 && c < 5) {
@@ -256,10 +257,11 @@ controller.playGame5 = () => {
     }
 
     r = row, c = col, count = 0;
-    while (r > 0) {
+    while (r >= 0) {
       if (arr[r][c] != currentClass) {
         r++; break;
       }
+      if (r == 0) break;
       r--;
     }
     while (r < 5) {
@@ -271,12 +273,14 @@ controller.playGame5 = () => {
         break;
       }
     }
+    console.log(count);
 
     r = row, c = col, count = 0;
-    while (c > 0) {
+    while (c >= 0) {
       if (arr[r][c] != currentClass) {
         c++; break;
       }
+      if (c == 0) break;
       c--;
     }
     while (r < 5 && c < 5) {
@@ -290,10 +294,11 @@ controller.playGame5 = () => {
     }
 
     r = row, c = col, count = 0;
-    while (r > 0 && c < 5) {
+    while (r >= 0 && c < 5) {
       if (arr[r][c] != currentClass) {
         r++; c--; break;
       }
+      if (r == 0 || c == 4) break;
       r--; c++;
     }
     while (r < 5 && c >= 0) {
