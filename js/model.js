@@ -137,16 +137,16 @@ model.logInWithGoogle = () => {
     // ...
   })
 }
-model.logInWithFacebook = () => {
+model.logInWithFacebook = async () => {
   var provider = new firebase.auth.FacebookAuthProvider();
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  await firebase.auth().signInWithPopup(provider).then(function (result) {
       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
       if (firebase.auth().currentUser.emailVerified == false) {
         console.log(firebase.auth().currentUser)
-        firebase.auth().currentUser.sendEmailVerification();
+        await firebase.auth().currentUser.sendEmailVerification();
         firebase.auth().signOut()
       }
       firebase.firestore().collection("users").doc(result.user.uid).get().then(function (doc) {
