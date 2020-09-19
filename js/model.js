@@ -159,6 +159,7 @@ model.logInWithFacebook = () => {
           }
         })
         await firebase.auth().currentUser.sendEmailVerification();
+        model.setOffline(result.user.uid)
         firebase.auth().signOut()
       }
 
