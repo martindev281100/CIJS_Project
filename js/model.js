@@ -146,22 +146,23 @@ model.logInWithFacebook = () => {
       var user = result.user;
       if (firebase.auth().currentUser.emailVerified == false) {
         console.log(firebase.auth().currentUser)
-        firebase.firestore().collection("users").doc(result.user.uid).get().then(function (doc) {
-          if (doc.exists) {
-            return
-          } else {
-            const dataToAdd = {
-              createdAt: new Date().toISOString(),
-              points: 1000,
-              owner: result.user.displayName,
-            }
-            firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
-          }
-        })
+
         await firebase.auth().currentUser.sendEmailVerification();
         model.setOffline(result.user.uid)
         firebase.auth().signOut()
       }
+      firebase.firestore().collection("users").doc(result.user.uid).get().then(function (doc) {
+        if (doc.exists) {
+          return
+        } else {
+          const dataToAdd = {
+            createdAt: new Date().toISOString(),
+            points: 1000,
+            owner: result.user.displayName,
+          }
+          firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
+        }
+      })
 
     })
 
