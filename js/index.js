@@ -18,6 +18,7 @@ window.onload = () => {
       model.currentUser = {
         displayName: user.displayName,
         email: user.email,
+        uid: user.uid,
       };
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
@@ -35,3 +36,15 @@ window.onload = () => {
   })
 
 };
+const getOneDocument = (response) => {
+  const data = response.data()
+  data.id = response.id
+  return data
+}
+const getManyDocument = (response) => {
+  const listData = [];
+  for (const doc of response.docs) {
+    listData.push(getOneDocument(doc))
+  }
+  return listData
+}

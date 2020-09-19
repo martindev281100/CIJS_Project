@@ -1,6 +1,7 @@
 const model = {};
 model.currentUser = undefined;
 model.currentStatus = undefined;
+model.players = [];
 model.register = async (data) => {
   try {
     const response = await firebase
@@ -105,12 +106,24 @@ model.setOffline = (uid) => {
 model.logInWithGoogle = () => {
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  console.log(provider)
-  firebase.auth().signInWithPopup(provider).then(function (result) {
+  const response = firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Google Access Token. You can use it to access the Google API.
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
+    firebase.firestore().collection("users").doc(result.user.uid).get().then(function (doc) {
+      if (doc.exists) {
+        return
+      } else {
+        const dataToAdd = {
+          createdAt: new Date().toISOString(),
+          points: 1000,
+          owner: result.user.displayName,
+        }
+        firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
+      }
+    })
+
     // ...
   }).catch(function (error) {
     // Handle Errors here.
@@ -122,30 +135,49 @@ model.logInWithGoogle = () => {
     // The firebase.auth.AuthCredential type that was used.
     var credential = error.credential;
     // ...
-  });
+  })
 }
 model.logInWithFacebook = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
   firebase.auth().signInWithPopup(provider).then(function (result) {
-    // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    if (firebase.auth().currentUser.emailVerified == false) {
-      console.log(firebase.auth().currentUser)
-      firebase.auth().currentUser.sendEmailVerification();
-    }
-    console.log(result)
+      // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      var token = result.credential.accessToken;
+      // The signed-in user info.
+      var user = result.user;
+      if (firebase.auth().currentUser.emailVerified == false) {
+        console.log(firebase.auth().currentUser)
+        firebase.auth().currentUser.sendEmailVerification();
+      }
+      firebase.firestore().collection("users").doc(result.user.uid).get().then(function (doc) {
+        if (doc.exists) {
+          return
+        } else {
+          const dataToAdd = {
+            createdAt: new Date().toISOString(),
+            points: 1000,
+            owner: result.user.displayName,
+          }
+          firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
+        }
+      })
+    })
+
     // ...
-  }).catch(function (error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    console.log(errorCode)
-    var errorMessage = error.message;
-    // The email of the user's account used.
-    var email = error.email;
-    alert(errorMessage)
-    // The firebase.auth.AuthCredential type that was used.
-    var credential = error.credential;
-  });
+    .catch(function (error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      console.log(errorCode)
+      var errorMessage = error.message;
+      // The email of the user's account used.
+      var email = error.email;
+      alert(errorMessage)
+      // The firebase.auth.AuthCredential type that was used.
+      var credential = error.credential;
+    });
+}
+model.getPlayer = async () => {
+  const response = await firebase.firestore().collection('users').get()
+  model.players = await getManyDocument(response)
+  console.log(model.players)
+  view.showPlayer()
 }
