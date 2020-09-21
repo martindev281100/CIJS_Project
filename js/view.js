@@ -77,13 +77,16 @@ view.setActiveScreen = (screenName) => {
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
       controller.playGame()
+      document.getElementById('log-in').style = 'display: none'
       break;
     case "playPage5":
       document.getElementById("app").innerHTML = component.playPage5;
       controller.playGame5();
+      document.getElementById('log-in').style = 'display: none'
       break;
   }
 };
+
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };

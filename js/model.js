@@ -35,7 +35,6 @@ model.login = async ({
     alert(errorMessage)
     // ...
   });
-
 };
 
 model.listenPresence = () => {
