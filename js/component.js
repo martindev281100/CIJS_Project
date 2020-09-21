@@ -222,16 +222,7 @@ component.gamePage = `<div class="game-container">
         <button><i class="fas fa-trophy"></i><br>Ranking</button>
         <button><i class="fas fa-users"></i><br>Player</button>
       </div>
-      <div class="info">
-        <div class="rank">1.</div>
-        <div class="user-name">Shin Ryujin</div>
-        <div class="score">1300</div>
-      </div>
-      <div class="info">
-        <div class="rank">2.</div>
-        <div class="user-name">Shin Yuna</div>
-        <div class="score">1000</div>
-      </div>
+      
     </div>
   </div>`
 

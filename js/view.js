@@ -55,12 +55,11 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      console.log(firebase.firestore().collection('users').doc('n5poEetic23lwhuKuumw'))
-
       model.listenPresence()
       break;
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
+      console.log(model.players)
       document.getElementById("opt3x3").addEventListener('click', function () {
         view.setActiveScreen("playPage");
       })
@@ -72,6 +71,7 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
+      model.getPlayer()
       model.listenPresence()
       break;
     case "playPage":
@@ -90,3 +90,17 @@ view.setActiveScreen = (screenName) => {
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };
+view.showPlayer = () => {
+  for (players of model.players) {
+    view.addPlayer(players)
+  }
+}
+view.addPlayer = (player) => {
+  const infoWrapper = document.createElement('div')
+  infoWrapper.classList.add('info')
+  infoWrapper.innerHTML = `
+  <div class="rank"> 1. </div> 
+  <div class="user-name"> ${player.owner} </div> 
+  <div class="score"> ${player.points} </div>`
+  document.querySelector('.aside-right').appendChild(infoWrapper)
+}

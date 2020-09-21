@@ -18,13 +18,15 @@ window.onload = () => {
       model.currentUser = {
         displayName: user.displayName,
         email: user.email,
+        uid: user.uid,
       };
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
         document.getElementById('log-in').style = 'display: none'
       } else {
         alert("Please verify your email");
-        firebase.auth().signOut();
+        model.setOffline(user.uid)
+        // firebase.auth().signOut();
         view.setActiveScreen("homePage");
       }
     } else {
@@ -34,3 +36,15 @@ window.onload = () => {
   })
 
 };
+const getOneDocument = (response) => {
+  const data = response.data()
+  data.id = response.id
+  return data
+}
+const getManyDocument = (response) => {
+  const listData = [];
+  for (const doc of response.docs) {
+    listData.push(getOneDocument(doc))
+  }
+  return listData
+}
