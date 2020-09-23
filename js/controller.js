@@ -84,6 +84,8 @@ controller.playGame = () => {
   const winningMessageTextElement = document.querySelector('[status-messages]')
   let circleTurn
 
+  const dataArr = Array.from(cellElements)
+
   startGame()
   restartButton.addEventListener('click', startGame)
 
@@ -138,6 +140,8 @@ controller.playGame = () => {
 
   function placeMark(cell, currentClass) {
     cell.classList.add(currentClass)
+    console.log(cell)
+    console.log(dataArr.indexOf(cell)) 
   }
 
   function swapTurns() {
