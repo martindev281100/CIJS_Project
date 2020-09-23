@@ -192,13 +192,14 @@ model.addPosition = (data) => {
 model.listenGamesChanges = () => {
   let isFirstRun = true
   firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').onSnapshot((snapshot) => {
-    if (isFirstRun) {
-      isFirstRun = false
-      return
-    }
-    for (oneChange of snapshot.docChanges()) {
-      const docData = getOneDocument(oneChange.doc)
-      console.log(oneChange)
-    }
+    // if (isFirstRun) {
+    //   isFirstRun = false
+    //   return
+    // }
+    // for (oneChange of snapshot.docChanges()) {
+    //   const docData = getOneDocument(oneChange.doc)
+    //   console.log(oneChange)
+    // }
+    console.log(snapshot)
   })
 }
