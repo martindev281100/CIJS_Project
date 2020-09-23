@@ -109,9 +109,10 @@ controller.playGame = () => {
     const data = {
       createdAt: new Date().toISOString(),
       owner: model.currentUser.email,
-      position: document.querySelectorAll('[data-cell]')
+      position: dataArr.indexOf(cell)
     }
     console.log(data)
+    model.addPosition(data)
     let currentClass
     if (circleTurn == true) {
       currentClass = CIRCLE_CLASS

@@ -181,11 +181,24 @@ model.logInWithFacebook = () => {
 model.getPlayer = async () => {
   const response = await firebase.firestore().collection('users').get()
   model.players = await getManyDocument(response)
-  console.log(model.players)
   view.showPlayer()
 }
-model.addPosition = async () => {
-  const data = {
-    
+model.addPosition = (data) => {
+  dataToUpdate = {
+    tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
+  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
+}
+model.listenGamesChanges = () => {
+  let isFirstRun = true
+  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').onSnapshot((snapshot) => {
+    if (isFirstRun) {
+      isFirstRun = false
+      return
+    }
+    for (oneChange of snapshot.docChanges()) {
+      const docData = getOneDocument(oneChange.doc)
+      console.log(oneChange)
+    }
+  })
 }
