@@ -135,3 +135,23 @@ model.getPlayer = async () => {
   model.players = await getManyDocument(response)
   view.showPlayer()
 }
+model.addPosition = (data) => {
+  dataToUpdate = {
+    tempo: firebase.firestore.FieldValue.arrayUnion(data),
+  }
+  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
+}
+model.listenGamesChanges = () => {
+  let isFirstRun = true
+  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').onSnapshot((snapshot) => {
+    // if (isFirstRun) {
+    //   isFirstRun = false
+    //   return
+    // }
+    // for (oneChange of snapshot.docChanges()) {
+    //   const docData = getOneDocument(oneChange.doc)
+    //   console.log(oneChange)
+    // }
+    console.log(snapshot)
+  })
+}

@@ -72,6 +72,7 @@ view.setActiveScreen = (screenName) => {
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
+      model.listenGamesChanges()
       controller.playGame()
       document.getElementById('log-in').style = 'display: none'
       // hidden sign in btn

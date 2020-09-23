@@ -59,6 +59,8 @@ controller.playGame = () => {
   const winningMessageTextElement = document.querySelector('[status-messages]')
   let circleTurn
 
+  const dataArr = Array.from(cellElements)
+
   startGame()
   restartButton.addEventListener('click', startGame)
 
@@ -79,6 +81,13 @@ controller.playGame = () => {
 
   function handleClick(e) {
     const cell = e.target
+    const data = {
+      createdAt: new Date().toISOString(),
+      owner: model.currentUser.email,
+      position: dataArr.indexOf(cell)
+    }
+    console.log(data)
+    model.addPosition(data)
     let currentClass
     if (circleTurn == true) {
       currentClass = CIRCLE_CLASS
@@ -113,6 +122,8 @@ controller.playGame = () => {
 
   function placeMark(cell, currentClass) {
     cell.classList.add(currentClass)
+    console.log(cell)
+    console.log(dataArr.indexOf(cell)) 
   }
 
   function swapTurns() {
@@ -210,7 +221,9 @@ controller.playGame5 = () => {
   }
 
   function checkWin(currentClass) {
-    let r = row, c = col, count = 0;
+    let r = row,
+      c = col,
+      count = 0;
     while (r >= 0 && c >= 0) {
       if (arr[r][c] != currentClass) {
         r++;
@@ -218,7 +231,8 @@ controller.playGame5 = () => {
         break;
       }
       if (r == 0 || c == 0) break;
-      r--; c--;
+      r--;
+      c--;
     }
     while (r < 5 && c < 5) {
       if (arr[r][c] == currentClass) {
@@ -277,7 +291,8 @@ controller.playGame5 = () => {
         break;
       }
       if (r == 0 || c == 4) break;
-      r--; c++;
+      r--;
+      c++;
     }
     while (r < 5 && c >= 0) {
       if (arr[r][c] == currentClass) {
