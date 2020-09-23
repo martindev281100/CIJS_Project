@@ -184,3 +184,8 @@ model.getPlayer = async () => {
   console.log(model.players)
   view.showPlayer()
 }
+model.addPosition = async () => {
+  const data = {
+    
+  }
+}
