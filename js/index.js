@@ -12,8 +12,6 @@ window.onload = () => {
   firebase.initializeApp(firebaseConfig);
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      // console.log(user)
-      var uid = user.uid
       model.presence();
       model.currentUser = {
         displayName: user.displayName,
@@ -26,7 +24,6 @@ window.onload = () => {
       } else {
         alert("Please verify your email");
         model.setOffline(user.uid)
-        // firebase.auth().signOut();
         view.setActiveScreen("homePage");
       }
     } else {
@@ -34,13 +31,14 @@ window.onload = () => {
       document.getElementById('sign-out').style = 'display: none'
     }
   })
-
 };
+
 const getOneDocument = (response) => {
   const data = response.data()
   data.id = response.id
   return data
 }
+
 const getManyDocument = (response) => {
   const listData = [];
   for (const doc of response.docs) {

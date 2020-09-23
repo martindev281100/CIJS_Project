@@ -15,11 +15,9 @@ view.setActiveScreen = (screenName) => {
         };
         controller.register(data);
       });
-      document
-        .getElementById("redirect-to-login")
-        .addEventListener("click", function () {
-          view.setActiveScreen("loginPage");
-        });
+      document.getElementById("redirect-to-login").addEventListener("click", function () {
+        view.setActiveScreen("loginPage");
+      });
       break;
     case "loginPage":
       document.getElementById("app").innerHTML = component.loginPage;
@@ -38,11 +36,9 @@ view.setActiveScreen = (screenName) => {
       document.getElementById('btn_facebook').addEventListener('click', function () {
         model.logInWithFacebook();
       })
-      document
-        .getElementById("redirect-to-register")
-        .addEventListener("click", function () {
+      document.getElementById("redirect-to-register").addEventListener("click", function () {
           view.setActiveScreen("registerPage");
-        });
+      });
       break;
     case "homePage":
       document.getElementById("app").innerHTML = component.homePage;
@@ -57,9 +53,9 @@ view.setActiveScreen = (screenName) => {
       });
       model.listenPresence()
       break;
+    //  
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
-      console.log(model.players)
       document.getElementById("opt3x3").addEventListener('click', function () {
         view.setActiveScreen("playPage");
       })
@@ -91,17 +87,21 @@ view.setActiveScreen = (screenName) => {
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };
+
+//
 view.showPlayer = () => {
   for (players of model.players) {
     view.addPlayer(players)
   }
 }
+
 view.addPlayer = (player) => {
   const infoWrapper = document.createElement('div')
   infoWrapper.classList.add('info')
   infoWrapper.innerHTML = `
   <div class="rank"> 1. </div> 
   <div class="user-name"> ${player.owner} </div> 
-  <div class="score"> ${player.points} </div>`
+  <div class="score"> ${player.points} </div>
+  `
   document.querySelector('.aside-right').appendChild(infoWrapper)
 }
