@@ -15,11 +15,9 @@ view.setActiveScreen = (screenName) => {
         };
         controller.register(data);
       });
-      document
-        .getElementById("redirect-to-login")
-        .addEventListener("click", function () {
-          view.setActiveScreen("loginPage");
-        });
+      document.getElementById("redirect-to-login").addEventListener("click", function () {
+        view.setActiveScreen("loginPage");
+      });
       break;
     case "loginPage":
       document.getElementById("app").innerHTML = component.loginPage;
@@ -38,11 +36,9 @@ view.setActiveScreen = (screenName) => {
       document.getElementById('btn_facebook').addEventListener('click', function () {
         model.logInWithFacebook();
       })
-      document
-        .getElementById("redirect-to-register")
-        .addEventListener("click", function () {
+      document.getElementById("redirect-to-register").addEventListener("click", function () {
           view.setActiveScreen("registerPage");
-        });
+      });
       break;
     case "homePage":
       document.getElementById("app").innerHTML = component.homePage;
@@ -55,11 +51,10 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      model.listenPresence()
       break;
+    //  
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
-      console.log(model.players)
       document.getElementById("opt3x3").addEventListener('click', function () {
         view.setActiveScreen("playPage");
       })
@@ -71,8 +66,9 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      model.getPlayer()
       model.listenPresence()
+      model.getPlayer()
+      model.listenAllPlayer()
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
@@ -83,6 +79,34 @@ view.setActiveScreen = (screenName) => {
       break;
     case "playPage5":
       document.getElementById("app").innerHTML = component.playPage5;
+  
+      let board = document.getElementById("board-game")
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add("cell");
+        cell.setAttribute("data-cell", "")
+        board.appendChild(cell);
+      }
+      var sheet = document.createElement('style')
+      sheet.innerHTML = `
+      #board-game {
+          grid-template-columns: repeat(5, auto);
+      }
+      #board-game .cell:nth-child(5n + 1){
+          border-left: none;
+      }
+      #board-game .cell:nth-child(5n){
+          border-right: none;
+      }
+      #board-game .cell:nth-child(-n + 5){
+          border-top: none;
+      }
+      #board-game .cell:nth-child(-n + 25){
+          border-bottom: none;
+      }
+      `;
+      board.appendChild(sheet);
+      
       controller.playGame5();
       document.getElementById('log-in').style = 'display: none'
       break;
@@ -92,17 +116,21 @@ view.setActiveScreen = (screenName) => {
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };
+
+//
 view.showPlayer = () => {
   for (players of model.players) {
     view.addPlayer(players)
   }
 }
+
 view.addPlayer = (player) => {
   const infoWrapper = document.createElement('div')
   infoWrapper.classList.add('info')
   infoWrapper.innerHTML = `
   <div class="rank"> 1. </div> 
   <div class="user-name"> ${player.owner} </div> 
-  <div class="score"> ${player.points} </div>`
+  <div class="score"> ${player.points} </div>
+  `
   document.querySelector('.aside-right').appendChild(infoWrapper)
 }

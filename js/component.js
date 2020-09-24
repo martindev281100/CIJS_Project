@@ -54,7 +54,8 @@ component.registerPage = `
           </div>
         </div>
       </form>
-    </div>`;
+    </div>
+`;
 
 component.loginPage = `
   <div class="login-container">
@@ -91,7 +92,8 @@ component.loginPage = `
         </div>
       </div>
     </form>
-  </div>`;
+  </div>
+`;
 
 component.homePage = `
   <div class="home-page">
@@ -129,7 +131,9 @@ component.homePage = `
       </div>
       <button class="btn btn-dark">Read More</button>
     </div>
-  </div>`
+  </div>
+`
+
 component.playPage = ` 
 <div class="header">
     <div class="container">
@@ -176,120 +180,91 @@ component.playPage = `
     <button id="restartButton">Restart</button>
   </div>
 `
-component.gamePage = `<div class="game-container">
-  <div class="header">
-    <div class="container">
-      <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-      <div class="nav-bar">
-        <ul>
-          <li><a href="index.html"><button>Home</button></a></li>
-          <li>
-            <div class="dropdown">
-              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                Games
-              </button>
-              <div class="dropdown-menu">
-                <button class="dropdown-item" id="opt3x3">3x3</button>
-                <button class="dropdown-item" id="opt5x5">5x5</button>
-              </div>
+component.gamePage = `
+<div class="game-container">
+<div class="header">
+  <div class="container">
+    <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+    <div class="nav-bar">
+      <ul>
+        <li><a href="index.html"><button>Home</button></a></li>
+        <li>
+          <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
+            <div class="dropdown-menu">
+              <button class="dropdown-item" id="opt3x3">3x3</button>
+              <button class="dropdown-item" id="opt5x5">5x5</button>
+              <button class="dropdown-item" id="opt10x10">10x10</button>
             </div>
-          </li>
-          <li><a href="#"><button>Blogs</button></a></li>
-          <li><a href="#"><button>Contact</button></a></li>
-        </ul>
-      </div>
-      <div class="button-header">
-        <button class="btn btn-dark" id="log-in">Log in</button>
-        <button class="btn btn-dark" id="sign-out">Sign out</button>
+          </div>
+        </li>
+        <li><a href="#"><button>Blogs</button></a></li>
+        <li><a href="#"><button>Contact</button></a></li>
+      </ul>
+    </div>
+    <div class="button-header">
+      <button class="btn btn-dark" id="log-in">Log in</button>
+      <button class="btn btn-dark" id="sign-out">Sign out</button>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="aside-left">
+    <div class="content">
+      <h1>tic tac toe</h1>
+      <div class="btn-find-match">
+        <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
+        <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+        <button><i class="fas fa-users"></i><br>Create private tournament</button>
       </div>
     </div>
   </div>
 
-  <div class="main">
-    <div class="aside-left">
-      <div class="content">
-        <h1>tic tac toe</h1>
-        <div class="btn-find-match">
-          <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
-          <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
-          <button><i class="fas fa-users"></i><br>Create private tournament</button>
-        </div>
-      </div>
+  <div class="aside-right">
+    <div class="title">
+      <button><i class="fas fa-trophy"></i><br>Ranking</button>
+      <button><i class="fas fa-users"></i><br>Player</button>
     </div>
-
-    <div class="aside-right">
-      <div class="title">
-        <button><i class="fas fa-trophy"></i><br>Ranking</button>
-        <button><i class="fas fa-users"></i><br>Player</button>
-      </div>
-      
-    </div>
-  </div>`
+  </div>
+</div>
+</div>
+`
 
 component.playPage5 = `
 <div class="header">
 <div class="container">
-<div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-<div class="nav-bar">
-  <ul>
-    <li><a href="index.html"><button>Home</button></a></li>
-    <li>
-      <div class="dropdown">
-        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-          Games
-        </button>
-        <div class="dropdown-menu">
-          <button class="dropdown-item" href="#">3x3</button>
-          <button class="dropdown-item" href="#">5x5</button>
+  <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+  <div class="nav-bar">
+    <ul>
+      <li><a href="index.html"><button>Home</button></a></li>
+      <li>
+        <div class="dropdown">
+          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
+          <div class="dropdown-menu">
+            <button class="dropdown-item" href="#">3x3</button>
+            <button class="dropdown-item" href="#">5x5</button>
+            <button class="dropdown-item" href="#">10x10</button>
+          </div>
         </div>
-      </div>
-    </li>
-    <li><a href="#"><button>Blogs</button></a></li>
-    <li><a href="#"><button>Contact</button></a></li>
-  </ul>
+      </li>
+      <li><a href="#"><button>Blogs</button></a></li>
+      <li><a href="#"><button>Contact</button></a></li>
+    </ul>
+  </div>
+  <div class="button-header">
+    <button class="btn btn-dark" id="log-in">Log in</button>
+    <button class="btn btn-dark" id="sign-out">Sign out</button>
+  </div>
 </div>
-<div class="button-header">
-  <button class="btn btn-dark" id="log-in">Log in</button>
-  <button class="btn btn-dark" id="sign-out">Sign out</button>
 </div>
-</div>
-</div>
-
-<div class="board-games" id="board-game-5">
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-  <div class="cell" data-cell></div>
-</div>
-
+<div class="board-games" id="board-game"></div>
 <div class="winning-message" id="winningMessage">
-  <div status-messages></div>
-  <button id="restartButton">Restart</button>
+<div status-messages></div>
+<button id="restartButton">Restart</button>
 </div>
-
 <div class="winning-message" id="winningMessage">
-  <div status-messages></div>
-  <button id="restartButton">Restart</button>
+<div status-messages></div>
+<button id="restartButton">Restart</button>
 </div>
 `

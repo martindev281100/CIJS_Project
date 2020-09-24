@@ -134,18 +134,18 @@
     border-bottom: none;
 }
 
-#board-game-5 {
+/* #board-game {
     grid-template-columns: repeat(5, auto);
 }
-#board-game-5 .cell:nth-child(5n + 1){
+#board-game .cell:nth-child(5n + 1){
     border-left: none;
 }
-#board-game-5 .cell:nth-child(5n){
+#board-game .cell:nth-child(5n){
     border-right: none;
 }
-#board-game-5 .cell:nth-child(-n + 5){
+#board-game .cell:nth-child(-n + 5){
     border-top: none;
 }
-#board-game-5 .cell:nth-child(-n + 25){
+#board-game .cell:nth-child(-n + 25){
     border-bottom: none;
-}
+} */
