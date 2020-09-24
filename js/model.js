@@ -22,25 +22,28 @@ model.register = async (data) => {
   }
 };
 
-model.login = async ({email, password}) => {
+model.login = async ({
+  email,
+  password
+}) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
     alert(error.message)
   });
 };
 
-model.listenPresence = () => {
+model.listenPresence = async () => {
   if (firebase.auth().currentUser == null) {
     model.currentStatus = "offline"
     return;
   } else {
     let uid = firebase.auth().currentUser.uid;
-    firebase.database().ref('/status/' + uid).on('value', function (snapshot) {
+    await firebase.database().ref('/status/' + uid).on('value', function (snapshot) {
       model.currentStatus = snapshot.val().state
     })
   }
 }
 
-model.presence = () => {
+model.presence = async () => {
   let uid = firebase.auth().currentUser.uid;
   var userStatusDatabaseRef = firebase.database().ref('/status/' + uid);
 
@@ -63,7 +66,7 @@ model.presence = () => {
     last_changed: firebase.firestore.FieldValue.serverTimestamp(),
   };
 
-  firebase.database().ref('.info/connected').on('value', function (snapshot) {
+  await firebase.database().ref('.info/connected').on('value', function (snapshot) {
     if (snapshot.val() == false) {
       userStatusFirestoreRef.set(isOfflineForFirestore);
       return;
@@ -81,6 +84,7 @@ model.setOffline = (uid) => {
     state: 'offline',
     last_changed: firebase.database.ServerValue.TIMESTAMP,
   })
+  console.log(model.currentStatus)
 }
 
 model.logInWithGoogle = () => {
@@ -154,4 +158,14 @@ model.listenGamesChanges = () => {
     // }
     console.log(snapshot)
   })
+}
+model.listenAllPlayer = async () => {
+  firebase.database().ref().on('value', function (snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
+      // ...
+      console.log(childData)
+    });
+  });
 }
