@@ -197,7 +197,7 @@ model.listenGamesChanges = () => {
       return
     }
     for (oneChange of snapshot.docChanges()) {
-       docData = getOneDocument(oneChange.doc)
+      const docData = getOneDocument(oneChange.doc)
       console.log(oneChange)
     }
   })
