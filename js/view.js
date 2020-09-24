@@ -61,6 +61,23 @@ view.setActiveScreen = (screenName) => {
       document.getElementById("opt5x5").addEventListener('click', function () {
         view.setActiveScreen("playPage5");
       })
+
+      const rankingBtn = document.querySelector(".ranking")
+      const listPlayerBtn = document.querySelector(".player")
+
+      rankingBtn.addEventListener('click', () => {
+        listPlayerBtn.classList.remove('current')
+        rankingBtn.classList.add('current')
+        document.querySelector('.rankingList').style = 'display: block'
+        document.querySelector('.playerList').style = 'display: none'
+      })
+
+      listPlayerBtn.addEventListener('click', () =>{
+        rankingBtn.classList.remove('current')
+        listPlayerBtn.classList.add('current')
+        document.querySelector('.rankingList').style = 'display: none'
+        document.querySelector('.playerList').style = 'display: block'
+      })
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)
@@ -121,6 +138,7 @@ view.setErrorMessage = (elementId, content) => {
 view.showPlayer = () => {
   for (players of model.players) {
     view.addPlayer(players)
+    view.addListPlayer(players)
   }
 }
 
@@ -132,5 +150,20 @@ view.addPlayer = (player) => {
   <div class="user-name"> ${player.owner} </div> 
   <div class="score"> ${player.points} </div>
   `
-  document.querySelector('.aside-right').appendChild(infoWrapper)
+  document.querySelector('.aside-right .rankingList').appendChild(infoWrapper)
+}
+
+view.addListPlayer = (player) => {
+  const listPlayerWrapper = document.createElement('div')
+  listPlayerWrapper.classList.add('info-player')
+  listPlayerWrapper.innerHTML = `
+  <div class="info-player">
+    <div class="player-and-status">
+        <div class="name">${player.owner}</div>
+        <span class="status"></span>
+    </div>
+    <div class="btn-invite">Invite</div>
+  </div>
+  `
+  document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }

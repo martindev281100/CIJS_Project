@@ -21,6 +21,7 @@ window.onload = () => {
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
         document.getElementById('log-in').style = 'display: none'
+        document.querySelector('.playerList').style = 'display: none'
       } else {
         alert("Please verify your email");
         model.setOffline(user.uid)
