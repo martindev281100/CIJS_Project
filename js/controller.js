@@ -160,7 +160,7 @@ controller.playGame5 = () => {
   let arr = [];
   let row, col;
   let rule = 4;
-  let cellNumber = 10;
+  let cellNumber = 5;
 
   function startGame() {
     arr = [];
@@ -169,7 +169,6 @@ controller.playGame5 = () => {
       for (let j = 0; j < cellNumber; j++) a[j] = 0;
       arr.push(a);
     }
-    console.log(arr)
     circleTurn = false
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)

@@ -82,7 +82,7 @@ view.setActiveScreen = (screenName) => {
       document.getElementById("app").innerHTML = component.playPage5;
   
       let board = document.getElementById("board-game")
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 25; i++) {
         const cell = document.createElement('div');
         cell.classList.add("cell");
         cell.setAttribute("data-cell", "")
@@ -91,18 +91,18 @@ view.setActiveScreen = (screenName) => {
       var sheet = document.createElement('style')
       sheet.innerHTML = `
       #board-game {
-          grid-template-columns: repeat(10, auto);
+          grid-template-columns: repeat(5, auto);
       }
-      #board-game .cell:nth-child(10n + 1){
+      #board-game .cell:nth-child(5n + 1){
           border-left: none;
       }
-      #board-game .cell:nth-child(10n){
+      #board-game .cell:nth-child(5n){
           border-right: none;
       }
-      #board-game .cell:nth-child(-n + 10){
+      #board-game .cell:nth-child(-n + 5){
           border-top: none;
       }
-      #board-game .cell:nth-child(-n + 100){
+      #board-game .cell:nth-child(-n + 25){
           border-bottom: none;
       }
       `;
