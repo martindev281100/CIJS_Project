@@ -153,19 +153,23 @@ controller.playGame5 = () => {
   const X_CLASS = 'x'
   const CIRCLE_CLASS = 'circle'
   const cellElements = document.querySelectorAll('[data-cell]')
-  const board = document.getElementById('board-game-5')
+  const board = document.getElementById('board-game')
   const winningMessageElement = document.getElementById('winningMessage')
   const winningMessageTextElement = document.querySelector('[status-messages]')
   let circleTurn = false;
   let arr = [];
   let row, col;
+  let rule = 4;
+  let cellNumber = 10;
 
   function startGame() {
     arr = [];
-    for (let i = 0; i < 5; i++) {
-      let a = [0, 0, 0, 0, 0];
+    for (let i = 0; i < cellNumber; i++) {
+      let a = [];
+      for (let j = 0; j < cellNumber; j++) a[j] = 0;
       arr.push(a);
     }
+    console.log(arr)
     circleTurn = false
     cellElements.forEach(cell => {
       cell.classList.remove(X_CLASS)
@@ -182,10 +186,10 @@ controller.playGame5 = () => {
     const cell = e.target
     let currentClass = circleTurn ? CIRCLE_CLASS : X_CLASS;
     cell.classList.add(currentClass);
-    for (let i = 0; i < 25; i++) {
+    for (let i = 0; i < cellNumber * cellNumber; i++) {
       if (cellElements[i] == cell) {
-        row = Math.floor(i / 5);
-        col = i % 5;
+        row = Math.floor(i / cellNumber);
+        col = i % cellNumber;
         arr[row][col] = currentClass;
       }
     }
@@ -221,88 +225,60 @@ controller.playGame5 = () => {
   }
 
   function checkWin(currentClass) {
-    let r = row,
-      c = col,
-      count = 0;
-    while (r >= 0 && c >= 0) {
-      if (arr[r][c] != currentClass) {
-        r++;
-        c++;
-        break;
-      }
-      if (r == 0 || c == 0) break;
+    let r = row, c = col, count = 0;
+    while (r > 0 && c > 0) {
+      if (arr[r - 1][c - 1] != currentClass) break;
       r--;
       c--;
     }
-    while (r < 5 && c < 5) {
+    while (r < cellNumber && c < cellNumber) {
       if (arr[r][c] == currentClass) {
         count++;
-        if (count >= 3) return true;
         r++;
         c++;
-      } else {
-        break;
-      }
+      } else break;
     }
+    if (count >= rule) return true;
 
     r = row, c = col, count = 0;
-    while (r >= 0) {
-      if (arr[r][c] != currentClass) {
-        r++;
-        break;
-      }
-      if (r == 0) break;
+    while (r > 0) {
+      if (arr[r - 1][c] != currentClass) break;
       r--;
     }
-    while (r < 5) {
+    while (r < cellNumber) {
       if (arr[r][c] == currentClass) {
         count++;
-        if (count >= 3) return true;
         r++;
-      } else {
-        break;
-      }
+      } else break;
     }
+    if (count >= rule) return true;
 
     r = row, c = col, count = 0;
-    while (c >= 0) {
-      if (arr[r][c] != currentClass) {
-        c++;
-        break;
-      }
-      if (c == 0) break;
+    while (c > 0) {
+      if (arr[r][c - 1] != currentClass) break;
       c--;
     }
-    while (r < 5 && c < 5) {
+    while (r < cellNumber && c < cellNumber) {
       if (arr[r][c] == currentClass) {
         count++;
-        if (count >= 3) return true;
         c++;
-      } else {
-        break;
-      }
+      } else break;
     }
+    if (count >= rule) return true;
 
     r = row, c = col, count = 0;
-    while (r >= 0 && c < 5) {
-      if (arr[r][c] != currentClass) {
-        r++;
-        c--;
-        break;
-      }
-      if (r == 0 || c == 4) break;
+    while (r > 0 && c < cellNumber) {
+      if (arr[r - 1][c + 1] != currentClass) break;
       r--;
       c++;
     }
-    while (r < 5 && c >= 0) {
+    while (r < cellNumber && c >= 0) {
       if (arr[r][c] == currentClass) {
         count++;
-        if (count >= 3) return true;
         r++;
         c--;
-      } else {
-        break;
-      }
+      } else break;
     }
+    if (count >= rule) return true;
   }
 }

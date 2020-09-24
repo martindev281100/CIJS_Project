@@ -67,8 +67,9 @@ view.setActiveScreen = (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      model.getPlayer()
       model.listenPresence()
+      console.log(model.currentStatus)
+      model.getPlayer()
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
@@ -79,6 +80,34 @@ view.setActiveScreen = (screenName) => {
       break;
     case "playPage5":
       document.getElementById("app").innerHTML = component.playPage5;
+  
+      let board = document.getElementById("board-game")
+      for (let i = 0; i < 100; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add("cell");
+        cell.setAttribute("data-cell", "")
+        board.appendChild(cell);
+      }
+      var sheet = document.createElement('style')
+      sheet.innerHTML = `
+      #board-game {
+          grid-template-columns: repeat(10, auto);
+      }
+      #board-game .cell:nth-child(10n + 1){
+          border-left: none;
+      }
+      #board-game .cell:nth-child(10n){
+          border-right: none;
+      }
+      #board-game .cell:nth-child(-n + 10){
+          border-top: none;
+      }
+      #board-game .cell:nth-child(-n + 100){
+          border-bottom: none;
+      }
+      `;
+      board.appendChild(sheet);
+      
       controller.playGame5();
       document.getElementById('log-in').style = 'display: none'
       break;
