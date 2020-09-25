@@ -164,13 +164,11 @@ view.addListPlayer = (player) => {
   const listPlayerWrapper = document.createElement('div')
   listPlayerWrapper.classList.add('info-player')
   listPlayerWrapper.innerHTML = `
-  <div class="info-player">
     <div class="player-and-status">
         <div class="name">${player.owner}</div>
         <span class="status"></span>
     </div>
     <div class="btn-invite">Invite</div>
-  </div>
   `
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }
