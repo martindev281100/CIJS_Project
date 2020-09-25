@@ -76,7 +76,7 @@ game.checkWin = (currentClass) => {
       r--;
       c--;
     }
-    while (r < 5 && c < 5) {
+    while (r < game.size && c < game.size) {
       if (game.board[r][c] == currentClass) {
         count++;
         r++;
@@ -90,7 +90,7 @@ game.checkWin = (currentClass) => {
       if (game.board[r - 1][c] != currentClass) break;
       r--;
     }
-    while (r < 5) {
+    while (r < game.size) {
       if (game.board[r][c] == currentClass) {
         count++;
         r++;
@@ -103,7 +103,7 @@ game.checkWin = (currentClass) => {
       if (game.board[r][c - 1] != currentClass) break;
       c--;
     }
-    while (c < 5) {
+    while (c < game.size) {
       if (game.board[r][c] == currentClass) {
         count++;
         c++;
@@ -112,12 +112,12 @@ game.checkWin = (currentClass) => {
     if (count >= game.rule) return true;
 
     r = game.row, c = game.col, count = 0;
-    while (r > 0 && c < 4) {
+    while (r > 0 && c < game.size - 1) {
       if (game.board[r - 1][c + 1] != currentClass) break;
       r--;
       c++;
     }
-    while (r < 5 && c >= 0) {
+    while (r < game.size && c >= 0) {
       if (game.board[r][c] == currentClass) {
         count++;
         r++;
