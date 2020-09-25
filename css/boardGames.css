@@ -133,19 +133,3 @@
 #board-game-3 .cell:nth-child(-n + 9){
     border-bottom: none;
 }
-
-/* #board-game {
-    grid-template-columns: repeat(5, auto);
-}
-#board-game .cell:nth-child(5n + 1){
-    border-left: none;
-}
-#board-game .cell:nth-child(5n){
-    border-right: none;
-}
-#board-game .cell:nth-child(-n + 5){
-    border-top: none;
-}
-#board-game .cell:nth-child(-n + 25){
-    border-bottom: none;
-} */

@@ -139,6 +139,7 @@ model.getPlayer = async () => {
   model.players = await getManyDocument(response)
   view.showPlayer()
 }
+
 model.addPosition = (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
