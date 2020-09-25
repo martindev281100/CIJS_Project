@@ -1,23 +1,19 @@
-.home-page{
-    /* background-color: #8f8fa0; */
+.home-page {
     background-image: url(../img/Untitled-2.png);
     background-size: cover;
     height: 100vh;
 }
-
-.home-page .main{
+.home-page .main {
     margin: 13rem 15rem;
 }
-
-.home-page .main h1{
+.home-page .main h1 {
     color: #fff;
     font-size: 3rem;
     text-transform: capitalize;
     margin-bottom: 1rem;
     font-weight: 300;
 }
-
-.main .content{
+.main .content {
     width: 30%;
     margin-bottom: 2rem;
     color: #fff;

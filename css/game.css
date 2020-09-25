@@ -1,27 +1,26 @@
-.game-container{
+.game-container {
     height: 100vh;
 }
-.game-container .main{
+.game-container .main {
     height: calc(100vh - 64px);
     background-image: url(../img/11.jpg);
     display: flex;
 }
-.game-container .main .aside-left{
+.game-container .main .aside-left {
     width: 75%;
 }
-.game-container .main .aside-left .content{
+.game-container .main .aside-left .content {
     width: 50%;
     margin: 7rem auto;
 }
-.game-container .main .aside-left .content h1{
+.game-container .main .aside-left .content h1 {
     color: rgb(21 31 42);
     text-transform: capitalize;
     font-weight: 900;
     font-size: 60px;
     text-align: center;
 }
-
-.game-container .main .aside-left .content .btn-find-match button{
+.game-container .main .aside-left .content .btn-find-match button {
     background-color: rgb(21 31 42);
     color: #fff;
     width: 55%;
@@ -35,23 +34,22 @@
     outline: none;
     transition: 1s;
 }
-.game-container .main .aside-left .content .btn-find-match button:hover{
+.game-container .main .aside-left .content .btn-find-match button:hover {
     width: 60%;
     transition: 1s;
     background-color: #26a69a;
 }
-
-.game-container .main .aside-right{
+.game-container .main .aside-right {
     width: 25%;
     background-color: rgb(21 31 42);
     color: #fff;
 }
-.game-container .main .aside-right .title{
+.game-container .main .aside-right .title {
     width: 100%;
     display: flex;
     border-bottom: 2px solid #fff;
 }
-.game-container .main .aside-right .title button{   
+.game-container .main .aside-right .title button {   
     padding: 10px 55px;
     font-size: 20px;
     outline: none;
@@ -59,24 +57,23 @@
     background-color: rgb(21 31 42);
     color: #26a69a;
 }
-.game-container .main .aside-right .title .current{   
+.game-container .main .aside-right .title .current {   
     color: #fff;
     background-color: #1b2f44;
 }
-.game-container .main .aside-right .title button:hover{   
+.game-container .main .aside-right .title button:hover {   
     color: #fff;
     transition: 0.9s;
     background-color: #1f2c3a;
 }
-.game-container .main .aside-right .info{
+.game-container .main .aside-right .info {
     display: flex;
     margin: 10px 25px;
     font-size: 18px;
     font-weight: 500;
     justify-content: space-between;
 }
-
-.game-container .main .aside-right .playerList .info-player{
+.game-container .main .aside-right .playerList .info-player {
     display: flex;
     margin: 20px 25px;
     font-size: 18px;
@@ -86,18 +83,17 @@
     height: 40px;
     line-height: 40px;
 }
-
 .game-container .main .aside-right .playerList .info-player .player-and-status {
     display: flex;
 }
-.game-container .main .aside-right .playerList .info-player .player-and-status .status{
+.game-container .main .aside-right .playerList .info-player .player-and-status .status {
     width: 10px;
     height: 10px;
     background-color: #26a69a;
     border-radius: 50%;
     margin-left: 10px;
 }
-.game-container .main .aside-right .playerList .info-player .btn-invite{
+.game-container .main .aside-right .playerList .info-player .btn-invite {
     border: 1px solid #dbdbdb;
     cursor: pointer;
     padding: 0 25px;

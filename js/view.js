@@ -85,6 +85,7 @@ view.setActiveScreen = (screenName) => {
         document.querySelector('.rankingList').style = 'display: none'
         document.querySelector('.playerList').style = 'display: block'
       })
+      
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)

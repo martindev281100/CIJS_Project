@@ -31,7 +31,7 @@ model.login = async ({
   });
 };
 
-model.listenPresence = async () => {
+model.listenPresence = async () => {//
   if (firebase.auth().currentUser == null) {
     model.currentStatus = "offline"
     return;
@@ -133,8 +133,7 @@ model.logInWithFacebook = () => {
   });
 }
 
-//
-model.getPlayer = async () => {
+model.getPlayer = async () => {//
   const response = await firebase.firestore().collection('users').get()
   model.players = await getManyDocument(response)
   view.showPlayer()
@@ -146,6 +145,7 @@ model.addPosition = (data) => {
   }
   firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
 }
+
 model.listenGamesChanges = () => {
   let isFirstRun = true
   firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').onSnapshot((snapshot) => {
@@ -160,7 +160,8 @@ model.listenGamesChanges = () => {
     console.log(snapshot)
   })
 }
-model.listenAllPlayer = async () => {
+
+model.listenAllPlayer = async () => {//
   firebase.database().ref().on('value', function (snapshot) {
     snapshot.forEach(function(childSnapshot) {
       var childKey = childSnapshot.key;
