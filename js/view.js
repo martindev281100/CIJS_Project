@@ -59,6 +59,13 @@ view.setActiveScreen = (screenName) => {
         view.setActiveScreen("playPage");
       })
       document.getElementById("opt5x5").addEventListener('click', function () {
+        game.rule = 4;
+        game.size = 5;
+        view.setActiveScreen("playPage5");
+      })
+      document.getElementById("opt10x10").addEventListener('click', function () {
+        game.rule = 5;
+        game.size = 10;
         view.setActiveScreen("playPage5");
       })
 
@@ -98,7 +105,7 @@ view.setActiveScreen = (screenName) => {
       document.getElementById("app").innerHTML = component.playPage5;
   
       let board = document.getElementById("board-game")
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < game.size * game.size; i++) {
         const cell = document.createElement('div');
         cell.classList.add("cell");
         cell.setAttribute("data-cell", "")
@@ -107,24 +114,24 @@ view.setActiveScreen = (screenName) => {
       var sheet = document.createElement('style')
       sheet.innerHTML = `
       #board-game {
-          grid-template-columns: repeat(5, auto);
+          grid-template-columns: repeat(${game.size}, auto);
       }
-      #board-game .cell:nth-child(5n + 1){
+      #board-game .cell:nth-child(${game.size}n + 1){
           border-left: none;
       }
-      #board-game .cell:nth-child(5n){
+      #board-game .cell:nth-child(${game.size}n){
           border-right: none;
       }
-      #board-game .cell:nth-child(-n + 5){
+      #board-game .cell:nth-child(-n + ${game.size}){
           border-top: none;
       }
-      #board-game .cell:nth-child(-n + 25){
+      #board-game .cell:nth-child(-n + ${game.size * game.size}){
           border-bottom: none;
       }
       `;
       board.appendChild(sheet);
-      
-      controller.playGame5();
+      document.getElementById('restartButton').addEventListener('click', game.startGame)
+      game.startGame()
       document.getElementById('log-in').style = 'display: none'
       break;
   }
