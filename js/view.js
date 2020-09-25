@@ -37,7 +37,7 @@ view.setActiveScreen = (screenName) => {
         model.logInWithFacebook();
       })
       document.getElementById("redirect-to-register").addEventListener("click", function () {
-          view.setActiveScreen("registerPage");
+        view.setActiveScreen("registerPage");
       });
       break;
     case "homePage":
@@ -52,7 +52,7 @@ view.setActiveScreen = (screenName) => {
         firebase.auth().signOut();
       });
       break;
-    //  
+      //  
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
       document.getElementById("opt3x3").addEventListener('click', function () {
@@ -79,7 +79,7 @@ view.setActiveScreen = (screenName) => {
         document.querySelector('.playerList').style = 'display: none'
       })
 
-      listPlayerBtn.addEventListener('click', () =>{
+      listPlayerBtn.addEventListener('click', () => {
         rankingBtn.classList.remove('current')
         listPlayerBtn.classList.add('current')
         document.querySelector('.rankingList').style = 'display: none'
@@ -104,7 +104,7 @@ view.setActiveScreen = (screenName) => {
       break;
     case "playPage5":
       document.getElementById("app").innerHTML = component.playPage5;
-  
+
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
         const cell = document.createElement('div');
@@ -165,13 +165,20 @@ view.addListPlayer = (player) => {
   const listPlayerWrapper = document.createElement('div')
   listPlayerWrapper.classList.add('info-player')
   listPlayerWrapper.innerHTML = `
-  <div class="info-player">
     <div class="player-and-status">
         <div class="name">${player.owner}</div>
         <span class="status"></span>
     </div>
     <div class="btn-invite">Invite</div>
-  </div>
   `
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
+}
+view.placeMark = (cell, currentClass) => {
+  cell.classList.add(currentClass)
+}
+view.placeMarkForOpponent = (index, type) => {
+  const cellElements = document.querySelectorAll('[data-cell]')
+  const dataArr = Array.from(cellElements)
+  console.log(index)
+  dataArr[index].classList.add(type)
 }

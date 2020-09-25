@@ -78,20 +78,21 @@ controller.playGame = () => {
 
   function handleClick(e) {
     const cell = e.target
-    const data = {
-      createdAt: new Date().toISOString(),
-      owner: model.currentUser.email,
-      position: dataArr.indexOf(cell)
-    }
-    console.log(data)
-    model.addPosition(data)
     let currentClass
     if (circleTurn == true) {
       currentClass = CIRCLE_CLASS
     } else {
       currentClass = X_CLASS
     }
-    placeMark(cell, currentClass)
+    const data = {
+      createdAt: new Date().toISOString(),
+      owner: model.currentUser.email,
+      type: currentClass,
+      position: dataArr.indexOf(cell)
+    }
+    console.log(data)
+    model.addPosition(data)
+    view.placeMark(cell, currentClass)
     if (checkWin(currentClass)) {
       game.endGame(false)
     } else if (isDraw()) {
@@ -108,11 +109,11 @@ controller.playGame = () => {
     })
   }
 
-  function placeMark(cell, currentClass) {
-    cell.classList.add(currentClass)
-    console.log(cell)
-    console.log(dataArr.indexOf(cell)) 
-  }
+  // function placeMark(cell, currentClass) {
+  //   cell.classList.add(currentClass)
+  //   console.log(cell)
+  //   console.log(dataArr.indexOf(cell)) 
+  // }
 
   function swapTurns() {
     circleTurn = !circleTurn

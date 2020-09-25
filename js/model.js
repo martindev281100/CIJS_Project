@@ -2,7 +2,7 @@ const model = {};
 model.currentUser = undefined;
 model.currentStatus = undefined;
 model.players = [];
-
+model.currentGame = undefined;
 model.register = async (data) => {
   try {
     const response = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
@@ -148,22 +148,29 @@ model.addPosition = (data) => {
 
 model.listenGamesChanges = () => {
   let isFirstRun = true
-  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').onSnapshot((snapshot) => {
-    // if (isFirstRun) {
-    //   isFirstRun = false
-    //   return
-    // }
-    // for (oneChange of snapshot.docChanges()) {
-    //   const docData = getOneDocument(oneChange.doc)
-    //   console.log(oneChange)
-    // }
-    console.log(snapshot)
+  firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
+    if (isFirstRun) {
+      isFirstRun = false
+      return
+    }
+    for (oneChange of snapshot.docChanges()) {
+      const docData = getOneDocument(oneChange.doc)
+      console.log(docData)
+      console.log(oneChange)
+      if (oneChange.type === 'modified') {
+        view.placeMarkForOpponent(docData.tempo[docData.tempo.length - 1].position, docData.tempo[docData.tempo.length - 1].type)
+      }
+      if (oneChange.type === 'added') {
+
+      }
+
+    }
   })
 }
 
 model.listenAllPlayer = async () => {//
   firebase.database().ref().on('value', function (snapshot) {
-    snapshot.forEach(function(childSnapshot) {
+    snapshot.forEach(function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
       // ...
