@@ -106,7 +106,6 @@ view.setActiveScreen = (screenName) => {
       }
       `;
       board.appendChild(sheet);
-      
       controller.playGame5();
       document.getElementById('log-in').style = 'display: none'
       break;
