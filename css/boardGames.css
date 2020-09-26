@@ -1,10 +1,10 @@
 :root{
-    --cell-size: 100px;
+    --cell-size: 60px;
     --mark-size: calc(var(--cell-size)* .9);
 }
 .board-games{
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 64px);
     display: grid;
     justify-content: center;
     align-content: center;

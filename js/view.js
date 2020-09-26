@@ -57,6 +57,8 @@ view.setActiveScreen = (screenName) => {
       document.getElementById("app").innerHTML = component.gamePage;
       document.getElementById("opt3x3").addEventListener('click', function () {
         view.setActiveScreen("playPage");
+      
+        view.setActiveScreen("playPage5");
       })
       document.getElementById("opt5x5").addEventListener('click', function () {
         game.rule = 4;
