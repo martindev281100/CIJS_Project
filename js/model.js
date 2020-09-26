@@ -144,7 +144,7 @@ model.addPosition = (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
+  firebase.firestore().collection('games').doc('y8ABW04afrX0QnsUTu6f').update(dataToUpdate)
 }
 model.listenGamesChanges = () => {
   let isFirstRun = true
