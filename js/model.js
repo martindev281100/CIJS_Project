@@ -32,7 +32,7 @@ model.login = async ({
   });
 };
 
-model.listenPresence = async () => {
+model.listenPresence = async () => {//
   if (firebase.auth().currentUser == null) {
     model.currentStatus = "offline"
     return;
@@ -136,11 +136,9 @@ model.logInWithFacebook = () => {
   });
 }
 
-//
-model.getPlayer = async () => {
+model.getPlayer = async () => {//
   const response = await firebase.firestore().collection('users').get()
   model.players = getManyDocument(response)
-  await view.showPlayer()
 }
 
 model.addPosition = (data) => {
@@ -149,6 +147,7 @@ model.addPosition = (data) => {
   }
   firebase.firestore().collection('games').doc('y8ABW04afrX0QnsUTu6f').update(dataToUpdate)
 }
+
 model.listenGamesChanges = () => {
   let isFirstRun = true
   firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
@@ -170,15 +169,18 @@ model.listenGamesChanges = () => {
     }
   })
 }
-model.listenAllPlayer = async () => {
+
+model.listenAllPlayer = async () => {//
   firebase.database().ref().on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      // ...
-      // console.log(childData)
+      view.showPlayer(childData)
+      //  console.log(model.players)
+      //console.log(childData)
     });
   });
+  return false;
 }
 
 model.invitationsPlayer =  async (data, id) => {
