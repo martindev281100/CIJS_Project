@@ -85,6 +85,8 @@ view.setActiveScreen = (screenName) => {
         document.querySelector('.rankingList').style = 'display: none'
         document.querySelector('.playerList').style = 'display: block'
       })
+
+      // console.log(document.querySelectorAll('.btn-invite'))
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)
@@ -168,8 +170,9 @@ view.addListPlayer = (player) => {
         <div class="name">${player.owner}</div>
         <span class="status"></span>
     </div>
-    <div class="btn-invite">Invite</div>
+    <div class="btn-invite">invite</div>
   `
+  listPlayerWrapper.id = player.id
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }
 view.placeMark = (cell, currentClass) => {

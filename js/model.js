@@ -14,6 +14,7 @@ model.register = async (data) => {
       createdAt: new Date().toISOString(),
       points: 1000,
       owner: data.userName,
+      invitations: []
     }
     await firebase.firestore().collection('users').doc(response.user.uid).set(dataToAdd)
     firebase.auth().signOut()
@@ -99,6 +100,7 @@ model.logInWithGoogle = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
+          invitations: []
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -124,6 +126,7 @@ model.logInWithFacebook = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
+          invitations: []
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -176,4 +179,11 @@ model.listenAllPlayer = async () => {
       console.log(childData)
     });
   });
+}
+
+model.invitationsPlayer =  async () => {
+  dataToUpdate = {
+    invitations: "invited"
+  }
+  firebase.firestore().collection('users').doc('IBE4DBjxDJZx6EUTllHXwzbLnBn2').update(dataToUpdate)
 }
