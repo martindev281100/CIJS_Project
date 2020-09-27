@@ -104,16 +104,6 @@ view.setActiveScreen = async (screenName) => {
       await model.listenAllPlayer()
       console.log(model.players)
       for (let i = 0; i < model.players.length; i++) {
-<<<<<<< HEAD
-        document.getElementById(model.players[i].id).addEventListener('click', () => {
-          const inviteMessage = {
-            createdAt: new Date().toISOString(),
-            message: model.currentUser.displayName + " invited"
-          }
-          model.invitationsPlayer(inviteMessage, model.players[i].id, model.players[i].email)
-        })
-        console.log(model.players[i])
-=======
         // console.log(model.players[i].id)
         // console.log(i)
         // console.log(document.getElementById(model.players[i].id))
@@ -124,7 +114,6 @@ view.setActiveScreen = async (screenName) => {
         //   }
         //  model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
         // })
->>>>>>> 17b9d29232d332fcae600b6a6226a79d14d2c830
       }
       break;
     case "playPage":
