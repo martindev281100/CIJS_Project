@@ -14,7 +14,8 @@ model.register = async (data) => {
       createdAt: new Date().toISOString(),
       points: 1000,
       owner: data.userName,
-      invitations: []
+      invitations: [],
+      email: data.email,
     }
     await firebase.firestore().collection('users').doc(response.user.uid).set(dataToAdd)
     firebase.auth().signOut()
@@ -100,7 +101,8 @@ model.logInWithGoogle = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
-          invitations: []
+          invitations: [],
+          email: result.user.email,
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -126,7 +128,8 @@ model.logInWithFacebook = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
-          invitations: []
+          invitations: [],
+          email: result.user.email,
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -181,15 +184,17 @@ model.listenAllPlayer = async () => {
   });
 }
 
-model.invitationsPlayer =  async () => {
+model.invitationsPlayer = async (data, playerId, playerEmail) => {
   dataToUpdate = {
-    invitations: "invited"
+    invitations: firebase.firestore.FieldValue.arrayUnion(data),
   }
+  console.log(playerId)
+  console.log(playerEmail)
+  firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
   newGame = {
     createdAt: new Date().toISOString(),
-    players: [model.currentUser.email],
+    players: [model.currentUser.email, playerEmail],
     tempo: [],
   }
-  fierbase.firestore().collection('games')
-  firebase.firestore().collection('users').doc('IBE4DBjxDJZx6EUTllHXwzbLnBn2').update(dataToUpdate)
+  firebase.firestore().collection('games').add(newGame)
 }

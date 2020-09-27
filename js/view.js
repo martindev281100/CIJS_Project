@@ -91,6 +91,8 @@ view.setActiveScreen = async (screenName) => {
         document.querySelector('.playerList').style = 'display: block'
       })
 
+
+
       // console.log(document.querySelectorAll('.btn-invite'))
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
@@ -100,12 +102,16 @@ view.setActiveScreen = async (screenName) => {
       model.listenPresence()
       await model.getPlayer()
       model.listenAllPlayer()
-        for (player of model.players) {
-          document.getElementById(player.id).addEventListener('click', () => {
-            console.log('click ' + player.id)
-          })
-          break;
-        }
+      for (let i = 0; i < model.players.length; i++) {
+        document.getElementById(model.players[i].id).addEventListener('click', () => {
+          const inviteMesage = {
+            createdAt: new Date().toISOString(),
+            message: model.currentUser.displayName + " invited"
+          }
+          model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+        })
+        console.log(model.players[i])
+      }
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;

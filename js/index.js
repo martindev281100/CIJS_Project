@@ -1,4 +1,4 @@
-window.onload = () => {
+window.onload = async () => {
   var firebaseConfig = {
     apiKey: "AIzaSyAKCpIpzv5CjEa1rZxjGlhc3EOP4_wyc9o",
     authDomain: "cijs-project.firebaseapp.com",
@@ -10,7 +10,7 @@ window.onload = () => {
   };
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
-  firebase.auth().onAuthStateChanged((user) => {
+  await firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       model.presence();
       model.currentUser = {
