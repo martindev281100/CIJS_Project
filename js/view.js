@@ -102,8 +102,9 @@ view.setActiveScreen = async (screenName) => {
       model.listenAllPlayer()
         for (player of model.players) {
           document.getElementById(player.id).addEventListener('click', () => {
-            console.log('click')
+            console.log('click ' + player.id)
           })
+          break;
         }
       break;
     case "playPage":

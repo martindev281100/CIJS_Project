@@ -147,7 +147,7 @@ model.addPosition = (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('games').doc('y8ABW04afrX0QnsUTu6f').update(dataToUpdate)
+  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
 }
 model.listenGamesChanges = () => {
   let isFirstRun = true
@@ -176,7 +176,7 @@ model.listenAllPlayer = async () => {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
       // ...
-      console.log(childData)
+      // console.log(childData)
     });
   });
 }
@@ -185,5 +185,11 @@ model.invitationsPlayer =  async () => {
   dataToUpdate = {
     invitations: "invited"
   }
+  newGame = {
+    createdAt: new Date().toISOString(),
+    players: [model.currentUser.email],
+    tempo: [],
+  }
+  fierbase.firestore().collection('games')
   firebase.firestore().collection('users').doc('IBE4DBjxDJZx6EUTllHXwzbLnBn2').update(dataToUpdate)
 }
