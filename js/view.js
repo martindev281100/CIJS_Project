@@ -103,18 +103,18 @@ view.setActiveScreen = async (screenName) => {
       await model.getPlayer()
       await model.listenAllPlayer()
       console.log(model.players)
-      for (let i = 0; i < model.players.length; i++) {
-        console.log(model.players[i].id)
-        console.log(i)
-        console.log(document.getElementById(model.players[i].id))
-        // document.getElementById(model.players[i].id).addEventListener('click', () => {
-        //   const inviteMesage = {
-        //     createdAt: new Date().toISOString(),
-        //     message: model.currentUser.displayName + " invited"
-        //   }
-        //  model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
-        // })
-      }
+      // for (let i = 0; i < model.players.length; i++) {
+      //   // console.log(model.players[i].id)
+      //   // console.log(i)
+      //   // console.log(document.getElementById(model.players[i].id))
+      //   document.getElementById(model.players[i].id).addEventListener('click', () => {
+      //     const inviteMesage = {
+      //       createdAt: new Date().toISOString(),
+      //       message: model.currentUser.displayName + " invited"
+      //     }
+      //     model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+      //   })
+      // }
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
@@ -164,7 +164,7 @@ view.setErrorMessage = (elementId, content) => {
 };
 
 //
-view.showPlayer = async (childData) => {
+view.showPlayer = (childData) => {
   document.querySelector('.aside-right .rankingList').innerHTML = ""
   document.querySelector('.aside-right .playerList').innerHTML = ""
 
@@ -179,7 +179,7 @@ view.showPlayer = async (childData) => {
       }
     }
     if (check) continue
-    await view.addListPlayer(player, false)
+    view.addListPlayer(player, false)
   }
 }
 
@@ -213,9 +213,23 @@ view.addListPlayer = (player, online) => {
     <div class="btn-invite" id="${player.id}">Invite</div>
   `
   }
-
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
+
+  for (let i = 0; i < model.players.length; i++) {
+    // console.log(model.players[i].id)
+    // console.log(i)
+    // console.log(document.getElementById(model.players[i].id))
+    document.getElementById(model.players[i].id).addEventListener('click', () => {
+      const inviteMesage = {
+        createdAt: new Date().toISOString(),
+        message: model.currentUser.displayName + " invited"
+      }
+      model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+    })
+  }
+
 }
+
 view.placeMark = (cell, currentClass) => {
   cell.classList.add(currentClass)
 }
