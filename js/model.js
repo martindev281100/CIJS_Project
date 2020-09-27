@@ -14,6 +14,7 @@ model.register = async (data) => {
       createdAt: new Date().toISOString(),
       points: 1000,
       owner: data.userName,
+      invitations: []
     }
     await firebase.firestore().collection('users').doc(response.user.uid).set(dataToAdd)
     firebase.auth().signOut()
@@ -99,6 +100,7 @@ model.logInWithGoogle = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
+          invitations: []
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -124,6 +126,7 @@ model.logInWithFacebook = () => {
           createdAt: new Date().toISOString(),
           points: 1000,
           owner: result.user.displayName,
+          invitations: []
         }
         firebase.firestore().collection('users').doc(result.user.uid).set(dataToAdd)
       }
@@ -135,15 +138,15 @@ model.logInWithFacebook = () => {
 
 model.getPlayer = async () => {//
   const response = await firebase.firestore().collection('users').get()
-  model.players = await getManyDocument(response)
-  view.showPlayer()
+  model.players = getManyDocument(response)
+  await view.showPlayer()
 }
 
 model.addPosition = (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
+  firebase.firestore().collection('games').doc('y8ABW04afrX0QnsUTu6f').update(dataToUpdate)
 }
 
 model.listenGamesChanges = () => {
@@ -177,4 +180,11 @@ model.listenAllPlayer = async () => {//
       console.log(childData)
     });
   });
+}
+
+model.invitationsPlayer =  async () => {
+  dataToUpdate = {
+    invitations: "invited"
+  }
+  firebase.firestore().collection('users').doc('IBE4DBjxDJZx6EUTllHXwzbLnBn2').update(dataToUpdate)
 }
