@@ -176,14 +176,16 @@ model.listenAllPlayer = async () => {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
       // ...
-      console.log(childData)
+      // console.log(childData)
     });
   });
 }
 
-model.invitationsPlayer =  async () => {
+model.invitationsPlayer =  async (data) => {
   dataToUpdate = {
-    invitations: "invited"
+    invitations: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('users').doc('IBE4DBjxDJZx6EUTllHXwzbLnBn2').update(dataToUpdate)
+  for (let i = 0; i < model.players.length; i++){
+    firebase.firestore().collection('users').doc(model.players[i].id).update(dataToUpdate)
+  }
 }

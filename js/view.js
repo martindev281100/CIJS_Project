@@ -102,10 +102,15 @@ view.setActiveScreen = async (screenName) => {
       model.listenPresence()
       await model.getPlayer()
       model.listenAllPlayer()
-        for (player of model.players) {
-          document.getElementById(player.id).addEventListener('click', () => {
-            console.log('click')
-          })
+        for (let i = 0; i < model.players.length; i++){
+          console.log(model.players[i].id)
+          document.getElementById(model.players[i].id).addEventListener('click', () => {
+            const inviteMesage = {
+              createdAt: new Date().toISOString(),
+              message: " invited"
+            }
+              model.invitationsPlayer(inviteMesage)
+            })
         }
       break;
     case "playPage":
