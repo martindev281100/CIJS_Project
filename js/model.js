@@ -175,10 +175,10 @@ model.listenGamesChanges = () => {
 
 model.listenAllPlayer = () => { //
   firebase.database().ref().on('value', function (snapshot) {
-    snapshot.forEach(async function (childSnapshot) {
+    snapshot.forEach(function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      await view.showPlayer(childData)
+      view.showPlayer(childData)
       //  console.log(model.players)
       //console.log(childData)
     });

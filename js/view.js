@@ -164,7 +164,7 @@ view.setErrorMessage = (elementId, content) => {
 };
 
 //
-view.showPlayer = async (childData) => {
+view.showPlayer = (childData) => {
   document.querySelector('.aside-right .rankingList').innerHTML = ""
   document.querySelector('.aside-right .playerList').innerHTML = ""
 
@@ -179,7 +179,7 @@ view.showPlayer = async (childData) => {
       }
     }
     if (check) continue
-    await view.addListPlayer(player, false)
+    view.addListPlayer(player, false)
   }
 }
 
@@ -215,13 +215,13 @@ view.addListPlayer = (player, online) => {
   }
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
   console.log(document.getElementById(player.id));
-  
+
   document.getElementById(player.id).addEventListener('click', () => {
     const inviteMesage = {
       createdAt: new Date().toISOString(),
       message: model.currentUser.displayName + " invited"
     }
-   model.invitationsPlayer(inviteMesage, player.id, player.email)
+    model.invitationsPlayer(inviteMesage, player.id, player.email)
   })
 }
 
