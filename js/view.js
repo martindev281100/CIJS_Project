@@ -103,18 +103,18 @@ view.setActiveScreen = async (screenName) => {
       await model.getPlayer()
       await model.listenAllPlayer()
       console.log(model.players)
-      // for (let i = 0; i < model.players.length; i++) {
-      //   // console.log(model.players[i].id)
-      //   // console.log(i)
-      //   // console.log(document.getElementById(model.players[i].id))
-      //   document.getElementById(model.players[i].id).addEventListener('click', () => {
-      //     const inviteMesage = {
-      //       createdAt: new Date().toISOString(),
-      //       message: model.currentUser.displayName + " invited"
-      //     }
-      //     model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
-      //   })
-      // }
+      for (let i = 0; i < model.players.length; i++) {
+        // console.log(model.players[i].id)
+        // console.log(i)
+        // console.log(document.getElementById(model.players[i].id))
+        // document.getElementById(model.players[i].id).addEventListener('click', () => {
+        //   const inviteMesage = {
+        //     createdAt: new Date().toISOString(),
+        //     message: model.currentUser.displayName + " invited"
+        //   }
+        //  model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+        // })
+      }
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
@@ -214,20 +214,15 @@ view.addListPlayer = (player, online) => {
   `
   }
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
+  console.log(document.getElementById(player.id));
 
-  for (let i = 0; i < model.players.length; i++) {
-    // console.log(model.players[i].id)
-    // console.log(i)
-    // console.log(document.getElementById(model.players[i].id))
-    document.getElementById(model.players[i].id).addEventListener('click', () => {
-      const inviteMesage = {
-        createdAt: new Date().toISOString(),
-        message: model.currentUser.displayName + " invited"
-      }
-      model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
-    })
-  }
-
+  document.getElementById(player.id).addEventListener('click', () => {
+    const inviteMesage = {
+      createdAt: new Date().toISOString(),
+      message: model.currentUser.displayName + " invited"
+    }
+    model.invitationsPlayer(inviteMesage, player.id, player.email)
+  })
 }
 
 view.placeMark = (cell, currentClass) => {
