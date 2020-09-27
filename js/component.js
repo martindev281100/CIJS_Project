@@ -202,6 +202,12 @@ component.gamePage = `
           <li><a href="#"><button>Contact</button></a></li>
         </ul>
       </div>
+      <div class="dropdown">
+          <button type="button" class="btn" data-toggle="dropdown"><i class="fas fa-bell notification"></i></button>
+          <div class="dropdown-menu">
+            <button class="dropdown-item" >xx</button>
+          </div>
+        </div>
       <div class="button-header">
         <button class="btn btn-dark" id="log-in">Log in</button>
         <button class="btn btn-dark" id="sign-out">Sign out</button>
