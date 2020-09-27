@@ -102,15 +102,18 @@ view.setActiveScreen = async (screenName) => {
       model.listenPresence()
       await model.getPlayer()
       model.listenAllPlayer()
+      console.log(model.players)
       for (let i = 0; i < model.players.length; i++) {
-        document.getElementById(model.players[i].id).addEventListener('click', () => {
-          const inviteMesage = {
-            createdAt: new Date().toISOString(),
-            message: model.currentUser.displayName + " invited"
-          }
-          model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
-        })
-        console.log(model.players[i])
+        console.log(model.players[i].id)
+        console.log(i)
+        console.log(document.getElementById(model.players[i]))
+        // document.getElementById(model.players[i].id).addEventListener('click', () => {
+        //   const inviteMesage = {
+        //     createdAt: new Date().toISOString(),
+        //     message: model.currentUser.displayName + " invited"
+        //   }
+        //  model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+        // })
       }
       break;
     case "playPage":
@@ -161,7 +164,7 @@ view.setErrorMessage = (elementId, content) => {
 };
 
 //
-view.showPlayer = (childData) => {
+view.showPlayer = async (childData) => {
   document.querySelector('.aside-right .rankingList').innerHTML = ""
   document.querySelector('.aside-right .playerList').innerHTML = ""
 
@@ -176,7 +179,7 @@ view.showPlayer = (childData) => {
       }
     }
     if (check) continue
-    view.addListPlayer(player, false)
+    await view.addListPlayer(player, false)
   }
 }
 
@@ -193,7 +196,7 @@ view.addPlayer = (player) => {
 
 view.addListPlayer = (player, online) => {
   const listPlayerWrapper = document.createElement('div')
-  listPlayerWrapper.classList.add('info-player') 
+  listPlayerWrapper.classList.add('info-player')
   if (online) {
     listPlayerWrapper.innerHTML = `
     <div class="player-and-status">
@@ -210,7 +213,7 @@ view.addListPlayer = (player, online) => {
     <div class="btn-invite" id="${player.id}">Invite</div>
   `
   }
-  
+
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }
 view.placeMark = (cell, currentClass) => {

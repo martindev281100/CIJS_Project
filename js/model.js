@@ -173,12 +173,12 @@ model.listenGamesChanges = () => {
   })
 }
 
-model.listenAllPlayer = async () => {//
+model.listenAllPlayer = () => {//
   firebase.database().ref().on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
+    snapshot.forEach( async function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      view.showPlayer(childData)
+    view.showPlayer(childData)
       //  console.log(model.players)
       //console.log(childData)
     });
