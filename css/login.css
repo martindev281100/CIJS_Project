@@ -22,7 +22,6 @@
     display: flex;
     justify-content: space-between;
 }
-  
 .login-container #login-form .input-wrapper {
     margin: 0 20px;
     margin-bottom: 20px;
@@ -30,7 +29,6 @@
 .login-container #login-form .input-wrapper :focus {
     outline: #0062cc;
 }
-
 .login-container #login-form .input-wrapper .login-by-social-account .text{
     margin-top: 30px;
     text-align: center;
@@ -62,15 +60,12 @@
     background-color: #046FE5 ;
     transition: 0.5s;
 }
-
 .btn-social-acc{
     display: flex;
 }
-  
 .btn-login {
     width: 100%;
 }
-  
 .login-container .redirect {
     margin-top: 100px;
     text-align: center;
