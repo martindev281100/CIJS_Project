@@ -139,8 +139,8 @@ model.logInWithFacebook = () => {
 //
 model.getPlayer = async () => {
   const response = await firebase.firestore().collection('users').get()
-  model.players = await getManyDocument(response)
-  view.showPlayer()
+  model.players = getManyDocument(response)
+  await view.showPlayer()
 }
 
 model.addPosition = (data) => {
