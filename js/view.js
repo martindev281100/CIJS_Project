@@ -99,14 +99,14 @@ view.setActiveScreen = async (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      model.listenPresence()
+      await model.listenPresence()
       await model.getPlayer()
-      model.listenAllPlayer()
+      await model.listenAllPlayer()
       console.log(model.players)
       for (let i = 0; i < model.players.length; i++) {
         console.log(model.players[i].id)
         console.log(i)
-        console.log(document.getElementById(model.players[i]))
+        console.log(document.getElementById(model.players[i].id))
         // document.getElementById(model.players[i].id).addEventListener('click', () => {
         //   const inviteMesage = {
         //     createdAt: new Date().toISOString(),
