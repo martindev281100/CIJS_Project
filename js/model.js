@@ -139,7 +139,6 @@ model.logInWithFacebook = () => {
 model.getPlayer = async () => {//
   const response = await firebase.firestore().collection('users').get()
   model.players = getManyDocument(response)
-  await view.showPlayer()
 }
 
 model.addPosition = (data) => {
@@ -176,10 +175,12 @@ model.listenAllPlayer = async () => {//
     snapshot.forEach(function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      // ...
-      console.log(childData)
+      view.showPlayer(childData)
+      //  console.log(model.players)
+      //console.log(childData)
     });
   });
+  return false;
 }
 
 model.invitationsPlayer =  async () => {
