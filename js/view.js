@@ -99,10 +99,12 @@ view.setActiveScreen = async (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      model.listenPresence()
+      await model.listenPresence()
       await model.getPlayer()
-      model.listenAllPlayer()
+      await model.listenAllPlayer()
+      console.log(model.players)
       for (let i = 0; i < model.players.length; i++) {
+<<<<<<< HEAD
         document.getElementById(model.players[i].id).addEventListener('click', () => {
           const inviteMessage = {
             createdAt: new Date().toISOString(),
@@ -111,6 +113,18 @@ view.setActiveScreen = async (screenName) => {
           model.invitationsPlayer(inviteMessage, model.players[i].id, model.players[i].email)
         })
         console.log(model.players[i])
+=======
+        // console.log(model.players[i].id)
+        // console.log(i)
+        // console.log(document.getElementById(model.players[i].id))
+        // document.getElementById(model.players[i].id).addEventListener('click', () => {
+        //   const inviteMesage = {
+        //     createdAt: new Date().toISOString(),
+        //     message: model.currentUser.displayName + " invited"
+        //   }
+        //  model.invitationsPlayer(inviteMesage, model.players[i].id, model.players[i].email)
+        // })
+>>>>>>> 17b9d29232d332fcae600b6a6226a79d14d2c830
       }
       break;
     case "playPage":
@@ -161,7 +175,7 @@ view.setErrorMessage = (elementId, content) => {
 };
 
 //
-view.showPlayer = (childData) => {
+view.showPlayer = async (childData) => {
   document.querySelector('.aside-right .rankingList').innerHTML = ""
   document.querySelector('.aside-right .playerList').innerHTML = ""
 
@@ -176,7 +190,7 @@ view.showPlayer = (childData) => {
       }
     }
     if (check) continue
-    view.addListPlayer(player, false)
+    await view.addListPlayer(player, false)
   }
 }
 
@@ -193,7 +207,7 @@ view.addPlayer = (player) => {
 
 view.addListPlayer = (player, online) => {
   const listPlayerWrapper = document.createElement('div')
-  listPlayerWrapper.classList.add('info-player') 
+  listPlayerWrapper.classList.add('info-player')
   if (online) {
     listPlayerWrapper.innerHTML = `
     <div class="player-and-status">
@@ -211,6 +225,15 @@ view.addListPlayer = (player, online) => {
   `
   }
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
+  console.log(document.getElementById(player.id));
+  
+  document.getElementById(player.id).addEventListener('click', () => {
+    const inviteMesage = {
+      createdAt: new Date().toISOString(),
+      message: model.currentUser.displayName + " invited"
+    }
+   model.invitationsPlayer(inviteMesage, player.id, player.email)
+  })
 }
 
 view.placeMark = (cell, currentClass) => {

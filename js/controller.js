@@ -35,7 +35,10 @@ controller.login = ({
   view.setErrorMessage("email-error", email === "" ? "Please enter your email" : "");
   view.setErrorMessage("password-error", password === "" ? "Please enter your password" : "");
   if (email != "" && password != "") {
-    model.login({email, password,});
+    model.login({
+      email,
+      password,
+    });
   }
 };
 

@@ -33,7 +33,7 @@ model.login = async ({
   });
 };
 
-model.listenPresence = async () => {//
+model.listenPresence = async () => { //
   if (firebase.auth().currentUser == null) {
     model.currentStatus = "offline"
     return;
@@ -139,7 +139,7 @@ model.logInWithFacebook = () => {
   });
 }
 
-model.getPlayer = async () => {//
+model.getPlayer = async () => { //
   const response = await firebase.firestore().collection('users').get()
   model.players = getManyDocument(response)
 }
@@ -173,12 +173,12 @@ model.listenGamesChanges = () => {
   })
 }
 
-model.listenAllPlayer = async () => {//
+model.listenAllPlayer = () => { //
   firebase.database().ref().on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
+    snapshot.forEach(async function (childSnapshot) {
       var childKey = childSnapshot.key;
       var childData = childSnapshot.val();
-      view.showPlayer(childData)
+      await view.showPlayer(childData)
       //  console.log(model.players)
       //console.log(childData)
     });
