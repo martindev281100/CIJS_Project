@@ -86,6 +86,8 @@ view.setActiveScreen = (screenName) => {
         document.querySelector('.playerList').style = 'display: block'
       })
 
+
+      
       // console.log(document.querySelectorAll('.btn-invite'))
       const btnSignOut = document.getElementById("sign-out");
       btnSignOut.addEventListener("click", () => {
@@ -170,9 +172,8 @@ view.addListPlayer = (player) => {
         <div class="name">${player.owner}</div>
         <span class="status"></span>
     </div>
-    <div class="btn-invite">invite</div>
+    <div class="btn-invite" id="${player.id}">Invite</div>
   `
-  listPlayerWrapper.id = player.id
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }
 view.placeMark = (cell, currentClass) => {
