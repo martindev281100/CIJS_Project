@@ -104,9 +104,9 @@ view.setActiveScreen = async (screenName) => {
       await model.listenAllPlayer()
       console.log(model.players)
       for (let i = 0; i < model.players.length; i++) {
-        console.log(model.players[i].id)
-        console.log(i)
-        console.log(document.getElementById(model.players[i].id))
+        // console.log(model.players[i].id)
+        // console.log(i)
+        // console.log(document.getElementById(model.players[i].id))
         // document.getElementById(model.players[i].id).addEventListener('click', () => {
         //   const inviteMesage = {
         //     createdAt: new Date().toISOString(),
@@ -213,8 +213,16 @@ view.addListPlayer = (player, online) => {
     <div class="btn-invite" id="${player.id}">Invite</div>
   `
   }
-
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
+  console.log(document.getElementById(player.id));
+  
+  document.getElementById(player.id).addEventListener('click', () => {
+    const inviteMesage = {
+      createdAt: new Date().toISOString(),
+      message: model.currentUser.displayName + " invited"
+    }
+   model.invitationsPlayer(inviteMesage, player.id, player.email)
+  })
 }
 view.placeMark = (cell, currentClass) => {
   cell.classList.add(currentClass)
