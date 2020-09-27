@@ -1,6 +1,6 @@
 const view = {};
 
-view.setActiveScreen = (screenName) => {
+view.setActiveScreen = async (screenName) => {
   switch (screenName) {
     case "registerPage":
       document.getElementById("app").innerHTML = component.registerPage;
@@ -71,7 +71,12 @@ view.setActiveScreen = (screenName) => {
 
       const rankingBtn = document.querySelector(".ranking")
       const listPlayerBtn = document.querySelector(".player")
-
+      // for (player of model.players) {
+      //   console.log(player.id)
+      //   document.getElementById(player.id).addEventListener('click', () => {
+      //     console.log('click')
+      //   })
+      // }
       rankingBtn.addEventListener('click', () => {
         listPlayerBtn.classList.remove('current')
         rankingBtn.classList.add('current')
@@ -93,8 +98,13 @@ view.setActiveScreen = (screenName) => {
         firebase.auth().signOut();
       });
       model.listenPresence()
-      model.getPlayer()
+      await model.getPlayer()
       model.listenAllPlayer()
+        for (player of model.players) {
+          document.getElementById(player.id).addEventListener('click', () => {
+            console.log('click')
+          })
+        }
       break;
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
@@ -149,6 +159,7 @@ view.showPlayer = () => {
     view.addPlayer(players)
     view.addListPlayer(players)
   }
+
 }
 
 view.addPlayer = (player) => {
@@ -167,12 +178,11 @@ view.addListPlayer = (player) => {
   listPlayerWrapper.classList.add('info-player')
   listPlayerWrapper.innerHTML = `
     <div class="player-and-status">
-        <div class="name">${player.owner}</div>
+        <div class="name" >${player.owner}</div>
         <span class="status"></span>
     </div>
-    <div class="btn-invite">invite</div>
+    <div class="btn-invite" id="${player.id}">Invite</div>
   `
-  listPlayerWrapper.id = player.id
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 }
 view.placeMark = (cell, currentClass) => {
