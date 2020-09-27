@@ -181,11 +181,9 @@ model.listenAllPlayer = async () => {
   });
 }
 
-model.invitationsPlayer =  async (data) => {
+model.invitationsPlayer =  async (data, id) => {
   dataToUpdate = {
     invitations: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  for (let i = 0; i < model.players.length; i++){
-    firebase.firestore().collection('users').doc(model.players[i].id).update(dataToUpdate)
-  }
+  firebase.firestore().collection('users').doc(id).update(dataToUpdate)
 }

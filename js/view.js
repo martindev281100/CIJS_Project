@@ -103,13 +103,13 @@ view.setActiveScreen = async (screenName) => {
       await model.getPlayer()
       model.listenAllPlayer()
         for (let i = 0; i < model.players.length; i++){
-          console.log(model.players[i].id)
+          // console.log(model.players[i].id)
           document.getElementById(model.players[i].id).addEventListener('click', () => {
             const inviteMesage = {
               createdAt: new Date().toISOString(),
-              message: " invited"
+              message: model.currentUser.displayName +" invited"
             }
-              model.invitationsPlayer(inviteMesage)
+              model.invitationsPlayer(inviteMesage, model.players[i].id)
             })
         }
       break;
