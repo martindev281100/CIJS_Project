@@ -10,6 +10,7 @@ game.size = undefined
 game.cellElements = undefined
 game.row = undefined
 game.col = undefined
+game.dataArr = undefined
 
 game.endGame = (draw) => {
     document.querySelector('[status-messages]').innerText = draw ? 'Draw!' : `${game.circleTurn ? "O's" : "X's"} Wins!`
@@ -34,6 +35,7 @@ game.isDraw = () => {
 
 game.startGame = () => {
     game.cellElements = document.querySelectorAll('[data-cell]')
+    game.dataArr = Array.from(game.cellElements)
     game.board = [];
     for (let i = 0; i < game.size; i++) {
         let arr = [];
@@ -44,7 +46,8 @@ game.startGame = () => {
     game.cellElements.forEach(cell => {
         cell.classList.remove(X_CLASS)
         cell.classList.remove(CIRCLE_CLASS)
-        cell.addEventListener('click', game.handleClick)
+        cell.removeEventListener('click', game.handleClick)
+        cell.addEventListener('click', game.handleClick, {once: true})
     })
     game.setBoardHoverClass()
     document.getElementById('winningMessage').classList.remove('show')
@@ -53,6 +56,15 @@ game.startGame = () => {
 game.handleClick = (e) => {
     const cell = e.target
     let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
+    const data = {
+        createdAt: new Date().toISOString(),
+        owner: model.currentUser.email,
+        type: currentClass,
+        position: game.dataArr.indexOf(cell)
+    }
+    console.log(data)
+    model.addPosition(data)
+    view.placeMark(cell, currentClass)
     cell.classList.add(currentClass);
     for (let i = 0; i < game.size * game.size; i++) {
         if (game.cellElements[i] === cell) {

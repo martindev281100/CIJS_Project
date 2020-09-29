@@ -159,55 +159,8 @@ component.gamePage = `
 </div>
 </div>
 `
-//
-component.playPage = ` 
-<div class="header">
-    <div class="container">
-      <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-      <div class="nav-bar">
-        <ul>
-          <li><a href="index.html"><button>Home</button></a></li>
-          <li>
-            <div class="dropdown">
-              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                Games
-              </button>
-              <div class="dropdown-menu">
-                <button class="dropdown-item" href="#">3x3</button>
-                <button class="dropdown-item" href="#">5x5</button>
-              </div>
-            </div>
-          </li>
-          <li><a href="#"><button>Blogs</button></a></li>
-          <li><a href="#"><button>Contact</button></a></li>
-        </ul>
-      </div>
-      <div class="button-header">
-        <button class="btn btn-dark" id="log-in">Log in</button>
-        <button class="btn btn-dark" id="sign-out">Sign out</button>
-      </div>
-    </div>
-  </div>
 
-  <div class="board-games" id="board-game-3">
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-    <div class="cell" data-cell></div>
-  </div>
-
-  <div class="winning-message" id="winningMessage">
-    <div status-messages></div>
-    <button id="restartButton">Restart</button>
-  </div>
-`
-
-component.playPage5 = `
+component.playPage = `
 <div class="header">
 <div class="container">
   <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>

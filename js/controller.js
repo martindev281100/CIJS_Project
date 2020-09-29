@@ -33,102 +33,101 @@ controller.login = ({email, password}) => {
     model.login({email, password,});
   }
 };
-//
-controller.playGame = () => {
-  const WINNING_COMBINATIONS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-  ]
-  const cellElements = document.querySelectorAll('[data-cell]')
-  const board = document.getElementById('board-game-3')
-  const winningMessageElement = document.getElementById('winningMessage')
-  const restartButton = document.getElementById('restartButton')
-  const winningMessageTextElement = document.querySelector('[status-messages]')
-  let circleTurn
 
-  const dataArr = Array.from(cellElements)
+// controller.playGame = () => {
+//   const WINNING_COMBINATIONS = [
+//     [0, 1, 2],
+//     [3, 4, 5],
+//     [6, 7, 8],
+//     [0, 3, 6],
+//     [1, 4, 7],
+//     [2, 5, 8],
+//     [0, 4, 8],
+//     [2, 4, 6]
+//   ]
+//   const cellElements = document.querySelectorAll('[data-cell]')
+//   const board = document.getElementById('board-game-3')
+//   const winningMessageElement = document.getElementById('winningMessage')
+//   const restartButton = document.getElementById('restartButton')
+//   let circleTurn
 
-  startGame()
-  restartButton.addEventListener('click', startGame)
+//   const dataArr = Array.from(cellElements) //
 
-  function startGame() {
-    circleTurn = false
-    cellElements.forEach(cell => {
-      cell.classList.remove(X_CLASS)
-      cell.classList.remove(CIRCLE_CLASS)
-      cell.removeEventListener('click', handleClick)
-      cell.addEventListener('click', handleClick, {
-        once: true
-      })
-    })
-    setBoardHoverClass()
-    winningMessageElement.classList.remove('show')
-  }
+//   startGame()
+//   restartButton.addEventListener('click', startGame)
 
-  function handleClick(e) {
-    const cell = e.target
-    let currentClass
-    if (circleTurn == true) {
-      currentClass = CIRCLE_CLASS
-    } else {
-      currentClass = X_CLASS
-    }
-    const data = {
-      createdAt: new Date().toISOString(),
-      owner: model.currentUser.email,
-      type: currentClass,
-      position: dataArr.indexOf(cell)
-    }
-    console.log(data)
-    model.addPosition(data)
-    view.placeMark(cell, currentClass)
-    if (checkWin(currentClass)) {
-      game.endGame(false)
-    } else if (isDraw()) {
-      game.endGame(true)
-    } else {
-      swapTurns()
-      setBoardHoverClass()
-    }
-  }
+//   function startGame() {
+//     circleTurn = false
+//     cellElements.forEach(cell => {
+//       cell.classList.remove(X_CLASS)
+//       cell.classList.remove(CIRCLE_CLASS)
+//       cell.removeEventListener('click', handleClick)
+//       cell.addEventListener('click', handleClick, {
+//         once: true
+//       })
+//     })
+//     setBoardHoverClass()
+//     winningMessageElement.classList.remove('show')
+//   }
 
-  function isDraw() {
-    return [...cellElements].every(cell => {
-      return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
-    })
-  }
+//   function handleClick(e) {
+//     const cell = e.target
+//     let currentClass
+//     if (circleTurn == true) {
+//       currentClass = CIRCLE_CLASS
+//     } else {
+//       currentClass = X_CLASS
+//     }
+//     const data = {
+//       createdAt: new Date().toISOString(),
+//       owner: model.currentUser.email,
+//       type: currentClass,
+//       position: dataArr.indexOf(cell)
+//     }
+//     console.log(data)
+//     model.addPosition(data)
+//     view.placeMark(cell, currentClass)
+//     if (checkWin(currentClass)) {
+//       game.endGame(false)
+//     } else if (isDraw()) {
+//       game.endGame(true)
+//     } else {
+//       swapTurns()
+//       setBoardHoverClass()
+//     }
+//   }
 
-  // function placeMark(cell, currentClass) {
-  //   cell.classList.add(currentClass)
-  //   console.log(cell)
-  //   console.log(dataArr.indexOf(cell)) 
-  // }
+//   function isDraw() {
+//     return [...cellElements].every(cell => {
+//       return cell.classList.contains(X_CLASS) || cell.classList.contains(CIRCLE_CLASS)
+//     })
+//   }
 
-  function swapTurns() {
-    circleTurn = !circleTurn
-  }
+//   // function placeMark(cell, currentClass) {
+//   //   cell.classList.add(currentClass)
+//   //   console.log(cell)
+//   //   console.log(dataArr.indexOf(cell)) 
+//   // }
 
-  function setBoardHoverClass() {
-    board.classList.remove(X_CLASS)
-    board.classList.remove(CIRCLE_CLASS)
-    if (circleTurn) {
-      board.classList.add(CIRCLE_CLASS)
-    } else {
-      board.classList.add(X_CLASS)
-    }
-  }
+//   function swapTurns() {
+//     circleTurn = !circleTurn
+//   }
 
-  function checkWin(currentClass) {
-    return WINNING_COMBINATIONS.some(combination => {
-      return combination.every(index => {
-        return cellElements[index].classList.contains(currentClass)
-      })
-    })
-  }
-}
+//   function setBoardHoverClass() {
+//     board.classList.remove(X_CLASS)
+//     board.classList.remove(CIRCLE_CLASS)
+//     if (circleTurn) {
+//       board.classList.add(CIRCLE_CLASS)
+//     } else {
+//       board.classList.add(X_CLASS)
+//     }
+//   }
+
+//   function checkWin(currentClass) {
+//     return WINNING_COMBINATIONS.some(combination => {
+//       return combination.every(index => {
+//         return cellElements[index].classList.contains(currentClass)
+//       })
+//     })
+//   }
+// }

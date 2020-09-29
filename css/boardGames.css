@@ -103,19 +103,3 @@
 .winning-message.show {
     display: flex;
 }
-
-#board-game-3 {
-    grid-template-columns: repeat(3, auto);
-}
-#board-game-3 .cell:nth-child(3n + 1){
-    border-left: none;
-}
-#board-game-3 .cell:nth-child(3n){
-    border-right: none;
-}
-#board-game-3 .cell:nth-child(-n + 3){
-    border-top: none;
-}
-#board-game-3 .cell:nth-child(-n + 9){
-    border-bottom: none;
-}

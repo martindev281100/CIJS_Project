@@ -56,17 +56,19 @@ view.setActiveScreen = async (screenName) => {
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
       document.getElementById("opt3x3").addEventListener('click', function () {
+        game.rule = 3;
+        game.size = 3;
         view.setActiveScreen("playPage");
       })
       document.getElementById("opt5x5").addEventListener('click', function () {
         game.rule = 4;
         game.size = 5;
-        view.setActiveScreen("playPage5");
+        view.setActiveScreen("playPage");
       })
       document.getElementById("opt10x10").addEventListener('click', function () {
         game.rule = 5;
         game.size = 10;
-        view.setActiveScreen("playPage5");
+        view.setActiveScreen("playPage");
       })
 
       const rankingBtn = document.querySelector(".ranking")
@@ -92,16 +94,10 @@ view.setActiveScreen = async (screenName) => {
       await model.getPlayer()
       await model.listenAllPlayer()
       break;
-//
+
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
       model.listenGamesChanges()
-      controller.playGame()
-      document.getElementById('log-in').style = 'display: none'
-      break;
-
-    case "playPage5":
-      document.getElementById("app").innerHTML = component.playPage5;
 
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
