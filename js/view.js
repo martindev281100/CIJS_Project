@@ -200,5 +200,6 @@ view.placeMarkForOpponent = (index, type) => {
   const cellElements = document.querySelectorAll('[data-cell]')
   const dataArr = Array.from(cellElements)
   console.log(index)
+  console.log(type)
   dataArr[index].classList.add(type)
 }

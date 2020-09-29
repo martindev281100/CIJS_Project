@@ -171,24 +171,14 @@ model.invitationsPlayer = async (data, playerId, playerEmail) => {
   }
   firebase.firestore().collection('games').add(newGame)
 }
-//
+
 model.listenGamesChanges = () => {
-  let isFirstRun = true
   firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
-    if (isFirstRun) {
-      isFirstRun = false
-      return
-    }
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
-      console.log(docData)
-      console.log(oneChange)
       if (oneChange.type === 'modified') {
         view.placeMarkForOpponent(docData.tempo[docData.tempo.length - 1].position, docData.tempo[docData.tempo.length - 1].type)
       }
-      if (oneChange.type === 'added') {
-      }
-
     }
   })
 }
