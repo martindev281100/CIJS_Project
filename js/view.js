@@ -97,7 +97,6 @@ view.setActiveScreen = async (screenName) => {
 
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
-      model.listenGamesChanges()
 
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
@@ -128,6 +127,7 @@ view.setActiveScreen = async (screenName) => {
       document.getElementById('restartButton').addEventListener('click', game.startGame)
       document.getElementById('log-in').style = 'display: none'
       game.startGame()
+      model.listenGamesChanges()
       break;
   }
 };
@@ -197,9 +197,9 @@ view.addListPlayer = (player, online) => {
 }
 
 view.placeMarkForOpponent = (index, type) => {
-  const cellElements = document.querySelectorAll('[data-cell]')
-  const dataArr = Array.from(cellElements)
-  console.log(index)
-  console.log(type)
-  dataArr[index].classList.add(type)
+  // const cellElements = document.querySelectorAll('[data-cell]')
+  // const dataArr = Array.from(cellElements)
+  // console.log(index)
+  // console.log(type)
+  game.dataArr[index].classList.add(type)
 }
