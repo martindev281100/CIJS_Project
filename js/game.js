@@ -62,9 +62,7 @@ game.handleClick = (e) => {
         type: currentClass,
         position: game.dataArr.indexOf(cell)
     }
-    console.log(data)
     model.addPosition(data)
-    view.placeMark(cell, currentClass)
     cell.classList.add(currentClass);
     for (let i = 0; i < game.size * game.size; i++) {
         if (game.cellElements[i] === cell) {

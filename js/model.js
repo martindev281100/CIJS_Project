@@ -187,7 +187,6 @@ model.listenGamesChanges = () => {
         view.placeMarkForOpponent(docData.tempo[docData.tempo.length - 1].position, docData.tempo[docData.tempo.length - 1].type)
       }
       if (oneChange.type === 'added') {
-
       }
 
     }

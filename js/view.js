@@ -126,8 +126,8 @@ view.setActiveScreen = async (screenName) => {
       `;
       board.appendChild(sheet);
       document.getElementById('restartButton').addEventListener('click', game.startGame)
-      game.startGame()
       document.getElementById('log-in').style = 'display: none'
+      game.startGame()
       break;
   }
 };
@@ -194,10 +194,6 @@ view.addListPlayer = (player, online) => {
     }
     model.invitationsPlayer(inviteMesage, player.id, player.email)
   })
-}
-
-view.placeMark = (cell, currentClass) => {
-  cell.classList.add(currentClass)
 }
 
 view.placeMarkForOpponent = (index, type) => {
