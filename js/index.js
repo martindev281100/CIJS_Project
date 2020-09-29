@@ -8,7 +8,6 @@ window.onload = async () => {
     messagingSenderId: "186739034578",
     appId: "1:186739034578:web:8f3f0c260e5d985e62e00b",
   };
-  // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   await firebase.auth().onAuthStateChanged((user) => {
     if (user) {

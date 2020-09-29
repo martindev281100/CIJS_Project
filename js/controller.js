@@ -15,33 +15,25 @@ controller.register = (data) => {
     .then(response => response.json()).then(function (response) {
       if (response.status !== "Valid") {
         view.setErrorMessage("email-error", "Please input your email correctly");
-      } else {
-        if (
-          data.userName !== "" &&
-          data.email !== "" &&
-          data.password !== "" &&
-          data.password === data.confirmPassword
-        ) {
-          model.register(data);
-        }
+      } else if (
+        data.userName !== "" &&
+        data.email !== "" &&
+        data.password !== "" &&
+        data.password === data.confirmPassword
+      ) {
+        model.register(data);
       }
     })
 };
 
-controller.login = ({
-  email,
-  password
-}) => {
+controller.login = ({email, password}) => {
   view.setErrorMessage("email-error", email === "" ? "Please enter your email" : "");
   view.setErrorMessage("password-error", password === "" ? "Please enter your password" : "");
   if (email != "" && password != "") {
-    model.login({
-      email,
-      password,
-    });
+    model.login({email, password,});
   }
 };
-
+//
 controller.playGame = () => {
   const WINNING_COMBINATIONS = [
     [0, 1, 2],

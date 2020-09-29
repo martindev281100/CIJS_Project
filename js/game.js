@@ -1,6 +1,8 @@
 const X_CLASS = 'x'
 const CIRCLE_CLASS = 'circle'
+
 const game = {}
+
 game.rule = undefined
 game.circleTurn = undefined
 game.board = undefined

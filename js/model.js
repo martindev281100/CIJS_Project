@@ -1,8 +1,10 @@
 const model = {};
+
 model.currentUser = undefined;
 model.currentStatus = undefined;
 model.players = [];
 model.currentGame = undefined;
+
 model.register = async (data) => {
   try {
     const response = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password);
@@ -24,16 +26,13 @@ model.register = async (data) => {
   }
 };
 
-model.login = async ({
-  email,
-  password
-}) => {
+model.login = async ({email, password}) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
     alert(error.message)
   });
 };
 
-model.listenPresence = async () => { //
+model.listenPresence = async () => {
   if (firebase.auth().currentUser == null) {
     model.currentStatus = "offline"
     return;
@@ -86,7 +85,6 @@ model.setOffline = (uid) => {
     state: 'offline',
     last_changed: firebase.database.ServerValue.TIMESTAMP,
   })
-  console.log(model.currentStatus)
 }
 
 model.logInWithGoogle = () => {
@@ -139,7 +137,7 @@ model.logInWithFacebook = () => {
   });
 }
 
-model.getPlayer = async () => { //
+model.getPlayer = async () => {
   const response = await firebase.firestore().collection('users').get()
   model.players = getManyDocument(response)
 }
@@ -151,6 +149,29 @@ model.addPosition = (data) => {
   firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
 }
 
+model.listenAllPlayer = () => {
+  firebase.database().ref().on('value', function (snapshot) {
+    snapshot.forEach(function (childSnapshot) {
+      var childData = childSnapshot.val();
+      view.showPlayer(childData)
+    });
+  });
+  return false;
+}
+
+model.invitationsPlayer = async (data, playerId, playerEmail) => {
+  dataToUpdate = {
+    invitations: firebase.firestore.FieldValue.arrayUnion(data),
+  }
+  firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
+  newGame = {
+    createdAt: new Date().toISOString(),
+    players: [model.currentUser.email, playerEmail],
+    tempo: [],
+  }
+  firebase.firestore().collection('games').add(newGame)
+}
+//
 model.listenGamesChanges = () => {
   let isFirstRun = true
   firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
@@ -171,32 +192,4 @@ model.listenGamesChanges = () => {
 
     }
   })
-}
-
-model.listenAllPlayer = () => { //
-  firebase.database().ref().on('value', function (snapshot) {
-    snapshot.forEach(function (childSnapshot) {
-      var childKey = childSnapshot.key;
-      var childData = childSnapshot.val();
-      view.showPlayer(childData)
-      //  console.log(model.players)
-      //console.log(childData)
-    });
-  });
-  return false;
-}
-
-model.invitationsPlayer = async (data, playerId, playerEmail) => {
-  dataToUpdate = {
-    invitations: firebase.firestore.FieldValue.arrayUnion(data),
-  }
-  console.log(playerId)
-  console.log(playerEmail)
-  firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
-  newGame = {
-    createdAt: new Date().toISOString(),
-    players: [model.currentUser.email, playerEmail],
-    tempo: [],
-  }
-  firebase.firestore().collection('games').add(newGame)
 }
