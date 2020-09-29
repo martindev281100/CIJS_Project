@@ -195,11 +195,3 @@ view.addListPlayer = (player, online) => {
     model.invitationsPlayer(inviteMesage, player.id, player.email)
   })
 }
-
-view.placeMarkForOpponent = (index, type) => {
-  // const cellElements = document.querySelectorAll('[data-cell]')
-  // const dataArr = Array.from(cellElements)
-  // console.log(index)
-  // console.log(type)
-  game.dataArr[index].classList.add(type)
-}

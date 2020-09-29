@@ -177,7 +177,7 @@ model.listenGamesChanges = () => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
-        view.placeMarkForOpponent(docData.tempo[docData.tempo.length - 1].position, docData.tempo[docData.tempo.length - 1].type)
+        game.dataArr[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
       }
     }
   })
