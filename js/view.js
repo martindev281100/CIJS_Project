@@ -55,7 +55,7 @@ view.setActiveScreen = async (screenName) => {
 
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
-      
+
       document.getElementById("opt3x3").addEventListener('click', function () {
         game.rule = 3;
         game.size = 3;
@@ -98,7 +98,11 @@ view.setActiveScreen = async (screenName) => {
 
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
-
+      const backDropModal = document.querySelector(".modal-open")
+      const backDrop = document.querySelector(".modal-backdrop.show")
+      backDrop.classList.remove("modal-backdrop")
+      backDrop.classList.remove("show")
+      backDropModal.classList.remove("modal-open")
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
         const cell = document.createElement('div');
@@ -213,24 +217,38 @@ view.addListPlayer = (player, online) => {
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 
   document.getElementById(player.id).addEventListener('click', async () => {
-    const typeElement = document.querySelectorAll('.modal .modal-dialog .modal-content .modal-body .dropdown-item')
-    await typeElement.forEach(async type => {
-      await type.addEventListener('click', handleClick)
-    })
     let inviteMesage = {
       createdAt: new Date().toISOString(),
       message: model.currentUser.displayName + " invited"
     }
+    const typeElement = document.querySelectorAll('.modal .modal-dialog .modal-content .modal-body .dropdown-item')
+    await typeElement.forEach(async type => {
+      await type.addEventListener('click', handleClick)
+
+    })
+
 
     function handleClick(e) {
       const type = e.target;
       inviteMesage.type = type.innerText
       model.invitationsPlayer(inviteMesage, player.id, player.email)
+      if (inviteMesage.type === "3x3") {
+        game.rule = 3;
+        game.size = 3;
+        view.setActiveScreen("playPage");
+      } else if (inviteMesage.type === "5x5") {
+        game.rule = 5;
+        game.size = 5;
+        view.setActiveScreen("playPage");
+      } else if (inviteMesage.type === "10x10") {
+        game.rule = 10;
+        game.size = 10;
+        view.setActiveScreen("playPage");
+      }
     }
 
-  })
-
-  document.getElementById('opt3x3').addEventListener('click', function () {
 
   })
+
+
 }

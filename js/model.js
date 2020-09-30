@@ -183,7 +183,6 @@ model.listenGamesChanges = () => {
   firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
-      console.log(docData)
       if (oneChange.type === 'modified') {
         game.dataArr[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
       }
