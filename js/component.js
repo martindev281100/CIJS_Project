@@ -155,6 +155,8 @@ component.gamePage = `
     </div>
     <div class="rankingList"></div>
     <div class="playerList"></div>
+    
+    </div>
   </div>
 </div>
 </div>
