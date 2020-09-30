@@ -94,15 +94,12 @@ view.setActiveScreen = async (screenName) => {
       await model.listenPresence()
       await model.getPlayer()
       await model.listenAllPlayer()
+      model.getNotification()
       break;
 
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
-      const backDropModal = document.querySelector(".modal-open")
-      const backDrop = document.querySelector(".modal-backdrop.show")
-      backDrop.classList.remove("modal-backdrop")
-      backDrop.classList.remove("show")
-      backDropModal.classList.remove("modal-open")
+
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
         const cell = document.createElement('div');
@@ -251,4 +248,10 @@ view.addListPlayer = (player, online) => {
   })
 
 
+}
+view.addNotification = (message) => {
+  let notification = document.createElement('button')
+  notification.classList.add('dropdown-item')
+  notification.innerText = message
+  document.getElementById('listNotification').appendChild(notification)
 }

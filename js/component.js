@@ -125,7 +125,7 @@ component.gamePage = `
     </div>
     <div class="dropdown">
         <button type="button" class="btn" data-toggle="dropdown"><i class="fas fa-bell notification"></i></button>
-        <div class="dropdown-menu">
+        <div class="dropdown-menu" id="listNotification">
           <button class="dropdown-item" >xx</button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 const model = {};
-
+const notifications = {};
 model.currentUser = undefined;
 model.currentStatus = undefined;
 model.players = [];
@@ -185,6 +185,17 @@ model.listenGamesChanges = () => {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
         game.dataArr[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
+      }
+    }
+  })
+}
+
+model.getNotification = () => {
+  firebase.firestore().collection('users').where('email', '==', model.currentUser.email).onSnapshot((snapshot) => {
+    for (oneChange of snapshot.docChanges()) {
+      const docData = getOneDocument(oneChange.doc)
+      if (oneChange.type === 'modified') {
+        view.addNotification(docData.invitations[docData.invitations.length - 1].message)
       }
     }
   })
