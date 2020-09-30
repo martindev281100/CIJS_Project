@@ -207,7 +207,7 @@ view.addListPlayer = (player, online) => {
     <div class="player-and-status">
       <div class="name" >${player.owner}</div>
     </div>
-    <div class="btn-invite" id="${player.id}">Invite</div>
+    <div id="${player.id}">Offline</div>
     `
   }
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
