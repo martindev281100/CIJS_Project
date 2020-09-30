@@ -109,3 +109,8 @@
     background-color: #fff;
     color: #26a69a;
 }
+
+.dropdown-item{
+    cursor: pointer;
+    font-size: 20px;
+}

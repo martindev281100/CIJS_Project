@@ -11,17 +11,19 @@
   <link rel="stylesheet" href="./css/boardGames.css">
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  
 </head>
 
 <body>
-  <!-- <div class="game-container">
+  <div class="game-container">
     <div class="header">
       <div class="container">
         <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
         <div class="nav-bar">
           <ul>
             <li><a href="index.html"><button>Home</button></a></li>
-            <li>
+            <!-- <li>
               <div class="dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
                 <div class="dropdown-menu">
@@ -30,37 +32,63 @@
                   <button class="dropdown-item" id="opt10x10">10x10</button>
                 </div>
               </div>
-            </li>
+            </li> -->
             <li><a href="#"><button>Blogs</button></a></li>
             <li><a href="#"><button>Contact</button></a></li>
           </ul>
         </div>
         <div class="dropdown">
-          <button type="button" class="btn" data-toggle="dropdown"><i class="fas fa-bell notification"></i></button>
-          <div class="dropdown-menu">
-            <button class="dropdown-item" >xx</button>
+            <button type="button" class="btn" data-toggle="dropdown"><i class="fas fa-bell notification"></i></button>
+            <div class="dropdown-menu">
+              <button class="dropdown-item" >xx</button>
+            </div>
           </div>
-        </div>
-        
         <div class="button-header">
           <button class="btn btn-dark" id="log-in">Log in</button>
           <button class="btn btn-dark" id="sign-out">Sign out</button>
         </div>
       </div>
     </div>
-  
+    
     <div class="main">
       <div class="aside-left">
         <div class="content">
           <h1>tic tac toe</h1>
           <div class="btn-find-match">
             <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
-            <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+          
+            <!-- The Modal -->
+            <div class="modal" id="myModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                
+                  <!-- Modal Header -->
+                  <div class="modal-header">
+                    <h4 class="modal-title" style="color: black;">Type Of Games</h4>
+                    <div type="button" class="close" data-dismiss="modal">&times;</div>
+                  </div>
+                  
+                  <!-- Modal body -->
+                  <div class="modal-body" >
+                    <div class="dropdown-item" id="opt3x3">3x3</div>
+                    <div class="dropdown-item" id="opt5x5">5x5</div>
+                    <div class="dropdown-item" id="opt10x10">10x10</div>
+                  </div>
+                  
+                  <!-- Modal footer -->
+                  <div class="modal-footer">
+                    <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
             <button><i class="fas fa-users"></i><br>Create private tournament</button>
           </div>
         </div>
       </div>
-  
+    
       <div class="aside-right">
         <div class="title">
           <button class="ranking current"><i class="fas fa-trophy"></i><br>Ranking</button>
@@ -70,29 +98,27 @@
         <div class="playerList"></div>
       </div>
     </div>
-  </div>   -->
+    </div>
 
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
+  <script src="./js/index.js"></script>
+  <script src="./js/controller.js"></script>
+  <script src="./js/component.js"></script>
+  <script src="./js/model.js"></script>
+  <script src="./js/view.js"></script>
+  <script src="./js/game.js"></script>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  
-    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-database.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.18.0/firebase-firestore.js"></script>
-    <script src="./js/index.js"></script>
-    <script src="./js/controller.js"></script>
-    <script src="./js/component.js"></script>
-    <script src="./js/model.js"></script>
-    <script src="./js/view.js"></script>
-    <script src="./js/game.js"></script>
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://kit.fontawesome.com/d22d9dd2e6.js" crossorigin="anonymous"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://kit.fontawesome.com/d22d9dd2e6.js" crossorigin="anonymous"></script>
 
 </body>
 
