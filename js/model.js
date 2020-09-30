@@ -26,7 +26,10 @@ model.register = async (data) => {
   }
 };
 
-model.login = async ({email, password}) => {
+model.login = async ({
+  email,
+  password
+}) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
     alert(error.message)
   });
@@ -142,11 +145,14 @@ model.getPlayer = async () => {
   model.players = getManyDocument(response)
 }
 
-model.addPosition = (data) => {
+model.addPosition = async (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('games').doc('qLsiNR0LDwgPClPzsI8s').update(dataToUpdate)
+  const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
+  const docData = getManyDocument(response)
+  model.currentGame = docData[0]
+  firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
 model.listenAllPlayer = () => {
@@ -167,6 +173,7 @@ model.invitationsPlayer = async (data, playerId, playerEmail) => {
   newGame = {
     createdAt: new Date().toISOString(),
     players: [model.currentUser.email, playerEmail],
+    types: data.type,
     tempo: [],
   }
   firebase.firestore().collection('games').add(newGame)
@@ -176,6 +183,7 @@ model.listenGamesChanges = () => {
   firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).onSnapshot((snapshot) => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
+      console.log(docData)
       if (oneChange.type === 'modified') {
         game.dataArr[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
       }

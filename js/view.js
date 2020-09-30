@@ -52,9 +52,10 @@ view.setActiveScreen = async (screenName) => {
         firebase.auth().signOut();
       });
       break;
-      
+
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
+      
       document.getElementById("opt3x3").addEventListener('click', function () {
         game.rule = 3;
         game.size = 3;
@@ -198,7 +199,6 @@ view.addListPlayer = (player, online) => {
           <div class="modal-footer">
             <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
           </div>
-          
         </div>
       </div>
     `
@@ -212,11 +212,25 @@ view.addListPlayer = (player, online) => {
   }
   document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
 
-  document.getElementById(player.id).addEventListener('click', () => {
-    const inviteMesage = {
+  document.getElementById(player.id).addEventListener('click', async () => {
+    const typeElement = document.querySelectorAll('.modal .modal-dialog .modal-content .modal-body .dropdown-item')
+    await typeElement.forEach(async type => {
+      await type.addEventListener('click', handleClick)
+    })
+    let inviteMesage = {
       createdAt: new Date().toISOString(),
       message: model.currentUser.displayName + " invited"
     }
-    model.invitationsPlayer(inviteMesage, player.id, player.email)
+
+    function handleClick(e) {
+      const type = e.target;
+      inviteMesage.type = type.innerText
+      model.invitationsPlayer(inviteMesage, player.id, player.email)
+    }
+
+  })
+
+  document.getElementById('opt3x3').addEventListener('click', function () {
+
   })
 }
