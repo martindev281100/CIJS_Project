@@ -56,22 +56,28 @@ view.setActiveScreen = async (screenName) => {
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
 
-      document.getElementById("opt3x3").addEventListener('click', function () {
-        game.rule = 3;
-        game.size = 3;
-        view.setActiveScreen("playPage");
+      document.querySelectorAll(".opt3x3").forEach(type => {
+        type.addEventListener('click', function () {
+          game.rule = 3;
+          game.size = 3;
+          view.setActiveScreen("playPage");
+        })
       })
-      document.getElementById("opt5x5").addEventListener('click', function () {
-        game.rule = 4;
-        game.size = 5;
-        view.setActiveScreen("playPage");
+      document.querySelectorAll(".opt5x5").forEach(type => {
+        type.addEventListener('click', function () {
+          game.rule = 4;
+          game.size = 5;
+          view.setActiveScreen("playPage");
+        })
       })
-      document.getElementById("opt10x10").addEventListener('click', function () {
-        game.rule = 5;
-        game.size = 10;
-        view.setActiveScreen("playPage");
+      document.querySelectorAll(".opt10x10").forEach(type => {
+        type.addEventListener('click', function () {
+          game.rule = 5;
+          game.size = 10;
+          view.setActiveScreen("playPage");
+        })
       })
-
+      
       const rankingBtn = document.querySelector(".ranking")
       const listPlayerBtn = document.querySelector(".player")
       rankingBtn.addEventListener('click', () => {
@@ -93,7 +99,7 @@ view.setActiveScreen = async (screenName) => {
       });
       await model.listenPresence()
       await model.getPlayer()
-      await model.listenAllPlayer()
+      model.listenAllPlayer()
       model.getNotification()
       break;
 
@@ -185,9 +191,9 @@ view.addListPlayer = (player, online) => {
           </div>
 
           <div class="modal-body">
-            <div class="dropdown-item" id="opt3x3" data-dismiss="modal">3x3</div>
-            <div class="dropdown-item" id="opt5x5" data-dismiss="modal">5x5</div>
-            <div class="dropdown-item" id="opt10x10" data-dismiss="modal">10x10</div>
+            <div class="dropdown-item opt3x3" data-dismiss="modal">3x3</div>
+            <div class="dropdown-item opt5x5" data-dismiss="modal">5x5</div>
+            <div class="dropdown-item opt10x10" data-dismiss="modal">10x10</div>
           </div>
 
           <div class="modal-footer">
@@ -210,6 +216,9 @@ view.addListPlayer = (player, online) => {
       createdAt: new Date().toISOString(),
       message: model.currentUser.displayName + " invited"
     }
+    model.invitationsPlayer(inviteMesage, player.id, player.email)
+
+
     const typeElement = document.querySelectorAll('.modal .modal-dialog .modal-content .modal-body .dropdown-item')
     await typeElement.forEach(async type => {
       await type.addEventListener('click', handleClick)
@@ -241,6 +250,7 @@ view.addListPlayer = (player, online) => {
 
 
 }
+
 view.addNotification = (message) => {
   let notification = document.createElement('button')
   notification.classList.add('dropdown-item')

@@ -113,9 +113,9 @@ component.gamePage = `
           <div class="dropdown">
             <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
             <div class="dropdown-menu">
-              <button class="dropdown-item" id="opt3x3">3x3</button>
-              <button class="dropdown-item" id="opt5x5">5x5</button>
-              <button class="dropdown-item" id="opt10x10">10x10</button>
+              <button class="dropdown-item opt3x3">3x3</button>
+              <button class="dropdown-item opt5x5">5x5</button>
+              <button class="dropdown-item opt10x10">10x10</button>
             </div>
           </div>
         </li>
@@ -173,9 +173,9 @@ component.playPage = `
         <div class="dropdown">
           <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
           <div class="dropdown-menu">
-            <button class="dropdown-item" href="#">3x3</button>
-            <button class="dropdown-item" href="#">5x5</button>
-            <button class="dropdown-item" href="#">10x10</button>
+            <button class="dropdown-item opt3x3" href="#">3x3</button>
+            <button class="dropdown-item opt5x5" href="#">5x5</button>
+            <button class="dropdown-item opt10x10" href="#">10x10</button>
           </div>
         </div>
       </li>

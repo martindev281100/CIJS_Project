@@ -152,8 +152,8 @@ model.addPosition = async (data) => {
   firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
-model.listenAllPlayer = () => {
-  firebase.database().ref().on('value', function (snapshot) {
+model.listenAllPlayer = async () => {
+  await firebase.database().ref().on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val();
       view.showPlayer(childData)
