@@ -26,10 +26,7 @@ model.register = async (data) => {
   }
 };
 
-model.login = async ({
-  email,
-  password
-}) => {
+model.login = async ({email, password}) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
     alert(error.message)
   });

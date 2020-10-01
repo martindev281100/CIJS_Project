@@ -173,41 +173,33 @@ view.addListPlayer = (player, online) => {
   listPlayerWrapper.classList.add('info-player')
   if (online) {
     listPlayerWrapper.innerHTML = `
-    <div class="player-and-status">
-      <div class="name" >${player.owner}</div>
-      <span class="status"></span>
-    </div>
+    <div class="name">${player.owner}</div>
+    
     <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite" id="${player.id}">Invite</div>
-    <!-- The Modal -->
     <div class="modal" id="myModal">
       <div class="modal-dialog">
         <div class="modal-content">
-        
-          <!-- Modal Header -->
           <div class="modal-header">
             <h4 class="modal-title" style="color: black;">Type Of Games</h4>
             <div type="button" class="close" data-dismiss="modal">&times;</div>
           </div>
-          
-          <!-- Modal body -->
-          <div class="modal-body" >
-            <div class="dropdown-item" id="opt3x3">3x3</div>
-            <div class="dropdown-item" id="opt5x5">5x5</div>
-            <div class="dropdown-item" id="opt10x10">10x10</div>
+
+          <div class="modal-body">
+            <div class="dropdown-item" id="opt3x3" data-dismiss="modal">3x3</div>
+            <div class="dropdown-item" id="opt5x5" data-dismiss="modal">5x5</div>
+            <div class="dropdown-item" id="opt10x10" data-dismiss="modal">10x10</div>
           </div>
-          
-          <!-- Modal footer -->
+
           <div class="modal-footer">
             <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
           </div>
         </div>
       </div>
+    </div>
     `
   } else {
     listPlayerWrapper.innerHTML = `
-    <div class="player-and-status">
-      <div class="name" >${player.owner}</div>
-    </div>
+    <div class="name" >${player.owner}</div>
     <div id="${player.id}">Offline</div>
     `
   }
