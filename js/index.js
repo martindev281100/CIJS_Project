@@ -19,8 +19,6 @@ window.onload = async () => {
       };
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
-        document.getElementById('log-in').style = 'display: none'
-        document.querySelector('.playerList').style = 'display: none'
       } else {
         alert("Please verify your email");
         model.setOffline(user.uid)
@@ -28,7 +26,6 @@ window.onload = async () => {
       }
     } else {
       view.setActiveScreen("homePage");
-      document.getElementById('sign-out').style = 'display: none'
     }
   })
 };

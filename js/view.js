@@ -47,14 +47,13 @@ view.setActiveScreen = async (screenName) => {
       document.getElementById("log-in").addEventListener("click", () => {
         view.setActiveScreen("loginPage");
       });
-      document.getElementById("sign-out").addEventListener("click", () => {
-        model.setOffline(firebase.auth().currentUser.uid)
-        firebase.auth().signOut();
-      });
       break;
 
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
+      await model.listenPresence()
+      await model.getPlayer()
+      view.showRankingList()
 
       document.querySelectorAll(".opt3x3").forEach(type => {
         type.addEventListener('click', function () {
@@ -83,23 +82,18 @@ view.setActiveScreen = async (screenName) => {
       rankingBtn.addEventListener('click', () => {
         listPlayerBtn.classList.remove('current')
         rankingBtn.classList.add('current')
-        document.querySelector('.rankingList').style = 'display: block'
-        document.querySelector('.playerList').style = 'display: none'
+        view.showRankingList()
       })
       listPlayerBtn.addEventListener('click', () => {
         rankingBtn.classList.remove('current')
         listPlayerBtn.classList.add('current')
-        document.querySelector('.rankingList').style = 'display: none'
-        document.querySelector('.playerList').style = 'display: block'
+        model.listenPlayers()
       })
 
       document.getElementById("sign-out").addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      await model.listenPresence()
-      await model.getPlayer()
-      model.listenAllPlayer()
       model.getNotification()
       break;
 
@@ -140,47 +134,50 @@ view.setActiveScreen = async (screenName) => {
   }
 };
 
+view.showPlayerList = (data) => {
+  document.querySelector('.rankingList').style = 'display: none'
+  const playerList = document.querySelector('.playerList')
+  playerList.innerHTML = ""
+  playerList.style = 'display: block'
+  for (player of model.players) {
+    let online = false
+    for (let i in data) {
+      if (data[i].state == "online" && player.id == i) {
+        online = true
+        break
+      }
+    }
+    view.addPlayer(player, online)
+  }
+}
+
+view.showRankingList = () => {
+  document.querySelector('.playerList').style = 'display: none'
+  const rankingList = document.querySelector('.rankingList')
+  rankingList.innerHTML = ""
+  rankingList.style = 'display: block'
+  for (let i = 0; i < model.players.length; i++) {
+    const infoWrapper = document.createElement('div')
+    infoWrapper.classList.add('info')
+    infoWrapper.innerHTML = `
+    <div class="rank"> ${i + 1}. </div> 
+    <div class="user-name"> ${model.players[i].owner} </div> 
+    <div class="score"> ${model.players[i].points} </div>
+    `
+    rankingList.appendChild(infoWrapper)
+  }
+}
+
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };
 
-view.showPlayer = (childData) => {
-  document.querySelector('.aside-right .rankingList').innerHTML = ""
-  document.querySelector('.aside-right .playerList').innerHTML = ""
-
-  for (player of model.players) {
-    view.addPlayer(player)
-    let check = false
-    for (let i in childData) {
-      if (childData[i].state == "online" && player.id == i) {
-        view.addListPlayer(player, true)
-        check = true
-        break
-      }
-    }
-    if (check) continue
-    view.addListPlayer(player, false)
-  }
-}
-
-view.addPlayer = (player) => {
-  const infoWrapper = document.createElement('div')
-  infoWrapper.classList.add('info')
-  infoWrapper.innerHTML = `
-  <div class="rank"> 1. </div> 
-  <div class="user-name"> ${player.owner} </div> 
-  <div class="score"> ${player.points} </div>
-  `
-  document.querySelector('.aside-right .rankingList').appendChild(infoWrapper)
-}
-
-view.addListPlayer = (player, online) => {
+view.addPlayer = (player, online) => {
   const listPlayerWrapper = document.createElement('div')
   listPlayerWrapper.classList.add('info-player')
   if (online) {
     listPlayerWrapper.innerHTML = `
     <div class="name">${player.owner}</div>
-    
     <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite" id="${player.id}">Invite</div>
     <div class="modal" id="myModal">
       <div class="modal-dialog">

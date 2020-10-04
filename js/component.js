@@ -39,11 +39,11 @@ component.loginPage = `
 <form id="login-form">
   <div class="login-header">LOGIN</div>
   <div class="input-wrapper form-group">
-    <input type="email" class="form-control" placeholder="Email" name="email" />
+    <input type="email" class="form-control" placeholder="Email" name="email"/>
     <div class="error" id="email-error"></div>
   </div>
   <div class="input-wrapper form-group">
-    <input type="password" class="form-control" placeholder="Password" name="password" />
+    <input type="password" class="form-control" placeholder="Password" name="password"/>
     <div class="error" id="password-error"></div>
   </div>
 
@@ -88,7 +88,6 @@ component.homePage = `
     </div>
     <div class="button-header">
       <button class="btn btn-dark" id="log-in">Log in</button>
-      <button class="btn btn-dark" id="sign-out">Sign out</button>
     </div>
   </div>
 </div>
@@ -126,11 +125,10 @@ component.gamePage = `
     <div class="dropdown">
         <button type="button" class="btn" data-toggle="dropdown"><i class="fas fa-bell notification"></i></button>
         <div class="dropdown-menu" id="listNotification">
-          <button class="dropdown-item" >xx</button>
+          <button class="dropdown-item">xx</button>
         </div>
       </div>
     <div class="button-header">
-      <button class="btn btn-dark" id="log-in">Log in</button>
       <button class="btn btn-dark" id="sign-out">Sign out</button>
     </div>
   </div>

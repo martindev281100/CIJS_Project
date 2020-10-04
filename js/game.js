@@ -10,7 +10,6 @@ game.size = undefined
 game.cellElements = undefined
 game.row = undefined
 game.col = undefined
-game.dataArr = undefined
 
 game.endGame = (draw) => {
     document.querySelector('[status-messages]').innerText = draw ? 'Draw!' : `${game.circleTurn ? "O's" : "X's"} Wins!`
@@ -34,8 +33,7 @@ game.isDraw = () => {
 }
 
 game.startGame = () => {
-    game.cellElements = document.querySelectorAll('[data-cell]')
-    game.dataArr = Array.from(game.cellElements)
+    game.cellElements = Array.from(document.querySelectorAll('[data-cell]'))
     game.board = [];
     for (let i = 0; i < game.size; i++) {
         let arr = [];
@@ -54,23 +52,21 @@ game.startGame = () => {
 }
 
 game.handleClick = (e) => {
-    const cell = e.target
     let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
+
     const data = {
         createdAt: new Date().toISOString(),
         owner: model.currentUser.email,
         type: currentClass,
-        position: game.dataArr.indexOf(cell)
+        position: game.cellElements.indexOf(e.target)
     }
     model.addPosition(data)
-    cell.classList.add(currentClass);
-    for (let i = 0; i < game.size * game.size; i++) {
-        if (game.cellElements[i] === cell) {
-            game.row = Math.floor(i / game.size);
-            game.col = i % game.size;
-            game.board[game.row][game.col] = currentClass;
-        }
-    }
+
+    let index = game.cellElements.indexOf(e.target)
+    game.row = Math.floor(index / game.size);
+    game.col = index % game.size;
+    game.board[game.row][game.col] = currentClass;
+
     if (game.checkWin(currentClass)) {
         game.endGame(false)
     } else if (game.isDraw()) {

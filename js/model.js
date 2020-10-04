@@ -1,5 +1,4 @@
 const model = {};
-const notifications = {};
 model.currentUser = undefined;
 model.currentStatus = undefined;
 model.players = [];
@@ -27,7 +26,7 @@ model.register = async (data) => {
 };
 
 model.login = async ({email, password}) => {
-  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
     alert(error.message)
   });
 };
@@ -152,11 +151,11 @@ model.addPosition = async (data) => {
   firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
-model.listenAllPlayer = async () => {
+model.listenPlayers = async () => {
   await firebase.database().ref().on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val();
-      view.showPlayer(childData)
+      view.showPlayerList(childData)
     });
   });
   return false;
@@ -181,7 +180,7 @@ model.listenGamesChanges = () => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
-        game.dataArr[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
+        game.cellElements[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
       }
     }
   })
