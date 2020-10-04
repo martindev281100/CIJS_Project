@@ -162,9 +162,9 @@ component.gamePage = `
           </div>
 
           <div class="modal-body">
-            <div class="dropdown-item opt3x3" data-dismiss="modal">3x3</div>
-            <div class="dropdown-item opt5x5" data-dismiss="modal">5x5</div>
-            <div class="dropdown-item opt10x10" data-dismiss="modal">10x10</div>
+            <div class="dropdown-item opt3x3 opt" data-dismiss="modal">3x3</div>
+            <div class="dropdown-item opt5x5 opt" data-dismiss="modal">5x5</div>
+            <div class="dropdown-item opt10x10 opt" data-dismiss="modal">10x10</div>
           </div>
 
           <div class="modal-footer">

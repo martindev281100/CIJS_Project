@@ -165,14 +165,14 @@ model.invitationsPlayer = async (data, playerId, playerEmail) => {
   dataToUpdate = {
     invitations: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
+  await firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
   newGame = {
     createdAt: new Date().toISOString(),
     players: [model.currentUser.email, playerEmail],
     types: data.type,
     tempo: [],
   }
-  firebase.firestore().collection('games').add(newGame)
+  await firebase.firestore().collection('games').add(newGame)
 }
 
 model.listenGamesChanges = () => {

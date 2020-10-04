@@ -88,7 +88,6 @@ view.setActiveScreen = async (screenName) => {
         rankingBtn.classList.remove('current')
         listPlayerBtn.classList.add('current')
         model.listenPlayers()
-        console.log(document.querySelectorAll(".invite"))
       })
 
       document.getElementById("sign-out").addEventListener("click", () => {
@@ -178,21 +177,25 @@ view.addPlayer = (player, online) => {
   listPlayerWrapper.classList.add('info-player')
   listPlayerWrapper.innerHTML = online ? `
   <div class="name">${player.owner}</div>
-  <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite invite" id="${player.id}">Invite</div>
+  <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite" id="${player.id}">Invite</div>
   ` : `
   <div class="name" >${player.owner}</div>
   <div id="${player.id}">Offline</div>
   `
   document.querySelector('.playerList').appendChild(listPlayerWrapper)
 
-  // document.getElementById(player.id).addEventListener('click', async () => {
-  //   let inviteMesage = {
-  //     createdAt: new Date().toISOString(),
-  //     message: model.currentUser.displayName + " invited"
-  //     //type
-  //   }
-  //   model.invitationsPlayer(inviteMesage, player.id, player.email)
-  // })
+  document.getElementById(player.id).addEventListener('click', () => {
+    let inviteMesage = {
+      createdAt: new Date().toISOString(),
+      message: model.currentUser.displayName + " invited"
+    }
+    document.querySelectorAll(".opt").forEach(option => {
+      option.addEventListener("click", function () {
+        inviteMesage.type = option.innerText
+        model.invitationsPlayer(inviteMesage, player.id, player.email)
+      })
+    })
+  })
 }
 
 view.addNotification = (message) => {
