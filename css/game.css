@@ -96,7 +96,7 @@
     top: 17px;
     right: 7rem;
 }
-.game-container .main .aside-right .playerList .info-player .player-and-status .name{
+.game-container .main .aside-right .playerList .info-player .player-and-status .name {
     max-width: 200px;
     height:40px;
     font-size: 16px;
@@ -109,12 +109,10 @@
     background-color: #fff;
     color: #26a69a;
 }
-
-.dropdown-item{
+.dropdown-item {
     cursor: pointer;
     font-size: 20px;
 }
-
-.modal{
+.modal {
     margin-top: 7rem;
 }

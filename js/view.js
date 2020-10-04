@@ -47,10 +47,6 @@ view.setActiveScreen = async (screenName) => {
       document.getElementById("log-in").addEventListener("click", () => {
         view.setActiveScreen("loginPage");
       });
-      document.getElementById("sign-out").addEventListener("click", () => {
-        model.setOffline(firebase.auth().currentUser.uid)
-        firebase.auth().signOut();
-      });
       break;
 
     case "gamePage":
