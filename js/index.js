@@ -19,7 +19,6 @@ window.onload = async () => {
       };
       if (user.emailVerified) {
         view.setActiveScreen("gamePage");
-        document.querySelector('.playerList').style = 'display: none'
       } else {
         alert("Please verify your email");
         model.setOffline(user.uid)

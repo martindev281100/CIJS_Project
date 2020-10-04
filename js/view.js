@@ -51,6 +51,9 @@ view.setActiveScreen = async (screenName) => {
 
     case "gamePage":
       document.getElementById("app").innerHTML = component.gamePage;
+      await model.listenPresence()
+      await model.getPlayer()
+      view.showRankingList()
 
       document.querySelectorAll(".opt3x3").forEach(type => {
         type.addEventListener('click', function () {
@@ -79,8 +82,7 @@ view.setActiveScreen = async (screenName) => {
       rankingBtn.addEventListener('click', () => {
         listPlayerBtn.classList.remove('current')
         rankingBtn.classList.add('current')
-        document.querySelector('.rankingList').style = 'display: block'
-        document.querySelector('.playerList').style = 'display: none'
+        view.showRankingList()
       })
       listPlayerBtn.addEventListener('click', () => {
         rankingBtn.classList.remove('current')
@@ -93,8 +95,6 @@ view.setActiveScreen = async (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      await model.listenPresence()
-      await model.getPlayer()
       model.listenAllPlayer()
       model.getNotification()
       break;
@@ -136,16 +136,31 @@ view.setActiveScreen = async (screenName) => {
   }
 };
 
+view.showRankingList = () => {
+  document.querySelector('.playerList').style = 'display: none'
+  const rankingList = document.querySelector('.rankingList')
+  rankingList.innerHTML = ""
+  rankingList.style = 'display: block'
+  for (let i = 0; i < model.players.length; i++) {
+    const infoWrapper = document.createElement('div')
+    infoWrapper.classList.add('info')
+    infoWrapper.innerHTML = `
+    <div class="rank"> ${i + 1}. </div> 
+    <div class="user-name"> ${model.players[i].owner} </div> 
+    <div class="score"> ${model.players[i].points} </div>
+    `
+    rankingList.appendChild(infoWrapper)
+  }
+}
+
 view.setErrorMessage = (elementId, content) => {
   document.getElementById(elementId).innerText = content;
 };
 
 view.showPlayer = (childData) => {
-  document.querySelector('.aside-right .rankingList').innerHTML = ""
   document.querySelector('.aside-right .playerList').innerHTML = ""
 
   for (player of model.players) {
-    view.addPlayer(player)
     let check = false
     for (let i in childData) {
       if (childData[i].state == "online" && player.id == i) {
