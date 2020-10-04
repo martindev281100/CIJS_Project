@@ -127,7 +127,6 @@ view.setActiveScreen = async (screenName) => {
       `;
       board.appendChild(sheet);
       document.getElementById('restartButton').addEventListener('click', game.startGame)
-      document.getElementById('log-in').style = 'display: none'
       game.startGame()
       model.listenGamesChanges()
       break;
@@ -140,6 +139,7 @@ view.showPlayerList = (data) => {
   playerList.innerHTML = ""
   playerList.style = 'display: block'
   for (player of model.players) {
+    if (player.id === model.currentUser.uid) continue
     let online = false
     for (let i in data) {
       if (data[i].state == "online" && player.id == i) {
@@ -175,77 +175,27 @@ view.setErrorMessage = (elementId, content) => {
 view.addPlayer = (player, online) => {
   const listPlayerWrapper = document.createElement('div')
   listPlayerWrapper.classList.add('info-player')
-  if (online) {
-    listPlayerWrapper.innerHTML = `
-    <div class="name">${player.owner}</div>
-    <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite" id="${player.id}">Invite</div>
-    <div class="modal" id="myModal">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" style="color: black;">Type Of Games</h4>
-            <div type="button" class="close" data-dismiss="modal">&times;</div>
-          </div>
+  listPlayerWrapper.innerHTML = online ? `
+  <div class="name">${player.owner}</div>
+  <div type="button" data-toggle="modal" data-target="#myModal" class="btn-invite" id="${player.id}">Invite</div>
+  ` : `
+  <div class="name" >${player.owner}</div>
+  <div id="${player.id}">Offline</div>
+  `
+  document.querySelector('.playerList').appendChild(listPlayerWrapper)
 
-          <div class="modal-body">
-            <div class="dropdown-item opt3x3" data-dismiss="modal">3x3</div>
-            <div class="dropdown-item opt5x5" data-dismiss="modal">5x5</div>
-            <div class="dropdown-item opt10x10" data-dismiss="modal">10x10</div>
-          </div>
-
-          <div class="modal-footer">
-            <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    `
-  } else {
-    listPlayerWrapper.innerHTML = `
-    <div class="name" >${player.owner}</div>
-    <div id="${player.id}">Offline</div>
-    `
-  }
-  document.querySelector('.aside-right .playerList').appendChild(listPlayerWrapper)
-
-  document.getElementById(player.id).addEventListener('click', async () => {
+  document.getElementById(player.id).addEventListener('click', () => {
     let inviteMesage = {
       createdAt: new Date().toISOString(),
       message: model.currentUser.displayName + " invited"
     }
-    model.invitationsPlayer(inviteMesage, player.id, player.email)
-
-
-    const typeElement = document.querySelectorAll('.modal .modal-dialog .modal-content .modal-body .dropdown-item')
-    await typeElement.forEach(async type => {
-      await type.addEventListener('click', handleClick)
-
+    document.querySelectorAll(".opt").forEach(option => {
+      option.addEventListener("click", function () {
+        inviteMesage.type = option.innerText
+        model.invitationsPlayer(inviteMesage, player.id, player.email)
+      })
     })
-
-
-    function handleClick(e) {
-      const type = e.target;
-      inviteMesage.type = type.innerText
-      model.invitationsPlayer(inviteMesage, player.id, player.email)
-      if (inviteMesage.type === "3x3") {
-        game.rule = 3;
-        game.size = 3;
-        view.setActiveScreen("playPage");
-      } else if (inviteMesage.type === "5x5") {
-        game.rule = 5;
-        game.size = 5;
-        view.setActiveScreen("playPage");
-      } else if (inviteMesage.type === "10x10") {
-        game.rule = 10;
-        game.size = 10;
-        view.setActiveScreen("playPage");
-      }
-    }
-
-
   })
-
-
 }
 
 view.addNotification = (message) => {
