@@ -1,10 +1,10 @@
 .home-page {
-    background-image: url(../img/Untitled-2.png);
+    background-image: url(../img/Untitled-2.png);   
     background-size: cover;
     height: 100vh;
 }
-.home-page .main {
-    margin: 13rem 15rem;
+ .home-page .main {
+    margin: 10rem 15rem;
 }
 .home-page .main h1 {
     color: #fff;
@@ -14,7 +14,33 @@
     font-weight: 300;
 }
 .main .content {
-    width: 30%;
-    margin-bottom: 2rem;
+    width: 40%;
     color: #fff;
+}
+.main .btn{
+    margin-top: 1.5rem;
+}
+
+
+@media screen and (max-width: 768px){
+    .home-page {
+        background-image: url(../img/768px.png);   
+        background-size: cover;
+        height: 100vh;
+    }
+    .home-page .main {
+        margin: 10rem 7rem;
+    }
+    .home-page .main h1 {
+        color: #fff;
+        font-size: 2.5rem;
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+    .main .content {
+        width: 60%;
+        color: #fff;
+        font-size: 1.25rem;
+    }
 }
