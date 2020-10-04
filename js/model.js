@@ -151,11 +151,11 @@ model.addPosition = async (data) => {
   firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
-model.listenAllPlayer = async () => {
+model.listenPlayers = async () => {
   await firebase.database().ref().on('value', function (snapshot) {
     snapshot.forEach(function (childSnapshot) {
       var childData = childSnapshot.val();
-      view.showPlayer(childData)
+      view.showPlayerList(childData)
     });
   });
   return false;
