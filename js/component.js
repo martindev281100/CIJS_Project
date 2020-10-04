@@ -153,7 +153,25 @@ component.gamePage = `
     </div>
     <div class="rankingList"></div>
     <div class="playerList"></div>
-    
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="color: black;">Type Of Games</h4>
+            <div type="button" class="close" data-dismiss="modal">&times;</div>
+          </div>
+
+          <div class="modal-body">
+            <div class="dropdown-item opt3x3" data-dismiss="modal">3x3</div>
+            <div class="dropdown-item opt5x5" data-dismiss="modal">5x5</div>
+            <div class="dropdown-item opt10x10" data-dismiss="modal">10x10</div>
+          </div>
+
+          <div class="modal-footer">
+            <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -180,10 +198,6 @@ component.playPage = `
       <li><a href="#"><button>Blogs</button></a></li>
       <li><a href="#"><button>Contact</button></a></li>
     </ul>
-  </div>
-  <div class="button-header">
-    <button class="btn btn-dark" id="log-in">Log in</button>
-    <button class="btn btn-dark" id="sign-out">Sign out</button>
   </div>
 </div>
 </div>
