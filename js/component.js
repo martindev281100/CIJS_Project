@@ -214,7 +214,6 @@ component.playPage = `
     </ul>
   </div>
   <div class="button-header">
-    <button class="btn btn-dark" id="log-in">Log in</button>
     <button class="btn btn-dark" id="sign-out">Sign out</button>
   </div>
 </div>
