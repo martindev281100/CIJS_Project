@@ -129,21 +129,6 @@ component.gamePage = `
               <span class="badge">3</span>
             </button>
             <div class="dropdown-menu" id="listNotification">
-              <div class="item">
-                Martin Aston invited <br>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-times-circle"></i>
-              </div>
-              <div class="item">
-                Manh invited<br>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-times-circle"></i>
-              </div>
-              <div class="item">
-                Dao Khac Manh (FGW HN)<br>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-times-circle"></i>
-              </div>
             </div>
           </div>
     <div class="button-header">

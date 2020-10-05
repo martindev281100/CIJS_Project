@@ -15,7 +15,7 @@ model.register = async (data) => {
       createdAt: new Date().toISOString(),
       points: 1000,
       owner: data.userName,
-      invitations: [],
+      ations: [],
       email: data.email,
     }
     await firebase.firestore().collection('users').doc(response.user.uid).set(dataToAdd)
