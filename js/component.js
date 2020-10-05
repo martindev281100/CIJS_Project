@@ -92,38 +92,38 @@ component.homePage = `
   </div>
 </div>
 
-<div class="main">
-  <h1>the best <text style="color: #990000">games</text> out these</h1>
-  <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio minus temporibus facilis natus sunt, 
-  soluta facere, vel in non aliquam quasi optio. Laudantium adipisci atque corrupti eius repellat enim molestias!</div>
-  <button class="btn btn-dark">Read More</button>
-</div>
+  <div class="main">
+    <h1>the best <text style="color: #990000">games</text> out these</h1>
+    <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio minus temporibus facilis natus sunt, 
+    soluta facere, vel in non aliquam quasi optio. Laudantium adipisci atque corrupti eius repellat enim molestias!</div>
+    <button class="btn btn-dark">Read More</button>
+  </div>
 </div>
 `
 
 component.gamePage = `
 <div class="game-container">
-    <div class="header">
-      <div class="container">
-        <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
-        <div class="nav-bar">
-          <ul>
-            <li><a href="index.html"><button>Home</button></a></li>
-            <li>
-              <div class="dropdown">
-                <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
-                <div class="dropdown-menu">
-                  <button class="dropdown-item opt3x3">3x3</button>
-                  <button class="dropdown-item opt5x5">5x5</button>
-                  <button class="dropdown-item opt10x10">10x10</button>
-                </div>
-              </div>
-            </li>
-            <li><a href="#"><button>Blogs</button></a></li>
-            <li><a href="#"><button>Contact</button></a></li>
-          </ul>
-        </div>
-        <div class="dropdown">
+<div class="header">
+  <div class="container">
+    <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+    <div class="nav-bar">
+      <ul>
+        <li><a href="index.html"><button>Home</button></a></li>
+        <li>
+          <div class="dropdown">
+            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
+            <div class="dropdown-menu">
+              <button class="dropdown-item opt3x3">3x3</button>
+              <button class="dropdown-item opt5x5">5x5</button>
+              <button class="dropdown-item opt10x10">10x10</button>
+            </div>
+          </div>
+        </li>
+        <li><a href="#"><button>Blogs</button></a></li>
+        <li><a href="#"><button>Contact</button></a></li>
+      </ul>
+    </div>
+    <div class="dropdown">
             <button type="button" data-toggle="dropdown" class="notification">
               <i class="fas fa-bell"></i>
               <span class="badge">3</span>
@@ -146,35 +146,50 @@ component.gamePage = `
               </div>
             </div>
           </div>
-        <div class="button-header">
-          <button class="btn btn-dark" id="sign-out">Sign out</button>
-        </div>
+    <div class="button-header">
+      <button class="btn btn-dark" id="sign-out">Sign out</button>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="aside-left">
+    <div class="content">
+      <h1>tic tac toe</h1>
+      <div class="btn-find-match">
+        <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
+        <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+        <button><i class="fas fa-users"></i><br>Create private tournament</button>
       </div>
     </div>
-    
-    <div class="main">
-      <div class="aside-left">
-        <div class="content">
-          <h1>tic tac toe</h1>
-          <div class="btn-find-match">
-            <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
-            <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
-            <button><i class="fas fa-users"></i><br>Create private tournament</button>
+  </div>
+  <div class="aside-right">
+    <div class="title">
+      <button class="ranking current"><i class="fas fa-trophy"></i><br>Ranking</button>
+      <button class="player"><i class="fas fa-users"></i><br>Player</button>
+    </div>
+    <div class="rankingList"></div>
+    <div class="playerList"></div>
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" style="color: black;">Type Of Games</h4>
+            <div type="button" class="close" data-dismiss="modal">&times;</div>
+          </div>
+          <div class="modal-body">
+          <div class="dropdown-item opt3x3 opt" data-dismiss="modal">3x3</div>
+            <div class="dropdown-item opt5x5 opt" data-dismiss="modal">5x5</div>
+            <div class="dropdown-item opt10x10 opt" data-dismiss="modal">10x10</div>
+          </div>
+          <div class="modal-footer">
+            <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
           </div>
         </div>
       </div>
-    
-      <div class="aside-right">
-        <div class="title">
-          <button class="ranking current"><i class="fas fa-trophy"></i><br>Ranking</button>
-          <button class="player"><i class="fas fa-users"></i><br>Player</button>
-        </div>
-        <div class="rankingList"></div>
-        <div class="playerList"></div>
-        
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+</div>
 `
 
 component.playPage = `
