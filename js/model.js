@@ -25,7 +25,10 @@ model.register = async (data) => {
   }
 };
 
-model.login = async ({email, password}) => {
+model.login = async ({
+  email,
+  password
+}) => {
   firebase.auth().signInWithEmailAndPassword(email, password).catch(error => {
     alert(error.message)
   });
@@ -145,10 +148,11 @@ model.addPosition = async (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
-  const docData = getManyDocument(response)
-  model.currentGame = docData[0]
-  firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
+  // const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
+  // const docData = getManyDocument(response)
+  // model.currentGame = docData[0]
+  console.log(model.currentGame)
+  await firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
 model.listenPlayers = async () => {
@@ -162,17 +166,20 @@ model.listenPlayers = async () => {
 }
 
 model.invitationsPlayer = async (data, playerId, playerEmail) => {
-  dataToUpdate = {
-    invitations: firebase.firestore.FieldValue.arrayUnion(data),
-  }
-  await firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
+ 
   newGame = {
     createdAt: new Date().toISOString(),
     players: [model.currentUser.email, playerEmail],
     types: data.type,
     tempo: [],
   }
-  await firebase.firestore().collection('games').add(newGame)
+  const response = await firebase.firestore().collection('games').add(newGame)
+  data.gameId = response.id
+  dataToUpdate = {
+    invitations: firebase.firestore.FieldValue.arrayUnion(data),
+  }
+  await firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
+  model.getGame();
 }
 
 model.listenGamesChanges = () => {
@@ -191,8 +198,21 @@ model.getNotification = () => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
-        view.addNotification(docData.invitations[docData.invitations.length - 1].message)
+        view.addNotification(docData.invitations[docData.invitations.length - 1])
       }
     }
   })
+}
+
+model.getGame = async () => {
+  const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
+  const docData = await getManyDocument(response)
+  console.log(docData)
+  let newestGame = docData[0];
+  for (let i = 1; i < docData.length; i++) {
+    if (docData[i].createdAt > newestGame.createdAt) {
+      newestGame = docData[i]
+    }
+  }
+  model.currentGame = newestGame
 }

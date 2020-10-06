@@ -76,7 +76,7 @@ view.setActiveScreen = async (screenName) => {
           view.setActiveScreen("playPage");
         })
       })
-      
+
       const rankingBtn = document.querySelector(".ranking")
       const listPlayerBtn = document.querySelector(".player")
       rankingBtn.addEventListener('click', () => {
@@ -99,7 +99,6 @@ view.setActiveScreen = async (screenName) => {
 
     case "playPage":
       document.getElementById("app").innerHTML = component.playPage;
-
       let board = document.getElementById("board-game")
       for (let i = 0; i < game.size * game.size; i++) {
         const cell = document.createElement('div');
@@ -187,12 +186,12 @@ view.addPlayer = (player, online) => {
   document.getElementById(player.id).addEventListener('click', () => {
     let inviteMesage = {
       createdAt: new Date().toISOString(),
-      message: model.currentUser.displayName + " invited"
+      message: model.currentUser.displayName + " invited",
     }
     document.querySelectorAll(".opt").forEach(option => {
-      option.addEventListener("click", function () {
+      option.addEventListener("click", async () => {
         inviteMesage.type = option.innerText
-        model.invitationsPlayer(inviteMesage, player.id, player.email)
+        await model.invitationsPlayer(inviteMesage, player.id, player.email)
       })
     })
   })
@@ -205,12 +204,12 @@ view.addPlayer = (player, online) => {
 //   document.getElementById('listNotification').appendChild(notification)
 // }
 
-view.addNotification = (message) => {
+view.addNotification = (notify) => {
   let notification = document.createElement('div')
   notification.innerHTML = `
-  <div class="item">
-    ${message} <br>
-    <i class="fas fa-check-circle"></i>
+  <div class="item" >
+    ${notify.message} <br>
+    <i class="fas fa-check-circle" id="${notify.gameId}"></i>
     <i class="fas fa-times-circle"></i>
   </div>
   `
