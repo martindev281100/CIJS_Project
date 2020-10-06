@@ -17,12 +17,10 @@
     width: 40%;
     color: #fff;
 }
-.main .btn{
+.main .btn {
     margin-top: 1.5rem;
 }
-
-
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
     .home-page {
         background-image: url(../img/768px.png);   
         background-size: cover;
