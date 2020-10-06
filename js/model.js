@@ -149,10 +149,7 @@ model.addPosition = async (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-  // const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
-  // const docData = getManyDocument(response)
-  // model.currentGame = docData[0]
-  console.log(model.currentGame)
+
   await firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
@@ -167,7 +164,7 @@ model.listenPlayers = async () => {
 }
 
 model.invitationsPlayer = async (data, playerId, playerEmail) => {
- 
+
   newGame = {
     createdAt: new Date().toISOString(),
     players: [model.currentUser.email, playerEmail],
@@ -180,7 +177,7 @@ model.invitationsPlayer = async (data, playerId, playerEmail) => {
     invitations: firebase.firestore.FieldValue.arrayUnion(data),
   }
   await firebase.firestore().collection('users').doc(playerId).update(dataToUpdate)
-  model.getGame();
+  model.getNewGame();
 }
 
 model.listenGamesChanges = () => {
@@ -205,10 +202,9 @@ model.getNotification = () => {
   })
 }
 
-model.getGame = async () => {
+model.getNewGame = async () => {
   const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()
   const docData = await getManyDocument(response)
-  console.log(docData)
   let newestGame = docData[0];
   for (let i = 1; i < docData.length; i++) {
     if (docData[i].createdAt > newestGame.createdAt) {

@@ -201,9 +201,27 @@ view.addNotification = (notify) => {
   let notification = document.createElement('div')
   notification.innerHTML = `
   <div class="item">${notify.message}<br>
-    <i class="fas fa-check-circle" id="${notify.gameId}"></i>
+    <i class="fas fa-check-circle" id="${notify.gameId}" onclick="view.directToGame(${notify.gameId})"></i>
     <i class="fas fa-times-circle"></i>
   </div>
   `
   document.getElementById('listNotification').appendChild(notification)
+}
+view.directToGame = async (tag) => {
+  const response = await firebase.firestore().collection('games').doc(tag.id).get()
+  model.currentGame = response.data()
+  model.currentGame.id = tag.id
+  if (response.data().types === "3x3") {
+    game.rule = 3;
+    game.size = 3;
+    view.setActiveScreen("playPage");
+  } else if (response.data().types === "5x5") {
+    game.rule = 4;
+    game.size = 5;
+    view.setActiveScreen("playPage");
+  } else if (response.data().types === "5x5") {
+    game.rule = 5;
+    game.size = 10;
+    view.setActiveScreen("playPage");
+  }
 }
