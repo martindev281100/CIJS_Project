@@ -11,7 +11,7 @@
 }
 .game-container .main .aside-left .content {
     width: 50%;
-    margin: 7rem auto;
+    margin: 6rem auto;
 }
 .game-container .main .aside-left .content h1 {
     color: rgb(21 31 42);
@@ -20,22 +20,23 @@
     font-size: 60px;
     text-align: center;
 }
+
 .game-container .main .aside-left .content .btn-find-match button {
     background-color: rgb(21 31 42);
     color: #fff;
-    width: 55%;
     padding: 20px 0;
     margin: 10px;
     margin-left: 130px;
+    width: 55%;
     font-size: 20px;
     font-weight: 700;
     border: 0px;
     border-radius: 8px;
     outline: none;
     transition: 1s;
+    justify-content: center;
 }
 .game-container .main .aside-left .content .btn-find-match button:hover {
-    width: 60%;
     transition: 1s;
     background-color: #26a69a;
 }
@@ -115,4 +116,76 @@
 }
 .modal {
     margin-top: 7rem;
+}
+
+@media screen and (max-width: 768px) {
+    .game-container .main .aside-left {
+        width: 70%;
+    }
+    .game-container .main .aside-left .content h1 {
+        font-size: 40px;
+    }
+    .game-container .main .aside-left .content .btn-find-match button {
+        padding: 20px 0;
+        margin: 10px;
+        margin-left: 16px;
+        width: 90%;
+        font-size: 15px;
+        font-weight: 500;
+    } 
+    .game-container .main .aside-right {
+        width: 30%;
+    }
+    .game-container .main .aside-right .title button {   
+        padding: 10px 20px;
+        font-size: 15px;
+    }
+    .game-container .main .aside-right .info,
+    .game-container .main .aside-right .playerList .info-player {
+        margin: 12px 15px;
+        font-size: 11px;
+    }
+    .game-container .main .aside-right .playerList .info-player .btn-invite {
+        padding: 0 12px;
+    }
+}
+
+@media screen and (max-width: 411px){
+    .game-container .main {
+        height: 100vh;
+        background-image: url(../img/11.jpg);
+        display: block;
+    }
+    .game-container .main .aside-left {
+        width: 100%;
+    }
+    .game-container .main .aside-left .content h1 {
+        display: none;
+    }
+    .game-container .main .aside-left .content {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .game-container .main .aside-left .content .btn-find-match button {
+        padding: 20px 0;
+        margin: 5px 20px;
+        width: 90%;
+        font-size: 15px;
+        font-weight: 500;
+    } 
+    .game-container .main .aside-right {
+        width: 100%;
+    }
+    .game-container .main .aside-right .title button {   
+        padding: 10px 30px;
+        font-size: 15px;
+    }
+    .game-container .main .aside-right .info,
+    .game-container .main .aside-right .playerList .info-player {
+        margin: 12px 10px;
+        font-size: 15px;
+    }
+    .game-container .main .aside-right .playerList .info-player .btn-invite {
+        padding: 0 14px;
+    }
 }

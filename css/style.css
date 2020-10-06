@@ -128,3 +128,9 @@
         font-size: 10px;
     }
 }
+
+@media screen and (max-width: 411px){
+    .header .container .nav-bar ul li button {
+        display: none;
+    }
+} 
