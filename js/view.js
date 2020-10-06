@@ -198,18 +198,10 @@ view.addPlayer = (player, online) => {
   })
 }
 
-// view.addNotification = (message) => {
-//   let notification = document.createElement('button')
-//   notification.classList.add('dropdown-item')
-//   notification.innerText = message
-//   document.getElementById('listNotification').appendChild(notification)
-// }
-
 view.addNotification = (message) => {
   let notification = document.createElement('div')
   notification.innerHTML = `
-  <div class="item">
-    ${message} <br>
+  <div class="item">${message}<br>
     <i class="fas fa-check-circle"></i>
     <i class="fas fa-times-circle"></i>
   </div>

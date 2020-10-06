@@ -1,4 +1,5 @@
 const model = {};
+
 model.currentUser = undefined;
 model.currentStatus = undefined;
 model.players = [];

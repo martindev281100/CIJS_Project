@@ -4,6 +4,7 @@ component.registerPage = `
 <div class="register-container">
 <form id="register-form">
   <div class="register-header">REGISTER</div>
+  
   <div class="input-wrapper form-group">
     <input type="text" class="form-control" placeholder="Username" name="userName"/>
     <div class="error" id="user-name-error"></div>
@@ -38,10 +39,12 @@ component.loginPage = `
 <div class="login-container">
 <form id="login-form">
   <div class="login-header">LOGIN</div>
+
   <div class="input-wrapper form-group">
     <input type="email" class="form-control" placeholder="Email" name="email"/>
     <div class="error" id="email-error"></div>
   </div>
+
   <div class="input-wrapper form-group">
     <input type="password" class="form-control" placeholder="Password" name="password"/>
     <div class="error" id="password-error"></div>
@@ -49,6 +52,7 @@ component.loginPage = `
 
   <div class="form-action input-wrapper">
     <button class="btn btn-primary btn-login cursor-pointer" type="submit">Login</button>
+
     <div class="login-by-social-account">
       <div class="text"><span>Or login with</span></div>
       <div class="btn-social-acc">
@@ -56,6 +60,7 @@ component.loginPage = `
         <button id="btn_facebook"><i class="fab fa-facebook-square"></i> Facebook </button>
       </div>
     </div>
+    
     <div class="redirect">Don't have an account?
       <span id="redirect-to-register" class="cursor-pointer">Register</span>
     </div>
@@ -92,12 +97,12 @@ component.homePage = `
   </div>
 </div>
 
-  <div class="main">
-    <h1>the best <text style="color: #990000">games</text> out these</h1>
-    <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio minus temporibus facilis natus sunt, 
-    soluta facere, vel in non aliquam quasi optio. Laudantium adipisci atque corrupti eius repellat enim molestias!</div>
-    <button class="btn btn-dark">Read More</button>
-  </div>
+<div class="main">
+  <h1>the best <text style="color: #990000">games</text> out there</h1>
+  <div class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio minus temporibus facilis natus sunt, 
+  soluta facere, vel in non aliquam quasi optio. Laudantium adipisci atque corrupti eius repellat enim molestias!</div>
+  <button class="btn btn-dark">Read More</button>
+</div>
 </div>
 `
 
@@ -106,6 +111,7 @@ component.gamePage = `
 <div class="header">
   <div class="container">
     <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+
     <div class="nav-bar">
       <ul>
         <li><a href="index.html"><button>Home</button></a></li>
@@ -123,19 +129,21 @@ component.gamePage = `
         <li><a href="#"><button>Contact</button></a></li>
       </ul>
     </div>
+
     <div class="dropdown">
-            <button type="button" data-toggle="dropdown" class="notification">
-              <i class="fas fa-bell"></i>
-              <span class="badge">3</span>
-            </button>
-            <div class="dropdown-menu" id="listNotification">
-            </div>
-          </div>
+      <button type="button" data-toggle="dropdown" class="notification">
+        <i class="fas fa-bell"></i>
+        <span class="badge">3</span>
+      </button>
+      <div class="dropdown-menu" id="listNotification"></div>
+    </div>
+
     <div class="button-header">
       <button class="btn btn-dark" id="sign-out">Sign out</button>
     </div>
   </div>
 </div>
+
 <div class="main">
   <div class="aside-left">
     <div class="content">
@@ -147,6 +155,7 @@ component.gamePage = `
       </div>
     </div>
   </div>
+  
   <div class="aside-right">
     <div class="title">
       <button class="ranking current"><i class="fas fa-trophy"></i><br>Ranking</button>
@@ -198,16 +207,11 @@ component.playPage = `
       <li><a href="#"><button>Contact</button></a></li>
     </ul>
   </div>
-  <div class="button-header">
-    <button class="btn btn-dark" id="sign-out">Sign out</button>
-  </div>
 </div>
 </div>
+
 <div class="board-games" id="board-game"></div>
-<div class="winning-message" id="winningMessage">
-<div status-messages></div>
-<button id="restartButton">Restart</button>
-</div>
+
 <div class="winning-message" id="winningMessage">
 <div status-messages></div>
 <button id="restartButton">Restart</button>
