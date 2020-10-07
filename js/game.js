@@ -45,7 +45,9 @@ game.startGame = () => {
         cell.classList.remove(X_CLASS)
         cell.classList.remove(CIRCLE_CLASS)
         cell.removeEventListener('click', game.handleClick)
-        cell.addEventListener('click', game.handleClick, {once: true})
+        cell.addEventListener('click', game.handleClick, {
+            once: true
+        })
     })
     game.setBoardHoverClass()
     document.getElementById('winningMessage').classList.remove('show')
@@ -78,7 +80,9 @@ game.handleClick = (e) => {
 }
 
 game.checkWin = (currentClass) => {
-    let r = game.row, c = game.col, count = 0;
+    let r = game.row,
+        c = game.col,
+        count = 0;
     while (r > 0 && c > 0) {
         if (game.board[r - 1][c - 1] != currentClass) break;
         r--;

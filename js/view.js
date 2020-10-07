@@ -224,4 +224,5 @@ view.directToGame = async (tag) => {
     game.size = 10;
     view.setActiveScreen("playPage");
   }
+  model.getGame()
 }

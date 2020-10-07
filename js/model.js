@@ -213,3 +213,10 @@ model.getNewGame = async () => {
   }
   model.currentGame = newestGame
 }
+
+model.getGame = async () => {
+  const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
+  const result = getOneDocument(response)
+  const tempo = result.tempo
+  console.log(tempo)
+}
