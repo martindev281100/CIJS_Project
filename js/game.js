@@ -76,6 +76,7 @@ game.handleClick = (e) => {
     }
     game.cellElements.forEach(cell => {
         cell.removeEventListener('click', game.handleClick)
+        //cell.addEventListener('click', game.handleClick, {once: true})
     })
 }
 
