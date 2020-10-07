@@ -149,7 +149,6 @@ model.addPosition = async (data) => {
   dataToUpdate = {
     tempo: firebase.firestore.FieldValue.arrayUnion(data),
   }
-
   await firebase.firestore().collection('games').doc(model.currentGame.id).update(dataToUpdate)
 }
 
@@ -186,6 +185,13 @@ model.listenGamesChanges = () => {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
         game.cellElements[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
+        game.circleTurn = !game.circleTurn;
+        if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
+          game.cellElements.forEach(cell => {
+            cell.addEventListener('click', game.handleClick, {once: true})
+        })
+        }
+        game.setBoardHoverClass()
       }
     }
   })
