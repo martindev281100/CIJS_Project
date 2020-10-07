@@ -188,7 +188,6 @@ model.listenGamesChanges = () => {
         game.circleTurn = !game.circleTurn;
         if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
           game.cellElements.forEach(cell => {
-            //cell.removeEventListener('click', game.handleClick)
             cell.addEventListener('click', game.handleClick, {once: true})
         })
         }
