@@ -189,7 +189,7 @@ model.listenGamesChanges = () => {
         if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
           game.cellElements.forEach(cell => {
             cell.addEventListener('click', game.handleClick, {once: true})
-        })
+          })
         }
         game.setBoardHoverClass()
       }
@@ -222,7 +222,9 @@ model.getNewGame = async () => {
 
 model.getGame = async () => {
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
-  const result = getOneDocument(response)
-  const tempo = result.tempo
-  console.log(tempo)
+  const tempo = getOneDocument(response).tempo
+  if (tempo.length) {
+    game.updateGameBoard(tempo[0].position)
+    game.circleTurn = !game.circleTurn;
+  }
 }

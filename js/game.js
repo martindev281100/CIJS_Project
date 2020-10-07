@@ -49,8 +49,15 @@ game.startGame = () => {
             once: true
         })
     })
+    //model.getGame()
     game.setBoardHoverClass()
     document.getElementById('winningMessage').classList.remove('show')
+}
+
+game.updateGameBoard = (position) => {
+    game.row = Math.floor(position / game.size);
+    game.col = position % game.size;
+    game.board[game.row][game.col] = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
 }
 
 game.handleClick = (e) => {
@@ -63,11 +70,7 @@ game.handleClick = (e) => {
         position: game.cellElements.indexOf(e.target)
     }
     model.addPosition(data)
-
-    let index = game.cellElements.indexOf(e.target)
-    game.row = Math.floor(index / game.size);
-    game.col = index % game.size;
-    game.board[game.row][game.col] = currentClass;
+    game.updateGameBoard(game.cellElements.indexOf(e.target))
 
     if (game.checkWin(currentClass)) {
         game.endGame(false)
@@ -76,8 +79,8 @@ game.handleClick = (e) => {
     }
     game.cellElements.forEach(cell => {
         cell.removeEventListener('click', game.handleClick)
-        //cell.addEventListener('click', game.handleClick, {once: true})
     })
+    console.log(game.board)
 }
 
 game.checkWin = (currentClass) => {
