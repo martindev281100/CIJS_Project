@@ -71,11 +71,11 @@ game.handleClick = (e) => {
         game.endGame(false)
     } else if (game.isDraw()) {
         game.endGame(true)
-    } 
-    // else {
-    //     game.circleTurn = !game.circleTurn;
-    //     game.setBoardHoverClass()
-    // }
+    }
+    game.cellElements.forEach(cell => {
+        cell.removeEventListener('click', game.handleClick)
+        //cell.addEventListener('click', game.handleClick, {once: true})
+    })
 }
 
 game.checkWin = (currentClass) => {

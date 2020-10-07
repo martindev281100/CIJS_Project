@@ -186,6 +186,12 @@ model.listenGamesChanges = () => {
       if (oneChange.type === 'modified') {
         game.cellElements[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
         game.circleTurn = !game.circleTurn;
+        if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
+          game.cellElements.forEach(cell => {
+            //cell.removeEventListener('click', game.handleClick)
+            cell.addEventListener('click', game.handleClick, {once: true})
+        })
+        }
         game.setBoardHoverClass()
       }
     }
