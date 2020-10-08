@@ -143,6 +143,7 @@ model.logInWithFacebook = () => {
 model.getPlayer = async () => {
   const response = await firebase.firestore().collection('users').get()
   model.players = getManyDocument(response)
+  model.players.sort(condition)
 }
 
 model.addPosition = async (data) => {
@@ -163,7 +164,6 @@ model.listenPlayers = async () => {
 }
 
 model.invitationsPlayer = async (data, playerId, playerEmail) => {
-
   newGame = {
     createdAt: new Date().toISOString(),
     players: [model.currentUser.email, playerEmail],
@@ -228,3 +228,4 @@ model.getGame = async () => {
     game.circleTurn = !game.circleTurn;
   }
 }
+

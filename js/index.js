@@ -43,3 +43,13 @@ const getManyDocument = (response) => {
   }
   return listData
 }
+
+function condition( pointsA, pointsB){
+  if ( pointsA.points > pointsB.points ){
+    return -1;
+  }
+  if ( pointsA.points < pointsB.points ){
+    return 1;
+  }
+  return 0;
+}
