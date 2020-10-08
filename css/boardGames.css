@@ -1,9 +1,29 @@
+.main-game{
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+.main-game .current-player,
+.main-game .guest-player{
+    margin-top: 6rem;
+    width: 20%;
+    font-size: 20px;
+    font-weight: 500;
+    border: 5px solid #353b48;
+    text-align: center;
+    height: 150px;
+}
+.main-game .current-player .name,
+.main-game .guest-player .name{
+    margin-top: 2.25rem;
+}
+
 :root {
     --cell-size: 60px;
     --mark-size: calc(var(--cell-size)* .9);
 }
 .board-games {
-    width: 100vw;
+    width: 60%;
     height: calc(100vh - 64px);
     display: grid;
     justify-content: center;

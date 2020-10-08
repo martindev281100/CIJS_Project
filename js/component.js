@@ -210,7 +210,18 @@ component.playPage = `
 </div>
 </div>
 
-<div class="board-games" id="board-game"></div>
+    <div class="main-game">
+      <div class="current-player">
+        <div class="name">Player 1: Mạnh</div>
+        <div class="point">Point: 1000</div>
+      </div>
+      <div class="board-games" id="board-game">
+      </div>
+      <div class="guest-player">
+        <div class="name">Player 2: Mạnh 2</div>
+        <div class="point">Point: 1000</div>
+      </div>
+    </div>
 
 <div class="winning-message" id="winningMessage">
 <div status-messages></div>
