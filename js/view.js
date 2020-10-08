@@ -53,6 +53,7 @@ view.setActiveScreen = async (screenName) => {
       document.getElementById("app").innerHTML = component.gamePage;
       await model.listenPresence()
       await model.getPlayer()
+      await model.listNotification()
       view.showRankingList()
 
       document.querySelectorAll(".opt3x3").forEach(type => {
@@ -89,12 +90,13 @@ view.setActiveScreen = async (screenName) => {
         listPlayerBtn.classList.add('current')
         model.listenPlayers()
       })
-
       document.getElementById("sign-out").addEventListener("click", () => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
+      view.showNotification()
       model.getNotification()
+
       break;
 
     case "playPage":
@@ -192,6 +194,7 @@ view.addPlayer = (player, online) => {
       option.addEventListener("click", async () => {
         inviteMesage.type = option.innerText
         await model.invitationsPlayer(inviteMesage, player.id, player.email)
+        
       })
     })
   })
@@ -207,6 +210,22 @@ view.addNotification = (notify) => {
   `
   document.getElementById('listNotification').appendChild(notification)
 }
+
+view.showNotification = () => {
+  console.log(notify.length)
+  for (let i = 0; i < notify.length; i++) {
+    let notification = document.createElement('div')
+    notification.innerHTML = `
+    <div class="item">${notify[i].message}<br>
+      <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId})"></i>
+      <i class="fas fa-times-circle"></i>
+    </div>
+  `
+  document.getElementById('listNotification').appendChild(notification)
+  }
+}
+
+
 view.directToGame = async (tag) => {
   const response = await firebase.firestore().collection('games').doc(tag.id).get()
   model.currentGame = response.data()
@@ -219,9 +238,12 @@ view.directToGame = async (tag) => {
     game.rule = 4;
     game.size = 5;
     view.setActiveScreen("playPage");
-  } else if (response.data().types === "5x5") {
+  } else if (response.data().types === "10x10") {
     game.rule = 5;
     game.size = 10;
     view.setActiveScreen("playPage");
   }
 }
+
+
+

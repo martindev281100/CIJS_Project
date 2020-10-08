@@ -1,4 +1,5 @@
 const model = {};
+let notify = undefined;
 
 model.currentUser = undefined;
 model.currentStatus = undefined;
@@ -204,8 +205,18 @@ model.getNotification = () => {
       if (oneChange.type === 'modified') {
         view.addNotification(docData.invitations[docData.invitations.length - 1])
       }
+      let badgeIcon = document.querySelector(".badge")
+      badgeIcon.innerHTML = `${docData.invitations.length}`
     }
   })
+}
+
+model.listNotification = async () => {
+  const response = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
+  for (oneChange of response.docChanges()) {
+    const docData = getOneDocument(oneChange.doc)
+    notify = docData.invitations
+  }
 }
 
 model.getNewGame = async () => {
