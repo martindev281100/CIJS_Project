@@ -212,16 +212,16 @@ view.addNotification = (notify) => {
 }
 
 view.showNotification = () => {
-  console.log(notify.length)
   for (let i = 0; i < notify.length; i++) {
     let notification = document.createElement('div')
     notification.innerHTML = `
     <div class="item">${notify[i].message}<br>
       <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId})"></i>
-      <i class="fas fa-times-circle"></i>
+      <i class="fas fa-times-circle" id="${notify.indexOf(notify[i])}" onclick="view.deleteNotify(${notify.indexOf(notify[i])})"></i>
     </div>
   `
   document.getElementById('listNotification').appendChild(notification)
+  console.log(notification)
   }
 }
 
@@ -242,6 +242,23 @@ view.directToGame = async (tag) => {
     game.rule = 5;
     game.size = 10;
     view.setActiveScreen("playPage");
+  }
+}
+
+view.deleteNotify = async (idInvite) => {
+  const data = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
+  for (oneChange of data.docChanges()) {
+    const docData = getOneDocument(oneChange.doc)
+    notify.splice(notify.indexOf(idInvite), 1)
+    const DataToUpdate = {
+      createdAt: docData.createdAt,
+      email: docData.email,
+      invitations: notify,
+      owner: docData.owner,
+      points: docData.points,
+    }  
+    firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
+    console.log(docData)
   }
 }
 
