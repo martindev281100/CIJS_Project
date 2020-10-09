@@ -133,7 +133,7 @@ component.gamePage = `
     <div class="dropdown">
       <button type="button" data-toggle="dropdown" class="notification">
         <i class="fas fa-bell"></i>
-        <span class="badge">3</span>
+        <span class="badge"></span>
       </button>
       <div class="dropdown-menu" id="listNotification"></div>
     </div>
