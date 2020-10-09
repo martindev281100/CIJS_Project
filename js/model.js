@@ -186,13 +186,25 @@ model.listenGamesChanges = () => {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
         game.cellElements[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
-        game.circleTurn = !game.circleTurn;
+        
         if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
           game.cellElements.forEach(cell => {
             cell.addEventListener('click', game.handleClick, {once: true})
           })
         }
-        game.setBoardHoverClass()
+        
+        //game.updateGameBoard(game.cellElements.indexOf(e.target))
+        game.updateGameBoard(docData.tempo[docData.tempo.length - 1].position)
+        let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
+        if (game.checkWin(currentClass)) {
+            game.endGame(false);
+            model.updateScore();
+        } else if (game.isDraw()) {
+            game.endGame(true)
+        } else {
+          game.circleTurn = !game.circleTurn;
+          game.setBoardHoverClass()
+        }
       }
     }
   })
