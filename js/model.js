@@ -247,6 +247,7 @@ model.getGame = async () => {
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
   const tempo = getOneDocument(response).tempo
   if (tempo.length) {
+    game.cellElements[tempo[0].position].classList.add(tempo[0].type)
     game.updateGameBoard(tempo[0].position)
     game.circleTurn = !game.circleTurn;
     game.setBoardHoverClass()
