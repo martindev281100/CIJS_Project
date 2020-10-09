@@ -74,6 +74,7 @@ game.handleClick = (e) => {
 
     if (game.checkWin(currentClass)) {
         game.endGame(false)
+        model.updateScore();
     } else if (game.isDraw()) {
         game.endGame(true)
     }

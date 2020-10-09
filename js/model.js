@@ -229,3 +229,7 @@ model.getGame = async () => {
   }
 }
 
+model.updateScore = async () => {
+  console.log(model.currentGame)
+  const response = await firebase.firestore().collection('users')
+}
