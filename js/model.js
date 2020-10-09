@@ -189,7 +189,9 @@ model.listenGamesChanges = () => {
         game.circleTurn = !game.circleTurn;
         if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
           game.cellElements.forEach(cell => {
-            cell.addEventListener('click', game.handleClick, {once: true})
+            cell.addEventListener('click', game.handleClick, {
+              once: true
+            })
           })
         }
         game.setBoardHoverClass()
@@ -238,6 +240,7 @@ model.getGame = async () => {
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
   const tempo = getOneDocument(response).tempo
   if (tempo.length) {
+    game.cellElements[tempo[0].position].classList.add(tempo[0].type)
     game.updateGameBoard(tempo[0].position)
     game.circleTurn = !game.circleTurn;
     game.setBoardHoverClass()
