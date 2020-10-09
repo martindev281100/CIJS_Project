@@ -74,14 +74,7 @@ game.handleClick = (e) => {
         position: game.cellElements.indexOf(e.target)
     }
     model.addPosition(data)
-    game.updateGameBoard(game.cellElements.indexOf(e.target))
-
-    if (game.checkWin(currentClass)) {
-        game.endGame(false)
-        model.updateScore();
-    } else if (game.isDraw()) {
-        game.endGame(true)
-    }
+    
     game.cellElements.forEach(cell => {
         cell.removeEventListener('click', game.handleClick)
     })
