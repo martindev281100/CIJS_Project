@@ -49,9 +49,9 @@ game.startGame = () => {
             once: true
         })
     })
-    //model.getGame()
     game.setBoardHoverClass()
     document.getElementById('winningMessage').classList.remove('show')
+    model.getGame()
 }
 
 game.updateGameBoard = (position) => {

@@ -221,7 +221,6 @@ view.showNotification = () => {
     </div>
   `
   document.getElementById('listNotification').appendChild(notification)
-  console.log(notification)
   }
 }
 
@@ -258,7 +257,6 @@ view.deleteNotify = async (idInvite) => {
       points: docData.points,
     }  
     firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
-    console.log(docData)
   }
 }
 
