@@ -1,5 +1,5 @@
 const model = {};
-let notify = undefined;
+let notify = [];
 
 model.currentUser = undefined;
 model.currentStatus = undefined;
@@ -232,11 +232,13 @@ model.getNewGame = async () => {
 }
 
 model.getGame = async () => {
+  if (model.currentGame === undefined) {
+    return
+  }
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
   const tempo = getOneDocument(response).tempo
   if (tempo.length) {
     game.updateGameBoard(tempo[0].position)
-    game.circleTurn = !game.circleTurn;
     game.setBoardHoverClass()
   }
 }

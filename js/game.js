@@ -51,18 +51,22 @@ game.startGame = () => {
     })
     game.setBoardHoverClass()
     document.getElementById('winningMessage').classList.remove('show')
+    console.log(model.currentGame)
     model.getGame()
 }
 
 game.updateGameBoard = (position) => {
     game.row = Math.floor(position / game.size);
     game.col = position % game.size;
+    console.log(game.row)
+    console.log(game.col)
     game.board[game.row][game.col] = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
+    console.log(game.board[game.row][game.col])
 }
 
 game.handleClick = (e) => {
     let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
-
+    
     const data = {
         createdAt: new Date().toISOString(),
         owner: model.currentUser.email,
