@@ -1,5 +1,5 @@
 const model = {};
-let notify = [];
+let notify = undefined;
 
 model.currentUser = undefined;
 model.currentStatus = undefined;
@@ -186,7 +186,7 @@ model.listenGamesChanges = () => {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
         game.cellElements[docData.tempo[docData.tempo.length - 1].position].classList.add(docData.tempo[docData.tempo.length - 1].type)
-        game.circleTurn = !game.circleTurn;
+
         if (model.currentUser.email != docData.tempo[docData.tempo.length - 1].owner) {
           game.cellElements.forEach(cell => {
             cell.addEventListener('click', game.handleClick, {
@@ -194,7 +194,19 @@ model.listenGamesChanges = () => {
             })
           })
         }
-        game.setBoardHoverClass()
+
+        //game.updateGameBoard(game.cellElements.indexOf(e.target))
+        game.updateGameBoard(docData.tempo[docData.tempo.length - 1].position)
+        let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
+        if (game.checkWin(currentClass)) {
+          game.endGame(false);
+          model.updateScore();
+        } else if (game.isDraw()) {
+          game.endGame(true)
+        } else {
+          game.circleTurn = !game.circleTurn;
+          game.setBoardHoverClass()
+        }
       }
     }
   })
@@ -235,7 +247,7 @@ model.getNewGame = async () => {
 
 model.getGame = async () => {
   if (model.currentGame === undefined) {
-    return
+    return;
   }
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
   const tempo = getOneDocument(response).tempo
@@ -249,5 +261,9 @@ model.getGame = async () => {
 
 model.updateScore = async () => {
   console.log(model.currentGame)
-  const response = await firebase.firestore().collection('users')
+  const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
+  const tempo = getOneDocument(response).tempo
+  const lastPlayer = tempo[tempo.length - 1].owner
+  const user = await firebase.firestore().collection('users').where('email', '==', lastPlayer)
+  console.log(user)
 }
