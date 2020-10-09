@@ -237,6 +237,7 @@ model.getGame = async () => {
   if (tempo.length) {
     game.updateGameBoard(tempo[0].position)
     game.circleTurn = !game.circleTurn;
+    game.setBoardHoverClass()
   }
 }
 
