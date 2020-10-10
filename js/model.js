@@ -194,7 +194,6 @@ model.listenGamesChanges = () => {
             })
           })
         }
-
         //game.updateGameBoard(game.cellElements.indexOf(e.target))
         game.updateGameBoard(docData.tempo[docData.tempo.length - 1].position)
         let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
@@ -224,7 +223,12 @@ model.getNotification = () => {
     }
   })
 }
+model.detachListener = async () => {
 
+  await firebase.firestore().collection('users').onSnapshot(() => {
+
+  })
+}
 model.listNotification = async () => {
   const response = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
   for (oneChange of response.docChanges()) {
@@ -260,10 +264,13 @@ model.getGame = async () => {
 }
 
 model.updateScore = async () => {
-  console.log(model.currentGame)
   const response = await firebase.firestore().collection('games').doc(model.currentGame.id).get()
   const tempo = getOneDocument(response).tempo
   const lastPlayer = tempo[tempo.length - 1].owner
-  const user = await firebase.firestore().collection('users').where('email', '==', lastPlayer)
-  console.log(user)
+  const user = await firebase.firestore().collection('users').where('email', '==', lastPlayer).get()
+  const id = getManyDocument(user)[0].id
+  const point = {
+    points: getManyDocument(user)[0].points + 50
+  }
+  await firebase.firestore().collection('users').doc(id).update(point)
 }

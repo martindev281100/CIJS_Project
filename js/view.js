@@ -131,6 +131,7 @@ view.setActiveScreen = async (screenName) => {
           border-bottom: none;
       }
       `;
+      model.detachListener();
       board.appendChild(sheet);
       document.getElementById('restartButton').addEventListener('click', game.startGame)
       game.startGame()
@@ -199,7 +200,7 @@ view.addPlayer = (player, online) => {
       option.addEventListener("click", async () => {
         inviteMesage.type = option.innerText
         await model.invitationsPlayer(inviteMesage, player.id, player.email)
-        
+
       })
     })
   })
@@ -225,7 +226,7 @@ view.showNotification = () => {
       <i class="fas fa-times-circle" id="${notify.indexOf(notify[i])}" onclick="view.deleteNotify(${notify.indexOf(notify[i])})"></i>
     </div>
   `
-  document.getElementById('listNotification').appendChild(notification)
+    document.getElementById('listNotification').appendChild(notification)
   }
 }
 
@@ -261,10 +262,7 @@ view.deleteNotify = async (idInvite) => {
       invitations: notify,
       owner: docData.owner,
       points: docData.points,
-    }  
+    }
     firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
   }
 }
-
-
-
