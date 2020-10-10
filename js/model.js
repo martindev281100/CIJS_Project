@@ -218,8 +218,14 @@ model.getNotification = () => {
       if (oneChange.type === 'modified') {
         view.addNotification(docData.invitations[docData.invitations.length - 1])
       }
+
       let badgeIcon = document.querySelector(".badge")
-      badgeIcon.innerHTML = `${docData.invitations.length}`
+      if(docData.invitations.length === 0){
+        badgeIcon.style = "display: none"
+      }else{
+        badgeIcon.style = "display: block"
+        badgeIcon.innerHTML = `${docData.invitations.length}`
+      }
     }
   })
 }

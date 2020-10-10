@@ -96,12 +96,7 @@ view.setActiveScreen = async (screenName) => {
       });
       view.showNotification()
       model.getNotification()
-
-      if(notify.length === 0){
-        document.querySelector(".badge").style = "display: none"
-      }else{
-        document.querySelector(".badge").style = "display: block"
-      }
+      
       break;
 
     case "playPage":
@@ -251,11 +246,11 @@ view.directToGame = async (tag, idInvite) => {
   view.deleteNotify(idInvite)
 }
 
-view.deleteNotify = async (idInvite) => {
+view.deleteNotify = async (id) => {
   const data = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
   for (oneChange of data.docChanges()) {
     const docData = getOneDocument(oneChange.doc)
-    notify.splice(notify.indexOf(idInvite), 1)
+    notify.splice(notify.indexOf(id), 1)
     const DataToUpdate = {
       createdAt: docData.createdAt,
       email: docData.email,
@@ -264,5 +259,6 @@ view.deleteNotify = async (idInvite) => {
       points: docData.points,
     }
     firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
+    console.log(DataToUpdate)
   }
 }
