@@ -75,7 +75,7 @@ game.handleClick = (e) => {
         cell.removeEventListener('click', game.handleClick)
     })
     console.log(game.board)
-}
+=}
 
 game.checkWin = (currentClass) => {
     let r = game.row,
