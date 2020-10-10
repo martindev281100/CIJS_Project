@@ -97,6 +97,11 @@ view.setActiveScreen = async (screenName) => {
       view.showNotification()
       model.getNotification()
 
+      if(notify.length === 0){
+        document.querySelector(".badge").style = "display: none"
+      }else{
+        document.querySelector(".badge").style = "display: block"
+      }
       break;
 
     case "playPage":
@@ -216,7 +221,7 @@ view.showNotification = () => {
     let notification = document.createElement('div')
     notification.innerHTML = `
     <div class="item">${notify[i].message}<br>
-      <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId})"></i>
+      <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId}, ${notify.indexOf(notify[i])})"></i>
       <i class="fas fa-times-circle" id="${notify.indexOf(notify[i])}" onclick="view.deleteNotify(${notify.indexOf(notify[i])})"></i>
     </div>
   `
@@ -225,7 +230,7 @@ view.showNotification = () => {
 }
 
 
-view.directToGame = async (tag) => {
+view.directToGame = async (tag, idInvite) => {
   const response = await firebase.firestore().collection('games').doc(tag.id).get()
   model.currentGame = response.data()
   model.currentGame.id = tag.id
@@ -242,6 +247,7 @@ view.directToGame = async (tag) => {
     game.size = 10;
     view.setActiveScreen("playPage");
   }
+  view.deleteNotify(idInvite)
 }
 
 view.deleteNotify = async (idInvite) => {
