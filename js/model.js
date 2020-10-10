@@ -199,7 +199,6 @@ model.listenGamesChanges = () => {
         let currentClass = game.circleTurn ? CIRCLE_CLASS : X_CLASS;
         if (game.checkWin(currentClass)) {
           game.endGame(false);
-          console.log('ran this line')
           model.updateScore();
         } else if (game.isDraw()) {
           game.endGame(true)
@@ -217,8 +216,6 @@ model.getNotification = () => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
-        console.log(oneChange.doc.data())
-        console.log(firebase.firestore().documentChange)
         view.addNotification(docData.invitations[docData.invitations.length - 1])
       }
       let badgeIcon = document.querySelector(".badge")
@@ -272,11 +269,8 @@ model.updateScore = async () => {
   const lastPlayer = tempo[tempo.length - 1].owner
   const user = await firebase.firestore().collection('users').where('email', '==', lastPlayer).get()
   const id = getManyDocument(user)[0].id
-  console.log('increased point')
   const point = {
     points: getManyDocument(user)[0].points + 50
   }
   await firebase.firestore().collection('users').doc(id).update(point)
-  console.log(getManyDocument(await firebase.firestore().collection('users').where('email', '==', lastPlayer).get())[0])
-  console.log(point)
 }

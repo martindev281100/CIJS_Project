@@ -70,12 +70,11 @@ game.handleClick = (e) => {
         position: game.cellElements.indexOf(e.target)
     }
     model.addPosition(data)
-
+    
     game.cellElements.forEach(cell => {
         cell.removeEventListener('click', game.handleClick)
     })
-    console.log(game.board)
-=}
+}
 
 game.checkWin = (currentClass) => {
     let r = game.row,
