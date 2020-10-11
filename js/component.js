@@ -153,7 +153,7 @@ component.gamePage = `
               
               <!-- Modal body -->
               <div class="modal-body">
-                <img src="./img/guide.png" width="480" height="260">
+                <img src="./img/guide.PNG" width="480" height="260">
               </div>
               
               <!-- Modal footer -->
