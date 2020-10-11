@@ -233,13 +233,13 @@ model.detachListener = async () => {
 
   })
 }
-model.listNotification = async () => {
-  const response = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
-  for (oneChange of response.docChanges()) {
-    const docData = getOneDocument(oneChange.doc)
-    notify = docData.invitations
-  }
-}
+// model.listNotification = async () => {
+//   const response = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
+//   for (oneChange of response.docChanges()) {
+//     const docData = getOneDocument(oneChange.doc)
+//     notify = docData.invitations
+//   }
+// }
 
 model.getNewGame = async () => {
   const response = await firebase.firestore().collection('games').where('players', 'array-contains', model.currentUser.email).get()

@@ -53,7 +53,7 @@ view.setActiveScreen = async (screenName) => {
       document.getElementById("app").innerHTML = component.gamePage;
       await model.listenPresence()
       await model.getPlayer()
-      await model.listNotification()
+      // await model.listNotification()
       view.showRankingList()
 
       document.querySelectorAll(".opt3x3").forEach(type => {
@@ -94,9 +94,8 @@ view.setActiveScreen = async (screenName) => {
         model.setOffline(firebase.auth().currentUser.uid)
         firebase.auth().signOut();
       });
-      view.showNotification()
+      // view.showNotification()
       model.getNotification()
-      
       break;
 
     case "playPage":
@@ -206,28 +205,26 @@ view.addNotification = (notify) => {
   notification.innerHTML = `
   <div class="item">${notify.message}<br>
     <i class="fas fa-check-circle" id="${notify.gameId}" onclick="view.directToGame(${notify.gameId})"></i>
-    <i class="fas fa-times-circle"></i>
   </div>
   `
-  console.log(notify)
   document.getElementById('listNotification').appendChild(notification)
 }
 
-view.showNotification = () => {
-  for (let i = 0; i < notify.length; i++) {
-    let notification = document.createElement('div')
-    notification.innerHTML = `
-    <div class="item">${notify[i].message}<br>
-      <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId}, ${notify.indexOf(notify[i])})"></i>
-      <i class="fas fa-times-circle" id="${notify.indexOf(notify[i])}" onclick="view.deleteNotify(${notify.indexOf(notify[i])})"></i>
-    </div>
-  `
-    document.getElementById('listNotification').appendChild(notification)
-  }
-}
+// view.showNotification = () => {
+//   for (let i = 0; i < notify.length; i++) {
+//     let notification = document.createElement('div')
+//     notification.innerHTML = `
+//     <div class="item">${notify[i].message}<br>
+//       <i class="fas fa-check-circle" id="${notify[i].gameId}" onclick="view.directToGame(${notify[i].gameId}, ${notify.indexOf(notify[i])})"></i>
+//       <i class="fas fa-times-circle" id="${notify.indexOf(notify[i])}" onclick="view.deleteNotify(${notify.indexOf(notify[i])})"></i>
+//     </div>
+//   `
+//     document.getElementById('listNotification').appendChild(notification)
+//   }
+// }
 
 
-view.directToGame = async (tag, idInvite) => {
+view.directToGame = async (tag) => {
   const response = await firebase.firestore().collection('games').doc(tag.id).get()
   model.currentGame = response.data()
   model.currentGame.id = tag.id
@@ -244,8 +241,20 @@ view.directToGame = async (tag, idInvite) => {
     game.size = 10;
     view.setActiveScreen("playPage");
   }
-  view.deleteNotify(idInvite)
+  const data = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
+  for (oneChange of data.docChanges()) {
+    const docData = getOneDocument(oneChange.doc)
+    const DataToUpdate = {
+      createdAt: docData.createdAt,
+      email: docData.email,
+      invitations: [],
+      owner: docData.owner,
+      points: docData.points,
+    }
+    firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
+  }
 }
+
 
 view.deleteNotify = async (id) => {
   const data = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
