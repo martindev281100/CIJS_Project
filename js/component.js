@@ -115,16 +115,6 @@ component.gamePage = `
     <div class="nav-bar">
       <ul>
         <li><a href="index.html"><button>Home</button></a></li>
-        <li>
-          <div class="dropdown">
-            <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
-            <div class="dropdown-menu">
-              <button class="dropdown-item opt3x3">3x3</button>
-              <button class="dropdown-item opt5x5">5x5</button>
-              <button class="dropdown-item opt10x10">10x10</button>
-            </div>
-          </div>
-        </li>
         <li><a href="#"><button>Blogs</button></a></li>
         <li><a href="#"><button>Contact</button></a></li>
       </ul>
@@ -149,8 +139,32 @@ component.gamePage = `
     <div class="content">
       <h1>tic tac toe</h1>
       <div class="btn-find-match">
-        <button><i class="fas fa-user-astronaut"></i><br>Find opponent</button>
-        <button><i class="fas fa-user-friends"></i><br>Play with a friend</button>
+        <button type="button" data-toggle="modal" data-target="#myModalGuide"><i class="fas fa-user-astronaut"></i><br>Guide</button>
+        <!-- The Modal -->
+        <div class="modal" id="myModalGuide">
+          <div class="modal-dialog">
+            <div class="modal-content">
+            
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title" style="color:black;">Guide For Player</h4>
+                <div type="button" class="close" data-dismiss="modal">&times;</div>
+              </div>
+              
+              <!-- Modal body -->
+              <div class="modal-body">
+                <img src="./img/guide.png" width="480" height="260">
+              </div>
+              
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <div type="button" class="btn btn-danger" data-dismiss="modal">Close</div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <button><i class="fas fa-user-friends"></i><br>Our Team</button>
         <button><i class="fas fa-users"></i><br>Create private tournament</button>
       </div>
     </div>
@@ -202,13 +216,13 @@ component.playPage = `
 
     <div class="main-game">
       <div class="current-player">
-        <div class="name">Player 1: Mạnh</div>
+        <div class="name">Player 1</div>
         <div class="point">Point: 1000</div>
       </div>
       <div class="board-games" id="board-game">
       </div>
       <div class="guest-player">
-        <div class="name">Player 2: Mạnh 2</div>
+        <div class="name">Player 2</div>
         <div class="point">Point: 1000</div>
       </div>
     </div>

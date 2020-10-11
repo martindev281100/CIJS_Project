@@ -56,6 +56,8 @@ view.setActiveScreen = async (screenName) => {
       // await model.listNotification()
       view.showRankingList()
 
+      
+
       document.querySelectorAll(".opt3x3").forEach(type => {
         type.addEventListener('click', function () {
           game.rule = 3;
