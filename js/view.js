@@ -209,6 +209,7 @@ view.addNotification = (notify) => {
     <i class="fas fa-times-circle"></i>
   </div>
   `
+  console.log(notify)
   document.getElementById('listNotification').appendChild(notification)
 }
 
@@ -259,6 +260,5 @@ view.deleteNotify = async (id) => {
       points: docData.points,
     }
     firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
-    console.log(DataToUpdate)
   }
 }

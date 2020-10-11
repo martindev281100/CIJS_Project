@@ -73,7 +73,7 @@ component.homePage = `
 <div class="home-page">
 <div class="header">
   <div class="container">
-    <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+  <a class="logo" href="index.html"><i class="fas fa-gamepad"></i> Tic Tac Toe</a>
     <div class="nav-bar">
       <ul>
         <li><a href="index.html"><button>Home</button></a></li>
@@ -110,7 +110,7 @@ component.gamePage = `
 <div class="game-container">
 <div class="header">
   <div class="container">
-    <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+  <a class="logo" href="index.html"><i class="fas fa-gamepad"></i> Tic Tac Toe</a>
 
     <div class="nav-bar">
       <ul>
@@ -189,20 +189,10 @@ component.gamePage = `
 component.playPage = `
 <div class="header">
 <div class="container">
-  <div class="logo"><i class="fas fa-gamepad"></i> Tic Tac Toe</div>
+  <a class="logo" href="index.html"><i class="fas fa-gamepad"></i> Tic Tac Toe</a>
   <div class="nav-bar">
     <ul>
       <li><a href="index.html"><button>Home</button></a></li>
-      <li>
-        <div class="dropdown">
-          <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">Games</button>
-          <div class="dropdown-menu">
-            <button class="dropdown-item opt3x3" href="#">3x3</button>
-            <button class="dropdown-item opt5x5" href="#">5x5</button>
-            <button class="dropdown-item opt10x10" href="#">10x10</button>
-          </div>
-        </div>
-      </li>
       <li><a href="#"><button>Blogs</button></a></li>
       <li><a href="#"><button>Contact</button></a></li>
     </ul>

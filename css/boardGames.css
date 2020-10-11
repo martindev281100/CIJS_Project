@@ -123,3 +123,31 @@
 .winning-message.show {
     display: flex;
 }
+
+
+@media screen and (max-width: 411px){
+    .main-game{
+        width: 90%;
+        display: block;
+    }
+
+    .main-game .current-player,
+    .main-game .guest-player{
+        margin-top: 2rem;
+        width: 100%;
+        font-size: 25px;
+        font-weight: 500;
+        border: none;
+        text-align: left;
+        height: auto;
+    }
+    :root {
+        --cell-size: 36px;
+        --mark-size: calc(var(--cell-size)* .9);
+    }
+    .board-games {
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+}

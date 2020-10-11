@@ -20,6 +20,7 @@
 .main .btn {
     margin-top: 1.5rem;
 }
+
 @media screen and (max-width: 768px) {
     .home-page {
         background-image: url(../img/768px.png);   
@@ -42,3 +43,27 @@
         font-size: 1.25rem;
     }
 }
+
+@media screen and (max-width: 411px) {
+    .home-page {
+        background-image: url(../img/768px.png);   
+        background-size: cover;
+        height: 100vh;
+    }
+    .home-page .main {
+        margin: 8rem 2rem;
+    }
+    .home-page .main h1 {
+        color: #fff;
+        font-size: 1.25rem;
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        font-weight: 700;
+    }
+    .main .content {
+        width: 60%;
+        color: #fff;
+        font-size: 0.75rem;
+    }
+}
+

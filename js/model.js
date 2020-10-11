@@ -216,9 +216,8 @@ model.getNotification = () => {
     for (oneChange of snapshot.docChanges()) {
       const docData = getOneDocument(oneChange.doc)
       if (oneChange.type === 'modified') {
-        view.addNotification(docData.invitations[docData.invitations.length - 1])
+          view.addNotification(docData.invitations[docData.invitations.length - 1])
       }
-
       let badgeIcon = document.querySelector(".badge")
       if(docData.invitations.length === 0){
         badgeIcon.style = "display: none"
@@ -230,7 +229,6 @@ model.getNotification = () => {
   })
 }
 model.detachListener = async () => {
-
   await firebase.firestore().collection('users').onSnapshot(() => {
 
   })
