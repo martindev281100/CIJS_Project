@@ -257,19 +257,3 @@ view.directToGame = async (tag) => {
   }
 }
 
-
-view.deleteNotify = async (id) => {
-  const data = await firebase.firestore().collection('users').where('email', '==', model.currentUser.email).get()
-  for (oneChange of data.docChanges()) {
-    const docData = getOneDocument(oneChange.doc)
-    notify.splice(notify.indexOf(id), 1)
-    const DataToUpdate = {
-      createdAt: docData.createdAt,
-      email: docData.email,
-      invitations: notify,
-      owner: docData.owner,
-      points: docData.points,
-    }
-    firebase.firestore().collection('users').doc(model.currentUser.uid).update(DataToUpdate)
-  }
-}

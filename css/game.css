@@ -44,6 +44,7 @@
     width: 25%;
     background-color: rgb(21 31 42);
     color: #fff;
+    overflow: auto;
 }
 .game-container .main .aside-right .title {
     width: 100%;
